@@ -1,10 +1,5 @@
 const Home = () => {
 
-	const comunidades = [
-		"Madrid",
-	]
-
-
 	return (
 		<>
 			<section>
