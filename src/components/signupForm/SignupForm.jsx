@@ -1,13 +1,12 @@
-import axios from "axios"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import InputValidation from "../shared/InputValidacion"
-//import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import Swal from 'sweetalert2';
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import InputValidation from "../shared/InputValidacion";
+import Swal from "sweetalert2";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './SignupForm.css'
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./SignupForm.css";
 
 export default function SignupForm() {
   //const { t } = useTranslation();
@@ -16,19 +15,18 @@ export default function SignupForm() {
   const navigate = useNavigate();
 
   function onSignup() {
-
     // Verifica si las contraseñas coinciden
     if (datos.password !== datos.repeatPassword) {
       console.log("Las contraseñas no coinciden");
-      
+
       // Mostrar alerta con SweetAlert2
       Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Las contraseñas no coinciden',
-        confirmButtonText: 'Aceptar'
+        icon: "error",
+        title: "Error",
+        text: "Las contraseñas no coinciden",
+        confirmButtonText: "Aceptar",
       });
-      
+
       return; // Detiene la función si las contraseñas no coinciden
     }
 
@@ -47,29 +45,28 @@ export default function SignupForm() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header bg-secondary text-white">
-              Registro
-            </div>
+            <div className="card-header text-black">Regístrate
+            <button 
+            type="button" 
+            className="btn-close position-absolute top-0 end-0 m-1"
+            aria-label="Close"
+            
+            //</div>onClick={() => {}}// Faltaría añadir lógica
+          ></button></div>
             <div className="card-body">
-            <div className="mb-3">
-                  <label htmlFor="exampleInputName" className="form-label">
-                    Nombre
-                  </label>
-                  <input
-                    value={datos.name}
-                    onChange={(e) =>
-                      setDatos({ ...datos, name: e.target.value })
-                    }
-                    type="text"
-                    className="form-control"
-                    id="exampleInputName"
-                  />
-                </div>
+            <div className="bienvenido">Bienvenido</div>
+              <div className="mb-3 form-floating">
+                <input
+                  value={datos.name}
+                  onChange={(e) => setDatos({ ...datos, name: e.target.value })}
+                  type="text"
+                  className="form-control"
+                  id="exampleInputName"
+                />
+                <label htmlFor="exampleInputName">Nombre</label>
+              </div>
               <div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputEmail1" className="form-label">
-                    Correo Electrónico
-                  </label>
+                <div className="mb-3 form-floating">
                   <InputValidation
                     rules={[
                       {
@@ -89,11 +86,9 @@ export default function SignupForm() {
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                   ></InputValidation>
+                  <label htmlFor="exampleInputEmail1">Correo Electrónico</label>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    Contraseña
-                  </label>
+                <div className="mb-3 form-floating">
                   <InputValidation
                     rules={[
                       {
@@ -108,11 +103,9 @@ export default function SignupForm() {
                       setDatos({ ...datos, password: e.target.value })
                     }
                   ></InputValidation>
+                  <label htmlFor="exampleInputPassword1">Contraseña</label>
                 </div>
-                <div className="mb-3">
-                  <label htmlFor="exampleInputPassword1" className="form-label">
-                    Repetir Contraseña
-                  </label>
+                <div className="mb-3 form-floating">
                   <InputValidation
                     type="password"
                     value={datos.repeatPassword}
@@ -120,6 +113,9 @@ export default function SignupForm() {
                       setDatos({ ...datos, repeatPassword: e.target.value })
                     }
                   ></InputValidation>
+                  <label htmlFor="exampleInputPassword1">
+                    Repetir Contraseña
+                  </label>
                 </div>
                 <button
                   onClick={onSignup}
