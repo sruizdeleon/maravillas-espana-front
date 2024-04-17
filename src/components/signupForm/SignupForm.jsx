@@ -11,12 +11,12 @@ import "./SignupForm.css";
 export default function SignupForm() {
   //const { t } = useTranslation();
 
-  const [datos, setDatos] = useState({ email: "", password: "", name: "" });
+  const [datos, setDatos] = useState({ email: "", password: "", name: ""});
   const navigate = useNavigate();
 
   function onSignup() {
     // Verifica si las contraseñas coinciden
-    if (datos.password !== datos.repeatPassword) {
+    if (datos.password !== datos.repetirPassword) {
       console.log("Las contraseñas no coinciden");
 
       // Mostrar alerta con SweetAlert2
@@ -31,7 +31,7 @@ export default function SignupForm() {
     }
 
     axios
-      .post("http://localhost:3000/api/users/signup", datos)
+      .post("http://localhost:3000/api/users/registrar", datos)
       .then((response) => {
         navigate("/login");
       })
@@ -108,9 +108,9 @@ export default function SignupForm() {
                 <div className="mb-3 form-floating">
                   <InputValidation
                     type="password"
-                    value={datos.repeatPassword}
+                    value={datos.repetirPassword}
                     onChange={(e) =>
-                      setDatos({ ...datos, repeatPassword: e.target.value })
+                      setDatos({ ...datos, repetirPassword: e.target.value })
                     }
                   ></InputValidation>
                   <label htmlFor="exampleInputPassword1">
