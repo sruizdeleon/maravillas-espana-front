@@ -6,17 +6,28 @@ import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
 import { SessionContext } from "./components/contexts/SessionContext";
 import { useContext } from "react";
+import Header from "./components/header/Header";
+import GoodFooter from "./components/footer/Footer";
+import Carrusel from "./components/carousel/Carrusel";
+import Landing from "./pages/landing/Landing";
+
 
 function App() {
   const { user } = useContext(SessionContext);
 
   return (
     <>
+      <Header></Header>
       <main>
         <Container>
           <Routes>
             <Route path="/home" element={<Home></Home>}>
               Home
+            </Route>
+          </Routes>
+          <Routes>
+            <Route path="/" element={<Landing></Landing>}>
+              Landing
             </Route>
           </Routes>
           <Routes>
@@ -33,6 +44,7 @@ function App() {
           </Routes>
         </Container>
       </main>
+      <GoodFooter></GoodFooter>
     </>
   );
 }
