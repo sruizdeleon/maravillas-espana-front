@@ -1,0 +1,39 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f4f4;
+    color: rgb(71, 69, 69);
+    height: 90px;
+}
+
+h3 {
+    margin: 0;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+}
+
+.registrarse {
+    margin-left: 20px;
+    cursor: pointer;
+    color: #f5f4f4;
+    background-color: #4fadc0;
+    border-radius: 5px;
+    border: 1px solid rgb(71, 69, 69);
+    padding: 8px 16px;
+    font-weight: bold;
+}
+
+.login {
+    margin-left: 20px;
+    cursor: pointer;
+    color: rgb(71, 69, 69);
+    border-radius: 5px;
+    border: 1px solid rgb(71, 69, 69);
+    padding: 8px 16px;
+    font-weight: bold;
+}

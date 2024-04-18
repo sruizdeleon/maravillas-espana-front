@@ -1,0 +1,56 @@
+.card {
+  border: none;
+  border-radius: 20px;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+.btn {
+  display: inline-flex;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 16px;
+  background: var(--Ciano, #4fadc0);
+  width: 100%;
+}
+
+.card-header {
+  background: white;
+  font-size: 20px;
+  text-align: center;
+  color: var(--Black, #101415);
+  text-align: center;
+  font-family: "Gill Sans Nova";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.mb-3 {
+  border-radius: 16px;
+  border: 1px solid #ccc;
+}
+.bienvenido {
+  color: var(--Black, #101415);
+  font-family: "Gill Sans Nova";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+

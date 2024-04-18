@@ -1,0 +1,52 @@
+.carrusel {
+    position: relative;
+    height: 550px;
+    margin: 0 auto;
+    background-color: red;
+    width:auto
+}
+
+img{
+    position:absolute;
+    border-radius: 20px 20px;
+    font-weight: bold;
+    height: 90%;
+    margin: auto 0;
+    z-index: 1
+}
+
+
+.prev-button{
+    position:absolute;
+    color: rgb(71, 69, 69);
+    border-radius: 5px;
+    border: 1px solid rgb(71, 69, 69);
+    padding: 6px 8px;
+    font-weight: bold;
+    top: 50%;
+    z-index: 2
+}
+
+.next-button{
+    position:absolute;
+    color: rgb(71, 69, 69);
+    border-radius: 5px;
+    border: 1px solid rgb(71, 69, 69);
+    padding: 6px 8px;
+    font-weight: bold;
+    top: 50%;
+    z-index: 2
+}
+
+.localization{
+    position:absolute;
+    color: rgb(71, 69, 69);
+    border-radius: 5px;
+    border: 1px solid rgb(71, 69, 69);
+    padding: 6px 8px;
+    font-weight: bold;
+    top: 50%; /* Lo posiciona en el centro verticalmente */
+    left: 50%; /* Lo posiciona en el centro horizontalmente */
+    transform: translate(-50%, -50%); /* Centra el botón correctamente */
+    z-index: 2; /* Asegura que el botón esté por encima de la imagen */
+}
