@@ -11,7 +11,7 @@ const Home = () => {
 
 	// const { user } = useContext(SessionContext);
 	const [actividades, setActividades] = useState("");
-	const [actividadesFiltradas, setActividadesFiltradas] = useState("");
+	// const [actividadesFiltradas, setActividadesFiltradas] = useState("");
 	const [datos, setDatos] = useState(DEFAULTDATA)
 	const [provinciasConId, setProvinciasConId] = useState("");
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
@@ -145,9 +145,7 @@ console.log(actividades)
 		console.log(idEncontrado);
 		axios
 			.get(
-				`http://localhost:3000/api/actividades?${datos.provincia === "" ? "comunidad" : "provinciaId"}=${
-					datos.provincia === "" ? datos.comunidad : idEncontrado
-				}`
+				`http://localhost:3000/api/actividades`,{params: {comunidad: datos.comunidad, provinciaId:idEncontrado}}
 			)
 			.then(response => {
 				const respuesta = response.data.actividadesEncontradas;
@@ -268,7 +266,7 @@ console.log(actividades)
 									<p>Comunidad</p>
 									<p>{actividad.comunidad}</p>
 								</article>;
-						  })}
+							})}
 				</div>
 			</section>
 		</>
