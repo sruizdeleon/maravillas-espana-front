@@ -5,19 +5,25 @@ import provinciasData from '../../models/Provincias.json';
 import axios from 'axios';
 
 const Home = () => {
-	const DEFAULTDATA = { comunidad: "", provincia: "", plan: ""}
+	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: ""}
+	const DEFAULTFILTROS = {provincias: [], plan: ""}
 	const COMUNIDADES = comunidadesData.comunidades;
 	const PROVINCIAS = provinciasData.provincias;
 
 	// const { user } = useContext(SessionContext);
 	const [actividades, setActividades] = useState("");
-	// const [actividadesFiltradas, setActividadesFiltradas] = useState("");
-	const [datos, setDatos] = useState(DEFAULTDATA)
+	const [actividadesFiltradas, setActividadesFiltradas] = useState("");
+	// const [provinciasPosiblesFiltrar, setProvinciasPosiblesFiltrar] = useState("");
+	// const [filtros, setFiltros] = useState(DEFAULTFILTROS);
+	const [datos, setDatos] = useState(DEFAULTDATOS)
 	const [provinciasConId, setProvinciasConId] = useState("");
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
 	const [comunidadDesactivado, setComunidadDesactivado] = useState(false)
 	const [provincias, setProvincias] = useState(PROVINCIAS)
 	const [provinciaDesactivada, setProvinciaDesactivada] = useState(false)
+
+	// console.log("Normales", actividades);
+	// console.log("Filtradas", actividadesFiltradas);
 
 	useEffect(()=>{
 		axios
@@ -26,18 +32,14 @@ const Home = () => {
 			)
 			.then(response => {
 				const provinciasConId = response.data.provinciasEncontradas.map((prov)=>{
-					return {provinciaId: prov._id, nombre: prov.nombre}
+					return prov
 				})
-				console.log(provinciasConId)
 				setProvinciasConId(provinciasConId)
 			})
 			.catch(error => {
 				console.log(error);
 			});
 	}, [])
-
-console.log(datos)
-console.log(actividades)
 
 	function onCambioEnComunidad(e) {
 		const input = String(e.target.value);
@@ -68,7 +70,6 @@ console.log(actividades)
 	function onCambioEnProvincia(e) {
 		const input = String(e.target.value);
 		setDatos({ ...datos, provincia: input });
-		console.log(input)
 		if(input === "") {
 			if(datos.comunidad === "" && input === "") {
 				setDatos({...datos, comunidad: "", provincia: ""})
@@ -78,7 +79,6 @@ console.log(actividades)
 				setProvincias(PROVINCIAS)
 			}
 		} else {
-			console.log(input);
 			setComunidadDesactivado(true);
 			let contieneProvincia = false;
 			PROVINCIAS.map(prov => {
@@ -87,7 +87,6 @@ console.log(actividades)
 				}
 			});
 			if (contieneProvincia) {
-				console.log(input);
 				COMUNIDADES.map(com => {
 					com.provincias &&
 						com.provincias.map(prov => {
@@ -103,7 +102,6 @@ console.log(actividades)
 	}
 
 	function onCambioEnPlan(e) {
-		console.log(e.target.value);
 		const input = String(e.target.value);
 		if(input === "Plan de ciudad") {
 			setDatos({ ...datos, plan: "ciudad" });
@@ -115,18 +113,22 @@ console.log(actividades)
 
 	async function guardarActividades(response) {
 		if(datos.plan === "ciudad") {
-			const actividadesPlanCiudad = response.map((actividad) => {
+			const actividadesPlanCiudad = new Array;
+			response.map((actividad) => {
 				if(actividad.tipo === "ciudad"){
-					return actividad;
+					actividadesPlanCiudad.push(actividad);
 				}
 			});
-			setActividades(actividadesPlanCiudad)
+			console.log(actividadesPlanCiudad);
+			setActividades(actividadesPlanCiudad);
 		} else if (datos.plan === "rural") {
-			const actividadesPlanRural = response.map(actividad => {
+			let actividadesPlanRural = new Array;
+			response.map(actividad => {
 				if(actividad.tipo === "rural"){
-					return actividad;
+					actividadesPlanRural.push(actividad);
 				}
 			})
+			console.log(actividadesPlanRural);
 			setActividades(actividadesPlanRural);
 		} else {
 			setActividades(response)
@@ -142,7 +144,6 @@ console.log(actividades)
 				}
 			});
 		}
-		console.log(idEncontrado);
 		axios
 			.get(
 				`http://localhost:3000/api/actividades`,{params: {comunidad: datos.comunidad, provinciaId:idEncontrado}}
@@ -156,6 +157,21 @@ console.log(actividades)
 				console.log(error);
 			});
 	}
+
+/* 	function filtrarPorProvincia(event) {
+		const inputProvincia = event.target.value
+		const filtroProvincias = filtros.provincias;
+		if (filtroProvincias.includes(inputProvincia) === false) {
+			let arrayProvincias = filtros.provincias;
+			arrayProvincias.push(inputProvincia);
+			setFiltros({ ...filtros, provincias: arrayProvincias });
+		} else {
+			let arrayProvincias = filtros.provincias;
+			console.log(arrayProvincias)
+			arrayProvincias.splice(arrayProvincias.indexOf(inputProvincia), 1);
+			setFiltros({ ...filtros, provincias: arrayProvincias });
+		}
+	} */
 
 	return (
 		<>
@@ -222,51 +238,105 @@ console.log(actividades)
 				</form>
 			</section>
 
-{/* RESULTADOS DE BÚSQUEDA */}
+			{/* RESULTADOS DE BÚSQUEDA */}
 			<section>
 				<div>
 					<h2>Aquí están los mejores planes</h2>
-					<div>
 
 					{/* FILTROS */}
-						<h5>Filtros</h5>
+					<div>
+						{/* <h5>Filtros</h5>
 						<form>
-							<fieldset>
-								<legend>Orden</legend>
-								<button type="button">Acendente</button>
-								<button type="button">Descendente</button>
-							</fieldset>
 							<fieldset>
 								<legend>Plan</legend>
 								<button type="button">Plan de ciudad</button>
 								<button type="button">Plan de campo</button>
 							</fieldset>
-							{/* Sólo si la comunidad tiene más de una provincia.
-							Bucle con las provincias de esa comunidad,
-							si sólo selecciona una, el resto seleccionada,
-							si no selecciona ninguna todas seleccionadas
-							para que las persona pueda añadir o quitar de la comunidad */}
-						</form>
+							<fieldset>
+								{
+									provinciasPosiblesFiltrar.length > 0
+										? provinciasPosiblesFiltrar.map((prov)=>{
+											return (
+												<>
+													<input
+														id="prov.value"
+														type="checkbox"
+														value={prov.value}
+														onChange={(e) => filtrarPorProvincia(e)}
+														checked={filtros.provincias.includes(prov.name.toLowerCase())? true : false}
+													/>
+													<label htmlFor={prov.value}>{prov.name}</label>
+												</>
+											);
+										})
+										: ""
+								}
+							</fieldset>
+						</form> */}
 					</div>
 				</div>
 
-				{/* 
+				{/*
 				 */}
 				<div>
 					{/* Bucle con Componente tarjeta actividad */}
-					{!actividades
-						? ""
-						: actividades.map(actividad => {
-								<article>
-									<img src={actividad.img} />
-									<p>Nombre de la actividad</p>
-									<h3>{actividad.nombre}</h3>
-									<p>Tipo de plan</p>
-									<p>{actividad.tipo}</p>
-									<p>Comunidad</p>
-									<p>{actividad.comunidad}</p>
-								</article>;
-							})}
+					{actividadesFiltradas !== ""
+						? actividadesFiltradas &&
+							actividadesFiltradas.map(actividad => {
+								return (
+									<>
+										<article>
+											<img src={actividad?.img} />
+											<p>Nombre de la actividad</p>
+											<h3>{actividad?.nombre}</h3>
+											<p>Tipo de plan</p>
+											<p>{actividad?.tipo}</p>
+											<p>Comunidad</p>
+											<p>{actividad?.comunidad}</p>
+											{provinciasConId.map(prov => {
+												if (prov._id === actividad?.provinciaId) {
+													return (
+														<>
+															<p>Provincia</p>
+															<p>{prov.nombre}</p>
+															<p>Provincia</p>
+															<p>{prov.imagenBandera}</p>
+														</>
+													);
+												}
+											})}
+										</article>
+									</>
+								);
+						  })
+						: actividades &&
+						  actividades.map(actividad => {
+								return (
+									<>
+										<article>
+											<img src={actividad?.img} />
+											<p>Nombre de la actividad</p>
+											<h3>{actividad?.nombre}</h3>
+											<p>Tipo de plan</p>
+											<p>{actividad?.tipo}</p>
+											<p>Comunidad</p>
+											<p>{actividad?.comunidad}</p>
+											{provinciasConId.map(prov => {
+												if (prov._id === actividad?.provinciaId) {
+													return (
+														<>
+															<p>Provincia</p>
+															<p>{prov.nombre}</p>
+															<p>Provincia</p>
+															<p>{prov.imagenBandera}</p>
+														</>
+													);
+												}
+											})}
+										</article>
+									</>
+								);
+						  })}
 				</div>
 			</section>
 		</>
