@@ -12,7 +12,23 @@ const Home = () => {
 	const PROVINCIAS = provinciasData.provincias;
 
 	// const { user } = useContext(SessionContext);
-	const [actividades, setActividades] = useState([]);
+	const [actividades, setActividades] = useState([
+		{
+			_id: "662380ef38b0c0dd919cadcd",
+			nombre: "Catedral de León",
+			img: "https://i.postimg.cc/2831scmQ/Pueblos-de-los-Ancares.jpg",
+			descripcion:
+				"Contempla la impresionante arquitectura gótica de la Catedral de León, una de las más destacadas de España.",
+			provincia: {
+				_id: "661c09a6ab5c0cb25b8e9d7f",
+				nombre: "León",
+				imagenBandera: "imagen",
+			},
+			comunidad: "Castilla y Leon",
+			tipo: "ciudad",
+			__v: 0,
+		},
+	]);
 	const [datos, setDatos] = useState(DEFAULTDATOS)
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
 	const [provincias, setProvincias] = useState(PROVINCIAS)
@@ -138,8 +154,9 @@ const Home = () => {
 			<section className="searcher">
 				<form className="searcher__form">
 					{/* INPUT COMUNIDADES */}
-					<div className="searcher__container">
+					<div className="searcher__container searcher__container--border">
 						<svg
+							className="searcher__icon"
 							xmlns="http://www.w3.org/2000/svg"
 							width="16"
 							height="16"
@@ -173,56 +190,106 @@ const Home = () => {
 					</div>
 
 					{/* INPUT PROVINCIAS */}
-					<div>
-						<label htmlFor="provincia">Provincia</label>
-						<input
-							id="provincia"
-							name="provincia"
-							multiple
-							list="lista-provincias"
-							placeholder="Provincias"
-							onChange={e => onCambioEnProvincia(e)}
-							disabled={provinciaInputDesactivado}
-						></input>
-						<datalist id="lista-provincias">
-							{provincias.map((provincia, index) => (
-								<option key={index}>{provincia.name}</option>
-							))}
-						</datalist>
+					<div className="searcher__container searcher__container--border">
+						<svg
+							className="searcher__icon"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							class="bi bi-geo-alt-fill"
+							viewBox="0 0 16 16"
+						>
+							<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+						</svg>
+						<div className="searcher__input-container">
+							<label className="searcher__label" htmlFor="provincia">
+								Provincia
+							</label>
+							<input
+								className="searcher__input"
+								id="provincia"
+								name="provincia"
+								multiple
+								list="lista-provincias"
+								placeholder="Provincias"
+								onChange={e => onCambioEnProvincia(e)}
+								disabled={provinciaInputDesactivado}
+							></input>
+							<datalist id="lista-provincias">
+								{provincias.map((provincia, index) => (
+									<option key={index}>{provincia.name}</option>
+								))}
+							</datalist>
+						</div>
 					</div>
 
 					{/* INPUT TIPO DE PLAN */}
-					<div>
-						<label htmlFor="plan">Tipo de plan</label>
-						<input
-							id="plan"
-							name="plan"
-							multiple
-							list="lista-planes"
-							placeholder="Tipo de plan"
-							onChange={e => onCambioEnPlan(e)}
-						></input>
-						<datalist id="lista-planes">
-							<option>Plan de ciudad</option>
-							<option>Plan rural</option>
-						</datalist>
+					<div className="searcher__container">
+						<svg
+							className="searcher__icon"
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							class="bi bi-lightning-charge-fill"
+							viewBox="0 0 16 16"
+						>
+							<path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z" />
+						</svg>
+						<div className="searcher__input-container">
+							<label className="searcher__label" htmlFor="plan">
+								Tipo de plan
+							</label>
+							<input
+								className="searcher__input"
+								id="plan"
+								name="plan"
+								multiple
+								list="lista-planes"
+								placeholder="Tipo de plan"
+								onChange={e => onCambioEnPlan(e)}
+							></input>
+							<datalist id="lista-planes">
+								<option>Plan de ciudad</option>
+								<option>Plan rural</option>
+							</datalist>
+						</div>
 					</div>
-					<button type="button" onClick={buscarActividades}>
-						Buscar
-					</button>
 				</form>
+				<button className="searcher__button" type="button" onClick={buscarActividades}>
+					<svg
+						className="searcher__button-icon"
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						fill="currentColor"
+						class="bi bi-search"
+						viewBox="0 0 16 16"
+					>
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+					</svg>
+					Buscar
+				</button>
 			</section>
 
 			{/* RESULTADOS DE BÚSQUEDA */}
-			<section>
-				<h2>Aquí están los mejores planes</h2>
-
-				<div>
-					{/* Bucle con Componente tarjeta actividad */}
-					{actividades.length === 0
-						? ""
-						: actividades.map(actividad => <ActivityCard actividad={actividad}></ActivityCard>)}
-				</div>
+			<section className="activities-list">
+				<h2 className="activities-list__title">
+					{actividades.length > 0
+						? datos.provincia !== ""
+							? `Lo más buscado de ${datos.provincia}, ${datos.comunidad}`
+							: `Lo más buscado de ${datos.comunidad}`
+						: ""}
+					<img
+						className="activities-list__flag"
+						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu1ADKF86JkG7FKvBIbOPt5OvT4TGONcdjQQ&s"
+					></img>
+				</h2>
+				{/* Bucle con Componente tarjeta actividad */}
+				{actividades.length === 0
+					? ""
+					: actividades.map(actividad => <ActivityCard actividad={actividad}></ActivityCard>)}
 			</section>
 		</>
 	);
