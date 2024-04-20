@@ -1,10 +1,10 @@
+import './Home.css'
 import { useEffect, useState } from 'react';
 import comunidadesData from '../../models/Comunidades.json';
 import provinciasData from '../../models/Provincias.json';
 // import { SessionContext } from "../../contexts/SessionContext";
 import axios from 'axios';
 import ActivityCard from '../../components/activityCard/ActivityCard';
-import { set } from 'react-hook-form';
 
 const Home = () => {
 	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: ""}
@@ -12,39 +12,13 @@ const Home = () => {
 	const PROVINCIAS = provinciasData.provincias;
 
 	// const { user } = useContext(SessionContext);
-	const [actividades, setActividades] = useState([
-        {
-            "_id": "662380ef38b0c0dd919cadd5",
-            "nombre": "Plaza Mayor de Burgos",
-            "img": "https://postimg.cc/ZW9f18w6",
-            "descripcion": "Disfruta del bullicio y la vida cotidiana en la Plaza Mayor de Burgos, rodeada de edificios históricos y animados cafés.",
-            "provincia": {
-                "_id": "661cd0dbcab02767690bce6d",
-                "nombre": "Burgos"
-            },
-            "comunidad": "Castilla y Leon",
-            "tipo": "ciudad",
-            "__v": 0
-        },
-        {
-            "_id": "662380ef38b0c0dd919cadd6",
-            "nombre": "Catedral de Burgos",
-            "img": "https://postimg.cc/5Qx7GDrt",
-            "descripcion": "La Catedral de Santa María de Burgos es un impresionante ejemplo del arte gótico en España. Construida entre los siglos XIII y XVI, es conocida por su majestuosa arquitectura, sus vidrieras espectaculares y sus numerosas esculturas. Es uno de los principales monumentos de Burgos y un importante lugar de peregrinación en el Camino de Santiago.",
-            "provincia": {
-                "_id": "661cd0dbcab02767690bce6d",
-                "nombre": "Burgos"
-            },
-            "comunidad": "Castilla y Leon",
-            "tipo": "ciudad",
-            "__v": 0
-        }]);
+	const [actividades, setActividades] = useState([]);
 	const [datos, setDatos] = useState(DEFAULTDATOS)
-	const [provinciasConId, setProvinciasConId] = useState("");
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
-	const [comunidadDesactivado, setComunidadDesactivado] = useState(false)
 	const [provincias, setProvincias] = useState(PROVINCIAS)
-	const [provinciaDesactivada, setProvinciaDesactivada] = useState(false)
+	const [provinciasConId, setProvinciasConId] = useState("");
+	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false)
+	const [provinciaInputDesactivado, setProvinciaInputDesactivado] = useState(false)
 
 	console.log("Normales", actividades);
 	console.log("Búsqueda", datos);
@@ -71,19 +45,19 @@ const Home = () => {
 		setDatos({...datos, comunidad: input})
 		if(datos.provincia === "" && input === ""){
 			setDatos({ ...datos, comunidad: "", provincia: ""});
-			setComunidadDesactivado(false);
-			setProvinciaDesactivada(false);
+			setComunidadInputDesactivado(false);
+			setProvinciaInputDesactivado(false);
 			setComunidades(COMUNIDADES);
 			setProvincias(PROVINCIAS);
 		}
 		if(input !== ""){
-			setProvinciaDesactivada(true)
+			setProvinciaInputDesactivado(true)
 			let contineComunidad = false;
 			COMUNIDADES.map((com)=>{
 				if(com.name === input) {
 					contineComunidad = true;
 					com.provincias && setProvincias(com.provincias);
-					setProvinciaDesactivada(false);
+					setProvinciaInputDesactivado(false);
 				}
 			})
 			if(!contineComunidad){
@@ -98,13 +72,13 @@ const Home = () => {
 		if(input === "") {
 			if(datos.comunidad === "" && input === "") {
 				setDatos({...datos, comunidad: "", provincia: ""})
-				setComunidadDesactivado(false)
-				setProvinciaDesactivada(false)
+				setComunidadInputDesactivado(false)
+				setProvinciaInputDesactivado(false)
 				setComunidades(COMUNIDADES)
 				setProvincias(PROVINCIAS)
 			}
 		} else {
-			setComunidadDesactivado(true);
+			setComunidadInputDesactivado(true);
 			let contieneProvincia = false;
 			PROVINCIAS.map(prov => {
 				if (prov.name === input) {
@@ -137,7 +111,6 @@ const Home = () => {
 		}
 	}
 
-
 	async function buscarActividades() {
 		let idEncontrado;
 		console.log(datos.provincia)
@@ -162,26 +135,41 @@ const Home = () => {
 
 	return (
 		<>
-			<section>
-				<form>
+			<section className="searcher">
+				<form className="searcher__form">
 					{/* INPUT COMUNIDADES */}
-					<div>
-						<label htmlFor="comunidad">Comunidad</label>
-						<input
-							id="comunidad"
-							name="comunidad"
-							multiple
-							list="lista-comunidades"
-							placeholder="Comunidad"
-							value={datos.comunidad}
-							onChange={e => onCambioEnComunidad(e)}
-							disabled={comunidadDesactivado}
-						></input>
-						<datalist id="lista-comunidades">
-							{comunidades.map((comunidad, index) => (
-								<option key={index}>{comunidad.name}</option>
-							))}
-						</datalist>
+					<div className="searcher__container">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							class="bi bi-geo-alt-fill"
+							viewBox="0 0 16 16"
+						>
+							<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+						</svg>
+						<div className="searcher__input-container">
+							<label className="searcher__label" htmlFor="comunidad">
+								Comunidad
+							</label>
+							<input
+								className="searcher__input"
+								id="comunidad"
+								name="comunidad"
+								multiple
+								list="lista-comunidades"
+								placeholder="Comunidad"
+								value={datos.comunidad}
+								onChange={e => onCambioEnComunidad(e)}
+								disabled={comunidadInputDesactivado}
+							></input>
+							<datalist id="lista-comunidades">
+								{comunidades.map((comunidad, index) => (
+									<option key={index}>{comunidad.name}</option>
+								))}
+							</datalist>
+						</div>
 					</div>
 
 					{/* INPUT PROVINCIAS */}
@@ -194,7 +182,7 @@ const Home = () => {
 							list="lista-provincias"
 							placeholder="Provincias"
 							onChange={e => onCambioEnProvincia(e)}
-							disabled={provinciaDesactivada}
+							disabled={provinciaInputDesactivado}
 						></input>
 						<datalist id="lista-provincias">
 							{provincias.map((provincia, index) => (
@@ -227,17 +215,13 @@ const Home = () => {
 
 			{/* RESULTADOS DE BÚSQUEDA */}
 			<section>
-					<h2>Aquí están los mejores planes</h2>
-
-
+				<h2>Aquí están los mejores planes</h2>
 
 				<div>
 					{/* Bucle con Componente tarjeta actividad */}
-					{actividades.length === 0 ?
-							"" :
-							actividades.map(actividad => 
-								<ActivityCard actividad={actividad}></ActivityCard>
-							)}
+					{actividades.length === 0
+						? ""
+						: actividades.map(actividad => <ActivityCard actividad={actividad}></ActivityCard>)}
 				</div>
 			</section>
 		</>

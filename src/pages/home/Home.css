@@ -1,0 +1,23 @@
+.searcher {
+  background-color: cadetblue;
+}
+
+.searcher__form {
+  background-color: burlywood;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.searcher__container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  
+}
+
+.searcher__input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
