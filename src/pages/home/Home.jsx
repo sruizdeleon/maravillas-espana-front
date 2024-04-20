@@ -3,18 +3,42 @@ import comunidadesData from '../../models/Comunidades.json';
 import provinciasData from '../../models/Provincias.json';
 // import { SessionContext } from "../../contexts/SessionContext";
 import axios from 'axios';
+import ActivityCard from '../../components/activityCard/ActivityCard';
+import { set } from 'react-hook-form';
 
 const Home = () => {
 	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: ""}
-	const DEFAULTFILTROS = {provincias: [], plan: ""}
 	const COMUNIDADES = comunidadesData.comunidades;
 	const PROVINCIAS = provinciasData.provincias;
 
 	// const { user } = useContext(SessionContext);
-	const [actividades, setActividades] = useState("");
-	const [actividadesFiltradas, setActividadesFiltradas] = useState("");
-	// const [provinciasPosiblesFiltrar, setProvinciasPosiblesFiltrar] = useState("");
-	// const [filtros, setFiltros] = useState(DEFAULTFILTROS);
+	const [actividades, setActividades] = useState([
+        {
+            "_id": "662380ef38b0c0dd919cadd5",
+            "nombre": "Plaza Mayor de Burgos",
+            "img": "https://postimg.cc/ZW9f18w6",
+            "descripcion": "Disfruta del bullicio y la vida cotidiana en la Plaza Mayor de Burgos, rodeada de edificios históricos y animados cafés.",
+            "provincia": {
+                "_id": "661cd0dbcab02767690bce6d",
+                "nombre": "Burgos"
+            },
+            "comunidad": "Castilla y Leon",
+            "tipo": "ciudad",
+            "__v": 0
+        },
+        {
+            "_id": "662380ef38b0c0dd919cadd6",
+            "nombre": "Catedral de Burgos",
+            "img": "https://postimg.cc/5Qx7GDrt",
+            "descripcion": "La Catedral de Santa María de Burgos es un impresionante ejemplo del arte gótico en España. Construida entre los siglos XIII y XVI, es conocida por su majestuosa arquitectura, sus vidrieras espectaculares y sus numerosas esculturas. Es uno de los principales monumentos de Burgos y un importante lugar de peregrinación en el Camino de Santiago.",
+            "provincia": {
+                "_id": "661cd0dbcab02767690bce6d",
+                "nombre": "Burgos"
+            },
+            "comunidad": "Castilla y Leon",
+            "tipo": "ciudad",
+            "__v": 0
+        }]);
 	const [datos, setDatos] = useState(DEFAULTDATOS)
 	const [provinciasConId, setProvinciasConId] = useState("");
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
@@ -22,8 +46,8 @@ const Home = () => {
 	const [provincias, setProvincias] = useState(PROVINCIAS)
 	const [provinciaDesactivada, setProvinciaDesactivada] = useState(false)
 
-	// console.log("Normales", actividades);
-	// console.log("Filtradas", actividadesFiltradas);
+	console.log("Normales", actividades);
+	console.log("Búsqueda", datos);
 
 	useEffect(()=>{
 		axios
@@ -34,6 +58,7 @@ const Home = () => {
 				const provinciasConId = response.data.provinciasEncontradas.map((prov)=>{
 					return prov
 				})
+				console.log(provinciasConId);
 				setProvinciasConId(provinciasConId)
 			})
 			.catch(error => {
@@ -105,73 +130,35 @@ const Home = () => {
 		const input = String(e.target.value);
 		if(input === "Plan de ciudad") {
 			setDatos({ ...datos, plan: "ciudad" });
-		}
-		if(input === "Plan rural") {
+		} else if(input === "Plan rural") {
 			setDatos({ ...datos, plan: "rural" });
+		} else {
+			setDatos({ ...datos, plan: "" });
 		}
 	}
 
-	async function guardarActividades(response) {
-		if(datos.plan === "ciudad") {
-			const actividadesPlanCiudad = new Array;
-			response.map((actividad) => {
-				if(actividad.tipo === "ciudad"){
-					actividadesPlanCiudad.push(actividad);
-				}
-			});
-			console.log(actividadesPlanCiudad);
-			setActividades(actividadesPlanCiudad);
-		} else if (datos.plan === "rural") {
-			let actividadesPlanRural = new Array;
-			response.map(actividad => {
-				if(actividad.tipo === "rural"){
-					actividadesPlanRural.push(actividad);
-				}
-			})
-			console.log(actividadesPlanRural);
-			setActividades(actividadesPlanRural);
-		} else {
-			setActividades(response)
-		}
-	}
 
 	async function buscarActividades() {
 		let idEncontrado;
+		console.log(datos.provincia)
 		if (datos.provincia !== "") {
 			provinciasConId.map(prov => {
 				if (datos.provincia === prov.nombre) {
-					idEncontrado = prov.provinciaId;
+					idEncontrado = prov._id;
 				}
 			});
 		}
 		axios
 			.get(
-				`http://localhost:3000/api/actividades`,{params: {comunidad: datos.comunidad, provinciaId:idEncontrado}}
+				`http://localhost:3000/api/actividades`,{params: {comunidad: datos.comunidad, provincia:idEncontrado, tipo: datos.plan}}
 			)
 			.then(response => {
-				const respuesta = response.data.actividadesEncontradas;
-				console.log(respuesta);
-				guardarActividades(respuesta);
+				setActividades(response.data.actividadesEncontradas);
 			})
 			.catch(error => {
 				console.log(error);
 			});
 	}
-
-/* 	function filtrarPorProvincia(event) {
-		const inputProvincia = event.target.value
-		const filtroProvincias = filtros.provincias;
-		if (filtroProvincias.includes(inputProvincia) === false) {
-			let arrayProvincias = filtros.provincias;
-			arrayProvincias.push(inputProvincia);
-			setFiltros({ ...filtros, provincias: arrayProvincias });
-		} else {
-			let arrayProvincias = filtros.provincias;
-			console.log(arrayProvincias)
-			arrayProvincias.splice(arrayProvincias.indexOf(inputProvincia), 1);
-			setFiltros({ ...filtros, provincias: arrayProvincias });
-		}
-	} */
 
 	return (
 		<>
@@ -240,103 +227,17 @@ const Home = () => {
 
 			{/* RESULTADOS DE BÚSQUEDA */}
 			<section>
-				<div>
 					<h2>Aquí están los mejores planes</h2>
 
-					{/* FILTROS */}
-					<div>
-						{/* <h5>Filtros</h5>
-						<form>
-							<fieldset>
-								<legend>Plan</legend>
-								<button type="button">Plan de ciudad</button>
-								<button type="button">Plan de campo</button>
-							</fieldset>
-							<fieldset>
-								{
-									provinciasPosiblesFiltrar.length > 0
-										? provinciasPosiblesFiltrar.map((prov)=>{
-											return (
-												<>
-													<input
-														id="prov.value"
-														type="checkbox"
-														value={prov.value}
-														onChange={(e) => filtrarPorProvincia(e)}
-														checked={filtros.provincias.includes(prov.name.toLowerCase())? true : false}
-													/>
-													<label htmlFor={prov.value}>{prov.name}</label>
-												</>
-											);
-										})
-										: ""
-								}
-							</fieldset>
-						</form> */}
-					</div>
-				</div>
 
-				{/*
-				 */}
+
 				<div>
 					{/* Bucle con Componente tarjeta actividad */}
-					{actividadesFiltradas !== ""
-						? actividadesFiltradas &&
-							actividadesFiltradas.map(actividad => {
-								return (
-									<>
-										<article>
-											<img src={actividad?.img} />
-											<p>Nombre de la actividad</p>
-											<h3>{actividad?.nombre}</h3>
-											<p>Tipo de plan</p>
-											<p>{actividad?.tipo}</p>
-											<p>Comunidad</p>
-											<p>{actividad?.comunidad}</p>
-											{provinciasConId.map(prov => {
-												if (prov._id === actividad?.provinciaId) {
-													return (
-														<>
-															<p>Provincia</p>
-															<p>{prov.nombre}</p>
-															<p>Provincia</p>
-															<p>{prov.imagenBandera}</p>
-														</>
-													);
-												}
-											})}
-										</article>
-									</>
-								);
-						  })
-						: actividades &&
-						  actividades.map(actividad => {
-								return (
-									<>
-										<article>
-											<img src={actividad?.img} />
-											<p>Nombre de la actividad</p>
-											<h3>{actividad?.nombre}</h3>
-											<p>Tipo de plan</p>
-											<p>{actividad?.tipo}</p>
-											<p>Comunidad</p>
-											<p>{actividad?.comunidad}</p>
-											{provinciasConId.map(prov => {
-												if (prov._id === actividad?.provinciaId) {
-													return (
-														<>
-															<p>Provincia</p>
-															<p>{prov.nombre}</p>
-															<p>Provincia</p>
-															<p>{prov.imagenBandera}</p>
-														</>
-													);
-												}
-											})}
-										</article>
-									</>
-								);
-						  })}
+					{actividades.length === 0 ?
+							"" :
+							actividades.map(actividad => 
+								<ActivityCard actividad={actividad}></ActivityCard>
+							)}
 				</div>
 			</section>
 		</>
