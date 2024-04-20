@@ -22,8 +22,8 @@ const Home = () => {
 	const [provincias, setProvincias] = useState(PROVINCIAS)
 	const [provinciaDesactivada, setProvinciaDesactivada] = useState(false)
 
-	// console.log("Normales", actividades);
-	// console.log("Filtradas", actividadesFiltradas);
+	console.log("Normales", actividades);
+	console.log("Búsqueda", datos);
 
 	useEffect(()=>{
 		axios
@@ -34,6 +34,7 @@ const Home = () => {
 				const provinciasConId = response.data.provinciasEncontradas.map((prov)=>{
 					return prov
 				})
+				console.log(provinciasConId);
 				setProvinciasConId(provinciasConId)
 			})
 			.catch(error => {
@@ -105,48 +106,39 @@ const Home = () => {
 		const input = String(e.target.value);
 		if(input === "Plan de ciudad") {
 			setDatos({ ...datos, plan: "ciudad" });
-		}
-		if(input === "Plan rural") {
+		} else if(input === "Plan rural") {
 			setDatos({ ...datos, plan: "rural" });
+		} else {
+			setDatos({ ...datos, plan: "" });
 		}
 	}
 
 	async function guardarActividades(response) {
 		if(datos.plan === "ciudad") {
-			const actividadesPlanCiudad = new Array;
-			response.map((actividad) => {
-				if(actividad.tipo === "ciudad"){
-					actividadesPlanCiudad.push(actividad);
-				}
-			});
-			console.log(actividadesPlanCiudad);
-			setActividades(actividadesPlanCiudad);
+			const actividadesPorTipo = response.filter(act => act.tipo === "ciudad");
+			setActividades(actividadesPorTipo);
 		} else if (datos.plan === "rural") {
-			let actividadesPlanRural = new Array;
-			response.map(actividad => {
-				if(actividad.tipo === "rural"){
-					actividadesPlanRural.push(actividad);
-				}
-			})
-			console.log(actividadesPlanRural);
-			setActividades(actividadesPlanRural);
+			const actividadesPorTipo = response.filter((act)=>act.tipo === "rural");
+			setActividades(actividadesPorTipo);
 		} else {
+			console.log("Sin tipo", response)
 			setActividades(response)
 		}
 	}
 
 	async function buscarActividades() {
 		let idEncontrado;
+		console.log(datos.provincia)
 		if (datos.provincia !== "") {
 			provinciasConId.map(prov => {
 				if (datos.provincia === prov.nombre) {
-					idEncontrado = prov.provinciaId;
+					idEncontrado = prov._id;
 				}
 			});
 		}
 		axios
 			.get(
-				`http://localhost:3000/api/actividades`,{params: {comunidad: datos.comunidad, provinciaId:idEncontrado}}
+				`http://localhost:3000/api/actividades`,{params: {comunidad: datos.comunidad, provincia:idEncontrado}}
 			)
 			.then(response => {
 				const respuesta = response.data.actividadesEncontradas;
@@ -280,9 +272,9 @@ const Home = () => {
 				 */}
 				<div>
 					{/* Bucle con Componente tarjeta actividad */}
-					{actividadesFiltradas !== ""
-						? actividadesFiltradas &&
-							actividadesFiltradas.map(actividad => {
+					{actividades === "" ?
+							"" :
+							actividades.map(actividad => {
 								return (
 									<>
 										<article>
@@ -293,50 +285,12 @@ const Home = () => {
 											<p>{actividad?.tipo}</p>
 											<p>Comunidad</p>
 											<p>{actividad?.comunidad}</p>
-											{provinciasConId.map(prov => {
-												if (prov._id === actividad?.provinciaId) {
-													return (
-														<>
-															<p>Provincia</p>
-															<p>{prov.nombre}</p>
-															<p>Provincia</p>
-															<p>{prov.imagenBandera}</p>
-														</>
-													);
-												}
-											})}
+											<p>Provincia</p>
+											<p>{actividad?.provincia.nombre}</p>
 										</article>
 									</>
 								);
-						  })
-						: actividades &&
-						  actividades.map(actividad => {
-								return (
-									<>
-										<article>
-											<img src={actividad?.img} />
-											<p>Nombre de la actividad</p>
-											<h3>{actividad?.nombre}</h3>
-											<p>Tipo de plan</p>
-											<p>{actividad?.tipo}</p>
-											<p>Comunidad</p>
-											<p>{actividad?.comunidad}</p>
-											{provinciasConId.map(prov => {
-												if (prov._id === actividad?.provinciaId) {
-													return (
-														<>
-															<p>Provincia</p>
-															<p>{prov.nombre}</p>
-															<p>Provincia</p>
-															<p>{prov.imagenBandera}</p>
-														</>
-													);
-												}
-											})}
-										</article>
-									</>
-								);
-						  })}
+							})}
 				</div>
 			</section>
 		</>
