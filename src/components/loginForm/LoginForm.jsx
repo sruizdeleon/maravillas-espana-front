@@ -27,15 +27,10 @@ export default function LoginForm() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div
-              className="card-header bg-secondary text-white"
-              style={{ background: "green" }}
-            >
-              Inicio de Sesión
-            </div>
+            <div className="card-header text-black mb-2">Inicio de Sesión</div>
             <div className="card-body">
               <form onSubmit={handleSubmit(doLogin)}>
-                <form className="form-floating mb-3">
+                <form className="form-floating mb-2">
                   <input
                     type="email"
                     {...register("email", { required: true })}
@@ -48,7 +43,7 @@ export default function LoginForm() {
                   </label>
                 </form>
                 <br></br>
-                <form className="form-floating mb-3">
+                <form className="form-floating mb-2">
                   <input
                     type="password"
                     {...register("password", { required: true, minLength: 8 })}
@@ -79,7 +74,6 @@ export default function LoginForm() {
                 <button
                   type="submit"
                   className="btn btn-secondary text-white pointer"
-                  style={{ alignItems: "center" }}
                 >
                   Iniciar Sesión
                 </button>

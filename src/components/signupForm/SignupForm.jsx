@@ -46,16 +46,11 @@ export default function SignupForm() {
         <div className="col-md-6">
           <div className="card">
             <div className="card-header text-black">Regístrate
-            <button 
-            type="button" 
-            className="btn-close position-absolute top-0 end-0 m-1"
-            aria-label="Close"
-            
-            //</div>onClick={() => {}}// Faltaría añadir lógica
-          ></button></div>
+            </div>
             <div className="card-body">
             <div className="bienvenido">Bienvenido</div>
-              <div className="mb-3 form-floating">
+              <div>
+              <div className="mb-3 form-floating border">
                 <input
                   value={datos.name}
                   onChange={(e) => setDatos({ ...datos, name: e.target.value })}
@@ -65,8 +60,7 @@ export default function SignupForm() {
                 />
                 <label htmlFor="exampleInputName">Nombre</label>
               </div>
-              <div>
-                <div className="mb-3 form-floating">
+                <div className="mb-3 form-floating border">
                   <InputValidation
                     rules={[
                       {
@@ -88,7 +82,7 @@ export default function SignupForm() {
                   ></InputValidation>
                   <label htmlFor="exampleInputEmail1">Correo Electrónico</label>
                 </div>
-                <div className="mb-3 form-floating">
+                <div className="mb-3 form-floating border">
                   <InputValidation
                     rules={[
                       {
@@ -105,7 +99,7 @@ export default function SignupForm() {
                   ></InputValidation>
                   <label htmlFor="exampleInputPassword1">Contraseña</label>
                 </div>
-                <div className="mb-3 form-floating">
+                <div className="mb-3 form-floating border">
                   <InputValidation
                     type="password"
                     value={datos.repetirPassword}
@@ -120,7 +114,7 @@ export default function SignupForm() {
                 <button
                   onClick={onSignup}
                   type="submit"
-                  className="btn btn-secondary"
+                  className="btn btn-secondary mt-2 fs-5"
                 >
                   Continuar
                 </button>
