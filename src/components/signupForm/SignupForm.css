@@ -3,6 +3,7 @@
   border-radius: 20px;
 }
 
+
 .form-control:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
@@ -19,7 +20,7 @@
 }
 .btn {
   display: inline-flex;
-  padding: 16px 32px;
+  padding: 10px 32px;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -30,24 +31,23 @@
 
 .card-header {
   background: white;
-  font-size: 20px;
-  text-align: center;
-  color: var(--Black, #101415);
   text-align: center;
   font-family: "Gill Sans Nova";
-  font-size: 20px;
+  font-size: 22px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
-.mb-3 {
+.border {
   border-radius: 16px;
   border: 1px solid #ccc;
+  margin-bottom: 2rem !important;
 }
+
 .bienvenido {
   color: var(--Black, #101415);
   font-family: "Gill Sans Nova";
-  font-size: 28px;
+  font-size: 26px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
