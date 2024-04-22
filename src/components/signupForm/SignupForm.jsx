@@ -29,6 +29,28 @@ export default function SignupForm() {
 
       return; // Detiene la función si las contraseñas no coinciden
     }
+    if (datos.email === "") {
+      console.log("El email está vacío");
+      // Mostrar alerta con SweetAlert2
+      Swal.fire({
+        icon: "warning",
+        title: "",
+        text: "Falta indicar correo electrónico",
+        confirmButtonText: "Aceptar",
+      });
+      return; // Detiene la función si el email está vacío
+    }
+    if (datos.name === "") {
+      console.log("El nombre está vacío");
+      // Mostrar alerta con SweetAlert2
+      Swal.fire({
+        icon: "info",
+        title: "",
+        text: "Falta indicar nombre",
+        confirmButtonText: "Aceptar",
+      });
+      return; // Detiene la función si el email está vacío
+    }
 
     axios
       .post("http://localhost:3000/api/users/registrar", datos)
@@ -41,7 +63,7 @@ export default function SignupForm() {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-2">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
@@ -114,7 +136,7 @@ export default function SignupForm() {
                 <button
                   onClick={onSignup}
                   type="submit"
-                  className="btn btn-secondary mt-2 fs-5"
+                  className="btn btn-secondary fs-5"
                 >
                   Continuar
                 </button>

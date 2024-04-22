@@ -2,6 +2,7 @@ import { useContext } from "react";
 import axios from "axios";
 import { SessionContext } from "../contexts/SessionContext";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 export default function LoginForm() {
   const {
@@ -19,7 +20,15 @@ export default function LoginForm() {
         login({ email: datos.email, token: response.data.token });
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data.msg === "credenciales no validas") {
+          Swal.fire({
+            title: '<i class="fa-solid fa-circle-exclamation"></i>',
+            html: "Las credenciales no son válidas",
+            confirmButtonText: "Aceptar",
+          });
+        } else {
+          console.log(err);
+        }
       });
   }
   return (
