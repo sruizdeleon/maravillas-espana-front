@@ -13,24 +13,40 @@ const Home = () => {
 
 	// const { user } = useContext(SessionContext);
 	const [actividades, setActividades] = useState([
-		{
-			_id: "662380ef38b0c0dd919cadcd",
-			nombre: "Catedral de León",
-			img: "https://i.postimg.cc/2831scmQ/Pueblos-de-los-Ancares.jpg",
-			descripcion:
-				"Contempla la impresionante arquitectura gótica de la Catedral de León, una de las más destacadas de España.",
-			provincia: {
-				_id: "661c09a6ab5c0cb25b8e9d7f",
-				nombre: "León",
-				imagenBandera: "imagen",
-			},
-			comunidad: "Castilla y Leon",
-			tipo: "ciudad",
-			__v: 0,
-		},
+		// {
+		// 	_id: "662380ef38b0c0dd919cadcd",
+		// 	nombre: "Catedral de León",
+		// 	img: "https://i.postimg.cc/2831scmQ/Pueblos-de-los-Ancares.jpg",
+		// 	descripcion:
+		// 		"Contempla la impresionante arquitectura gótica de la Catedral de León, una de las más destacadas de España.",
+		// 	provincia: {
+		// 		_id: "661c09a6ab5c0cb25b8e9d7f",
+		// 		nombre: "León",
+		// 		imagenBandera: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu1ADKF86JkG7FKvBIbOPt5OvT4TGONcdjQQ&s",
+		// 	},
+		// 	comunidad: "Castilla y Leon",
+		// 	tipo: "ciudad",
+		// 	__v: 0,
+		// },
+		// {
+		// 	_id: "662380ef38b0c0dd919cadcd",
+		// 	nombre: "Catedral de León",
+		// 	img: "https://i.postimg.cc/2831scmQ/Pueblos-de-los-Ancares.jpg",
+		// 	descripcion:
+		// 		"Contempla la impresionante arquitectura gótica de la Catedral de León, una de las más destacadas de España.",
+		// 	provincia: {
+		// 		_id: "661c09a6ab5c0cb25b8e9d7f",
+		// 		nombre: "León",
+		// 		imagenBandera: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu1ADKF86JkG7FKvBIbOPt5OvT4TGONcdjQQ&s",
+		// 	},
+		// 	comunidad: "Castilla y Leon",
+		// 	tipo: "ciudad",
+		// 	__v: 0,
+		// },
 	]);
 	const [datos, setDatos] = useState(DEFAULTDATOS)
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
+	const [busqueda, setBusqueda] = useState(false);
 	const [provincias, setProvincias] = useState(PROVINCIAS)
 	const [provinciasConId, setProvinciasConId] = useState("");
 	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false)
@@ -55,6 +71,17 @@ const Home = () => {
 				console.log(error);
 			});
 	}, [])
+
+	useEffect(()=>{
+		console.log(busqueda)
+		if(actividades?.length > 0) {
+			setBusqueda(true);
+			console.log("Entro a ponerlo a true")
+		} else {
+			setBusqueda(false);
+			console.log("Entro a ponerlo a false")
+		}
+	}, [actividades])
 
 	function onCambioEnComunidad(e) {
 		const input = String(e.target.value);
@@ -151,21 +178,21 @@ const Home = () => {
 
 	return (
 		<>
-			<section className="searcher">
+			<section className="searcher" style={ busqueda ? { height:  "fit-content"} : {height: "calc(100vh - 154px)", transitionProperty: "height", transitionDuration: "1s", transitionTimingFunction: "linear"}}>
 				<form className="searcher__form">
 					{/* INPUT COMUNIDADES */}
 					<div className="searcher__container searcher__container--border">
-						<svg
-							className="searcher__icon"
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							fill="currentColor"
-							class="bi bi-geo-alt-fill"
-							viewBox="0 0 16 16"
-						>
-							<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-						</svg>
+						<div className="searcher__icon-container">
+							<svg
+								className="searcher__icon"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="#666666"
+								class="bi bi-geo-alt-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+							</svg>
+						</div>
 						<div className="searcher__input-container">
 							<label className="searcher__label" htmlFor="comunidad">
 								Comunidad
@@ -191,17 +218,17 @@ const Home = () => {
 
 					{/* INPUT PROVINCIAS */}
 					<div className="searcher__container searcher__container--border">
-						<svg
-							className="searcher__icon"
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							fill="currentColor"
-							class="bi bi-geo-alt-fill"
-							viewBox="0 0 16 16"
-						>
-							<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-						</svg>
+						<div className="searcher__icon-container">
+							<svg
+								className="searcher__icon"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="#666666"
+								class="bi bi-geo-alt-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+							</svg>
+						</div>
 						<div className="searcher__input-container">
 							<label className="searcher__label" htmlFor="provincia">
 								Provincia
@@ -226,17 +253,17 @@ const Home = () => {
 
 					{/* INPUT TIPO DE PLAN */}
 					<div className="searcher__container">
-						<svg
-							className="searcher__icon"
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							fill="currentColor"
-							class="bi bi-lightning-charge-fill"
-							viewBox="0 0 16 16"
-						>
-							<path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z" />
-						</svg>
+						<div className="searcher__icon-container">
+							<svg
+								className="searcher__icon"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="#666666"
+								class="bi bi-lightning-charge-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z" />
+							</svg>
+						</div>
 						<div className="searcher__input-container">
 							<label className="searcher__label" htmlFor="plan">
 								Tipo de plan
@@ -256,21 +283,17 @@ const Home = () => {
 							</datalist>
 						</div>
 					</div>
+
+					{/* BUTTON BUSCAR */}
+					<button className="searcher__button" type="button" onClick={buscarActividades}>
+						<div className="searcher__button-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="#FFFFFF" class="bi bi-search" viewBox="0 0 16 16">
+								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+							</svg>
+						</div>
+						Buscar
+					</button>
 				</form>
-				<button className="searcher__button" type="button" onClick={buscarActividades}>
-					<svg
-						className="searcher__button-icon"
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						fill="currentColor"
-						class="bi bi-search"
-						viewBox="0 0 16 16"
-					>
-						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-					</svg>
-					Buscar
-				</button>
 			</section>
 
 			{/* RESULTADOS DE BÚSQUEDA */}
@@ -286,10 +309,13 @@ const Home = () => {
 						src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu1ADKF86JkG7FKvBIbOPt5OvT4TGONcdjQQ&s"
 					></img>
 				</h2>
+
 				{/* Bucle con Componente tarjeta actividad */}
-				{actividades.length === 0
-					? ""
-					: actividades.map(actividad => <ActivityCard actividad={actividad}></ActivityCard>)}
+				<div className="activities-list__list">
+					{actividades.length === 0
+						? ""
+						: actividades.map(actividad => <ActivityCard actividad={actividad}></ActivityCard>)}
+				</div>
 			</section>
 		</>
 	);
