@@ -2,6 +2,7 @@ import { useContext } from "react";
 import axios from "axios";
 import { SessionContext } from "../contexts/SessionContext";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 export default function LoginForm() {
   const {
@@ -19,7 +20,15 @@ export default function LoginForm() {
         login({ email: datos.email, token: response.data.token });
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data.msg === "credenciales no validas") {
+          Swal.fire({
+            title: '<i class="fa-solid fa-circle-exclamation"></i>',
+            html: "Las credenciales no son válidas",
+            confirmButtonText: "Aceptar",
+          });
+        } else {
+          console.log(err);
+        }
       });
   }
   return (
@@ -27,15 +36,10 @@ export default function LoginForm() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div
-              className="card-header bg-secondary text-white"
-              style={{ background: "green" }}
-            >
-              Inicio de Sesión
-            </div>
+            <div className="card-header text-black mb-2">Inicio de Sesión</div>
             <div className="card-body">
               <form onSubmit={handleSubmit(doLogin)}>
-                <form className="form-floating mb-3">
+                <form className="form-floating mb-2">
                   <input
                     type="email"
                     {...register("email", { required: true })}
@@ -48,7 +52,7 @@ export default function LoginForm() {
                   </label>
                 </form>
                 <br></br>
-                <form className="form-floating mb-3">
+                <form className="form-floating mb-2">
                   <input
                     type="password"
                     {...register("password", { required: true, minLength: 8 })}
@@ -79,7 +83,6 @@ export default function LoginForm() {
                 <button
                   type="submit"
                   className="btn btn-secondary text-white pointer"
-                  style={{ alignItems: "center" }}
                 >
                   Iniciar Sesión
                 </button>

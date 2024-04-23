@@ -11,12 +11,12 @@ import "./SignupForm.css";
 export default function SignupForm() {
   //const { t } = useTranslation();
 
-  const [datos, setDatos] = useState({ email: "", password: "", name: "" });
+  const [datos, setDatos] = useState({ email: "", password: "", name: ""});
   const navigate = useNavigate();
 
   function onSignup() {
     // Verifica si las contraseñas coinciden
-    if (datos.password !== datos.repeatPassword) {
+    if (datos.password !== datos.repetirPassword) {
       console.log("Las contraseñas no coinciden");
 
       // Mostrar alerta con SweetAlert2
@@ -29,9 +29,31 @@ export default function SignupForm() {
 
       return; // Detiene la función si las contraseñas no coinciden
     }
+    if (datos.email === "") {
+      console.log("El email está vacío");
+      // Mostrar alerta con SweetAlert2
+      Swal.fire({
+        icon: "warning",
+        title: "",
+        text: "Falta indicar correo electrónico",
+        confirmButtonText: "Aceptar",
+      });
+      return; // Detiene la función si el email está vacío
+    }
+    if (datos.name === "") {
+      console.log("El nombre está vacío");
+      // Mostrar alerta con SweetAlert2
+      Swal.fire({
+        icon: "info",
+        title: "",
+        text: "Falta indicar nombre",
+        confirmButtonText: "Aceptar",
+      });
+      return; // Detiene la función si el email está vacío
+    }
 
     axios
-      .post("http://localhost:3000/api/users/signup", datos)
+      .post("http://localhost:3000/api/users/registrar", datos)
       .then((response) => {
         navigate("/login");
       })
@@ -41,21 +63,16 @@ export default function SignupForm() {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-2">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
             <div className="card-header text-black">Regístrate
-            <button 
-            type="button" 
-            className="btn-close position-absolute top-0 end-0 m-1"
-            aria-label="Close"
-            
-            //</div>onClick={() => {}}// Faltaría añadir lógica
-          ></button></div>
+            </div>
             <div className="card-body">
             <div className="bienvenido">Bienvenido</div>
-              <div className="mb-3 form-floating">
+              <div>
+              <div className="mb-3 form-floating border">
                 <input
                   value={datos.name}
                   onChange={(e) => setDatos({ ...datos, name: e.target.value })}
@@ -65,8 +82,7 @@ export default function SignupForm() {
                 />
                 <label htmlFor="exampleInputName">Nombre</label>
               </div>
-              <div>
-                <div className="mb-3 form-floating">
+                <div className="mb-3 form-floating border">
                   <InputValidation
                     rules={[
                       {
@@ -88,7 +104,7 @@ export default function SignupForm() {
                   ></InputValidation>
                   <label htmlFor="exampleInputEmail1">Correo Electrónico</label>
                 </div>
-                <div className="mb-3 form-floating">
+                <div className="mb-3 form-floating border">
                   <InputValidation
                     rules={[
                       {
@@ -105,12 +121,12 @@ export default function SignupForm() {
                   ></InputValidation>
                   <label htmlFor="exampleInputPassword1">Contraseña</label>
                 </div>
-                <div className="mb-3 form-floating">
+                <div className="mb-3 form-floating border">
                   <InputValidation
                     type="password"
-                    value={datos.repeatPassword}
+                    value={datos.repetirPassword}
                     onChange={(e) =>
-                      setDatos({ ...datos, repeatPassword: e.target.value })
+                      setDatos({ ...datos, repetirPassword: e.target.value })
                     }
                   ></InputValidation>
                   <label htmlFor="exampleInputPassword1">
@@ -120,7 +136,7 @@ export default function SignupForm() {
                 <button
                   onClick={onSignup}
                   type="submit"
-                  className="btn btn-secondary"
+                  className="btn btn-secondary fs-5"
                 >
                   Continuar
                 </button>

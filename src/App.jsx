@@ -18,7 +18,7 @@ function App() {
     <>
       <Header></Header>
       <main>
-        <div>
+        <Container>
           <Routes>
             <Route path="/home" element={<Home></Home>}>
               Home
@@ -41,7 +41,7 @@ function App() {
               Registro
             </Route>
           </Routes>
-        </div>
+        </Container>
       </main>
       <GoodFooter></GoodFooter>
     </>
