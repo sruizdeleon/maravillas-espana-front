@@ -1,7 +1,7 @@
 :root {
-/*   color-scheme: light dark; */
+  color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: --col-white #FFFFFF;
+  background-color: #242424;
 
 
   /* COLORS */
@@ -13,6 +13,7 @@
   --col-coral: #E76267;
   --col-l-blue: #4FADC0;
   --col-d-blue: #193948;
+  --col-l-green: #2b775d;
 
 }
 

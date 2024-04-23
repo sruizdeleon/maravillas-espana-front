@@ -1,10 +1,11 @@
+import './Home.css'
 import { useEffect, useState } from 'react';
 import comunidadesData from '../../models/Comunidades.json';
 import provinciasData from '../../models/Provincias.json';
 // import { SessionContext } from "../../contexts/SessionContext";
 import axios from 'axios';
 import ActivityCard from '../../components/activityCard/ActivityCard';
-import { set } from 'react-hook-form';
+import Searcher from '../../components/searcher/Searcher';
 
 const Home = () => {
 	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: ""}
@@ -12,39 +13,14 @@ const Home = () => {
 	const PROVINCIAS = provinciasData.provincias;
 
 	// const { user } = useContext(SessionContext);
-	const [actividades, setActividades] = useState([
-        {
-            "_id": "662380ef38b0c0dd919cadd5",
-            "nombre": "Plaza Mayor de Burgos",
-            "img": "https://postimg.cc/ZW9f18w6",
-            "descripcion": "Disfruta del bullicio y la vida cotidiana en la Plaza Mayor de Burgos, rodeada de edificios históricos y animados cafés.",
-            "provincia": {
-                "_id": "661cd0dbcab02767690bce6d",
-                "nombre": "Burgos"
-            },
-            "comunidad": "Castilla y Leon",
-            "tipo": "ciudad",
-            "__v": 0
-        },
-        {
-            "_id": "662380ef38b0c0dd919cadd6",
-            "nombre": "Catedral de Burgos",
-            "img": "https://postimg.cc/5Qx7GDrt",
-            "descripcion": "La Catedral de Santa María de Burgos es un impresionante ejemplo del arte gótico en España. Construida entre los siglos XIII y XVI, es conocida por su majestuosa arquitectura, sus vidrieras espectaculares y sus numerosas esculturas. Es uno de los principales monumentos de Burgos y un importante lugar de peregrinación en el Camino de Santiago.",
-            "provincia": {
-                "_id": "661cd0dbcab02767690bce6d",
-                "nombre": "Burgos"
-            },
-            "comunidad": "Castilla y Leon",
-            "tipo": "ciudad",
-            "__v": 0
-        }]);
+	const [actividades, setActividades] = useState([]);
 	const [datos, setDatos] = useState(DEFAULTDATOS)
-	const [provinciasConId, setProvinciasConId] = useState("");
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
-	const [comunidadDesactivado, setComunidadDesactivado] = useState(false)
+	const [busqueda, setBusqueda] = useState(false);
 	const [provincias, setProvincias] = useState(PROVINCIAS)
-	const [provinciaDesactivada, setProvinciaDesactivada] = useState(false)
+	const [provinciasConId, setProvinciasConId] = useState("");
+	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false)
+	const [provinciaInputDesactivado, setProvinciaInputDesactivado] = useState(false)
 
 	console.log("Normales", actividades);
 	console.log("Búsqueda", datos);
@@ -66,24 +42,35 @@ const Home = () => {
 			});
 	}, [])
 
+	useEffect(()=>{
+		console.log(busqueda)
+		if(actividades?.length > 0) {
+			setBusqueda(true);
+			console.log("Entro a ponerlo a true")
+		} else {
+			setBusqueda(false);
+			console.log("Entro a ponerlo a false")
+		}
+	}, [actividades])
+
 	function onCambioEnComunidad(e) {
 		const input = String(e.target.value);
 		setDatos({...datos, comunidad: input})
 		if(datos.provincia === "" && input === ""){
 			setDatos({ ...datos, comunidad: "", provincia: ""});
-			setComunidadDesactivado(false);
-			setProvinciaDesactivada(false);
+			setComunidadInputDesactivado(false);
+			setProvinciaInputDesactivado(false);
 			setComunidades(COMUNIDADES);
 			setProvincias(PROVINCIAS);
 		}
 		if(input !== ""){
-			setProvinciaDesactivada(true)
+			setProvinciaInputDesactivado(true)
 			let contineComunidad = false;
 			COMUNIDADES.map((com)=>{
 				if(com.name === input) {
 					contineComunidad = true;
 					com.provincias && setProvincias(com.provincias);
-					setProvinciaDesactivada(false);
+					setProvinciaInputDesactivado(false);
 				}
 			})
 			if(!contineComunidad){
@@ -98,13 +85,13 @@ const Home = () => {
 		if(input === "") {
 			if(datos.comunidad === "" && input === "") {
 				setDatos({...datos, comunidad: "", provincia: ""})
-				setComunidadDesactivado(false)
-				setProvinciaDesactivada(false)
+				setComunidadInputDesactivado(false)
+				setProvinciaInputDesactivado(false)
 				setComunidades(COMUNIDADES)
 				setProvincias(PROVINCIAS)
 			}
 		} else {
-			setComunidadDesactivado(true);
+			setComunidadInputDesactivado(true);
 			let contieneProvincia = false;
 			PROVINCIAS.map(prov => {
 				if (prov.name === input) {
@@ -137,7 +124,6 @@ const Home = () => {
 		}
 	}
 
-
 	async function buscarActividades() {
 		let idEncontrado;
 		console.log(datos.provincia)
@@ -162,82 +148,44 @@ const Home = () => {
 
 	return (
 		<>
-			<section>
-				<form>
-					{/* INPUT COMUNIDADES */}
-					<div>
-						<label htmlFor="comunidad">Comunidad</label>
-						<input
-							id="comunidad"
-							name="comunidad"
-							multiple
-							list="lista-comunidades"
-							placeholder="Comunidad"
-							value={datos.comunidad}
-							onChange={e => onCambioEnComunidad(e)}
-							disabled={comunidadDesactivado}
-						></input>
-						<datalist id="lista-comunidades">
-							{comunidades.map((comunidad, index) => (
-								<option key={index}>{comunidad.name}</option>
-							))}
-						</datalist>
-					</div>
-
-					{/* INPUT PROVINCIAS */}
-					<div>
-						<label htmlFor="provincia">Provincia</label>
-						<input
-							id="provincia"
-							name="provincia"
-							multiple
-							list="lista-provincias"
-							placeholder="Provincias"
-							onChange={e => onCambioEnProvincia(e)}
-							disabled={provinciaDesactivada}
-						></input>
-						<datalist id="lista-provincias">
-							{provincias.map((provincia, index) => (
-								<option key={index}>{provincia.name}</option>
-							))}
-						</datalist>
-					</div>
-
-					{/* INPUT TIPO DE PLAN */}
-					<div>
-						<label htmlFor="plan">Tipo de plan</label>
-						<input
-							id="plan"
-							name="plan"
-							multiple
-							list="lista-planes"
-							placeholder="Tipo de plan"
-							onChange={e => onCambioEnPlan(e)}
-						></input>
-						<datalist id="lista-planes">
-							<option>Plan de ciudad</option>
-							<option>Plan rural</option>
-						</datalist>
-					</div>
-					<button type="button" onClick={buscarActividades}>
-						Buscar
-					</button>
-				</form>
-			</section>
+			<Searcher
+				busqueda={busqueda}
+				datos={datos}
+				provincias={provincias}
+				comunidades={comunidades}
+				onCambioEnComunidad={onCambioEnComunidad}
+				onCambioEnProvincia={onCambioEnProvincia}
+				onCambioEnPlan={onCambioEnPlan}
+				comunidadInputDesactivado={comunidadInputDesactivado}
+				provinciaInputDesactivado={provinciaInputDesactivado}
+				buscarActividades={buscarActividades}
+			></Searcher>
 
 			{/* RESULTADOS DE BÚSQUEDA */}
-			<section>
-					<h2>Aquí están los mejores planes</h2>
+			<section className="activities-list">
+				<h2 className="activities-list__title">
+					{actividades.length > 0 ? (
+						datos.provincia !== "" ? (
+							<>
+								<h2 className="activities-list__title">
+									Lo más buscado de {datos.provincia}, {datos.comunidad}
+								</h2>
+							</>
+						) : (
+							<>
+								<h2 className="activities-list__title">Lo más buscado de {datos.comunidad}</h2>
+							</>
+						)
+					) : (
+						""
+					)}
+				</h2>
 
-
-
-				<div>
-					{/* Bucle con Componente tarjeta actividad */}
-					{actividades.length === 0 ?
-							"" :
-							actividades.map(actividad => 
-								<ActivityCard actividad={actividad}></ActivityCard>
-							)}
+				{/* Bucle con Componente tarjeta actividad */}
+				<div className="activities-list__list">
+					{actividades.length === 0
+						? ""
+						: actividades.map(actividad => <ActivityCard actividad={actividad}></ActivityCard>)}
 				</div>
 			</section>
 		</>
