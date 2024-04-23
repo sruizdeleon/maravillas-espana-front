@@ -1,7 +1,7 @@
 /* Footer.css */
 
 footer {
-    position: fixed; /* Fijar el pie de página en la parte inferior de la pantalla */
+    /* position: fixed; Fijar el pie de página en la parte inferior de la pantalla */
     bottom: 0; /* Alinear el pie de página en la parte inferior */
     width: 100%; /* Ocupar el ancho completo de la pantalla */
     background-color: #f5f4f4;

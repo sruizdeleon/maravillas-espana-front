@@ -7,6 +7,8 @@
   min-width: 300px;
   width: 100%;
   height:auto;
+  background-color: var(--col-l-grey);
+  border-radius: 20px;
 
   @media screen and (min-width: 576px)
   {
@@ -18,7 +20,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: burlywood;
   height: 250px;
   border-radius: 20px;
   background-size: cover;
@@ -39,8 +40,15 @@
   padding: 5px 10px;
   border-radius: 10px;
   color: var(--col-white);
-  background-color: var(--col-coral);
   margin: 0;
+}
+
+.activity-card__tag-city {
+  background-color: var(--col-coral);
+}
+
+.activity-card__tag-country {
+  background-color: var(--col-l-green);
 }
 
 .activity-card__icon {
@@ -98,6 +106,7 @@
 }
 
 .activity-card__button-see-more {
+  color: var(--col-l-blue);
   background-color: transparent;
   border: none;
   text-decoration: underline;
@@ -126,4 +135,33 @@
   margin: 0;
   color: var(--col-white);
   border-radius: 10px;
+}
+
+.activity-card__admin{
+  border-radius: 0px 0px 20px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 2px;
+}
+
+
+.activity-card__admin-button {
+  margin-top: 10px;
+  padding: 5px 0px;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.activity-card__admin-button--edit {
+  background-color: rgb(232, 241, 207);
+  border-radius: 0px 0px 0px 20px;
+}
+
+.activity-card__admin-button--delete {
+  background-color: rgb(245, 210, 209);
+  border-radius: 0px 0px 20px 0px;
 }
