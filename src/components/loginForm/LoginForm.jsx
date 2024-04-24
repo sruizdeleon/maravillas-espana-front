@@ -3,6 +3,7 @@ import axios from "axios";
 import { SessionContext } from "../contexts/SessionContext";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import "./Login.css";
 
 export default function LoginForm() {
   const {
@@ -17,7 +18,11 @@ export default function LoginForm() {
       .post("http://localhost:3000/api/users/login", datos)
       .then((response) => {
         console.log(response.data);
-        login({ email: datos.email, token: response.data.token });
+        login({
+          email: datos.email,
+          token: response.data.token,
+          role: response.data.role,
+        });
       })
       .catch((err) => {
         if (err.response.data.msg === "credenciales no validas") {

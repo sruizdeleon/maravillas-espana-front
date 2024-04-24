@@ -38,6 +38,7 @@ function App() {
             <Route
               path="/login"
               element={user ? <Navigate to="/home"></Navigate> : <Login></Login>}>
+              {/* element={<Login></Login>}> */}
               Registro
             </Route>
           </Routes>
