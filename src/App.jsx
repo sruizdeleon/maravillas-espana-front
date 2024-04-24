@@ -39,6 +39,10 @@ function App() {
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
             ></Route>
+              element={user ? <Navigate to="/home"></Navigate> : <Login></Login>}>
+              {/* element={<Login></Login>}> */}
+              Registro
+            </Route>
           </Routes>
         </Container>
       </main>
