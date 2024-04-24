@@ -2,5 +2,19 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+
+
+  /* COLORS */
+  --col-white: #FFFFFF;
+  --col-l-grey: #EBEBEB;
+  --col-d-grey: #666666;
+  --col-black: #101415;
+  --col-yellow: #FCDC73;
+  --col-coral: #E76267;
+  --col-l-blue: #4FADC0;
+  --col-d-blue: #193948;
+  --col-l-green: #2b775d;
+  --col-l-green2: #b3c186;
+
 }
 

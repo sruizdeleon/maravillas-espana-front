@@ -1,82 +1,191 @@
+import './Home.css'
+import { useEffect, useState } from 'react';
+import comunidadesData from '../../models/Comunidades.json';
+import provinciasData from '../../models/Provincias.json';
+// import { SessionContext } from "../../contexts/SessionContext";
+import axios from 'axios';
+import ActivityCard from '../../components/activityCard/ActivityCard';
+import Searcher from '../../components/searcher/Searcher';
+
 const Home = () => {
+	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: ""}
+	const COMUNIDADES = comunidadesData.comunidades;
+	const PROVINCIAS = provinciasData.provincias;
+
+	// const { user } = useContext(SessionContext);
+	const [actividades, setActividades] = useState([]);
+	const [datos, setDatos] = useState(DEFAULTDATOS)
+	const [comunidades, setComunidades] = useState(COMUNIDADES);
+	const [busqueda, setBusqueda] = useState(false);
+	const [provincias, setProvincias] = useState(PROVINCIAS)
+	const [provinciasConId, setProvinciasConId] = useState("");
+	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false)
+	const [provinciaInputDesactivado, setProvinciaInputDesactivado] = useState(false)
+
+	console.log("Normales", actividades);
+	console.log("Búsqueda", datos);
+
+	useEffect(()=>{
+		axios
+			.get(
+				`http://localhost:3000/api/provincias`
+			)
+			.then(response => {
+				const provinciasConId = response.data.provinciasEncontradas.map((prov)=>{
+					return prov
+				})
+				console.log(provinciasConId);
+				setProvinciasConId(provinciasConId)
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}, [])
+
+	useEffect(()=>{
+		console.log(busqueda)
+		if(actividades?.length > 0) {
+			setBusqueda(true);
+			console.log("Entro a ponerlo a true")
+		} else {
+			setBusqueda(false);
+			console.log("Entro a ponerlo a false")
+		}
+	}, [actividades])
+
+	function onCambioEnComunidad(e) {
+		const input = String(e.target.value);
+		setDatos({...datos, comunidad: input})
+		if(datos.provincia === "" && input === ""){
+			setDatos({ ...datos, comunidad: "", provincia: ""});
+			setComunidadInputDesactivado(false);
+			setProvinciaInputDesactivado(false);
+			setComunidades(COMUNIDADES);
+			setProvincias(PROVINCIAS);
+		}
+		if(input !== ""){
+			setProvinciaInputDesactivado(true)
+			let contineComunidad = false;
+			COMUNIDADES.map((com)=>{
+				if(com.name === input) {
+					contineComunidad = true;
+					com.provincias && setProvincias(com.provincias);
+					setProvinciaInputDesactivado(false);
+				}
+			})
+			if(!contineComunidad){
+				setProvincias(PROVINCIAS);
+			}
+		}
+	}
+
+	function onCambioEnProvincia(e) {
+		const input = String(e.target.value);
+		setDatos({ ...datos, provincia: input });
+		if(input === "") {
+			if(datos.comunidad === "" && input === "") {
+				setDatos({...datos, comunidad: "", provincia: ""})
+				setComunidadInputDesactivado(false)
+				setProvinciaInputDesactivado(false)
+				setComunidades(COMUNIDADES)
+				setProvincias(PROVINCIAS)
+			}
+		} else {
+			setComunidadInputDesactivado(true);
+			let contieneProvincia = false;
+			PROVINCIAS.map(prov => {
+				if (prov.name === input) {
+					contieneProvincia = true;
+				}
+			});
+			if (contieneProvincia) {
+				COMUNIDADES.map(com => {
+					com.provincias &&
+						com.provincias.map(prov => {
+							if (prov.name === input) {
+								setDatos({ ...datos, comunidad: com.name, provincia: input});
+							}
+						});
+				});
+			} else {
+				setDatos({ ...datos, comunidad: "", provincia: input });
+			}
+		}
+	}
+
+	function onCambioEnPlan(e) {
+		const input = String(e.target.value);
+		if(input === "Plan de ciudad") {
+			setDatos({ ...datos, plan: "ciudad" });
+		} else if(input === "Plan rural") {
+			setDatos({ ...datos, plan: "rural" });
+		} else {
+			setDatos({ ...datos, plan: "" });
+		}
+	}
+
+	async function buscarActividades() {
+		let idEncontrado;
+		console.log(datos.provincia)
+		if (datos.provincia !== "") {
+			provinciasConId.map(prov => {
+				if (datos.provincia === prov.nombre) {
+					idEncontrado = prov._id;
+				}
+			});
+		}
+		axios
+			.get(
+				`http://localhost:3000/api/actividades`,{params: {comunidad: datos.comunidad, provincia:idEncontrado, tipo: datos.plan}}
+			)
+			.then(response => {
+				setActividades(response.data.actividadesEncontradas);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
 
 	return (
 		<>
-			<section>
-				<form>
-					<div>
-						<label htmlFor="comunidad">Comunidad</label>
-						<input id="comunidad" name="comunidad" multiple list="lista-comunidades" placeholder="Comunidad"></input>
-						<datalist id="lista-comunidades">
-							<option>Andalucía</option>
-							<option>Aragón</option>
-							<option>Asturias</option>
-							<option>Cantabria</option>
-							<option>Castilla la Mancha</option>
-							<option>Castilla y León</option>
-							<option>Cataluña</option>
-							<option>Comunidad de Madrid</option>
-							<option>Comunidad Valenciana</option>
-							<option>Extremadura</option>
-							<option>Galicia</option>
-							<option>La Rioja</option>
-							<option>Murcia</option>
-							<option>Navarra</option>
-							<option>País Vasco</option>
-						</datalist>
-					</div>
-					<div>
-						<label htmlFor="provincia">Provincia</label>
-						<input id="provincia" name="provincia" multiple list="lista-provincias" placeholder="Provincias"></input>
-						<datalist id="lista-provincias">
-							<option>Madrid</option>
-						</datalist>
-					</div>
-					<div>
-						<label htmlFor="plan">Tipo de plan</label>
-						<input id="plan" name="plan" multiple list="lista-planes" placeholder="Tipo de plan"></input>
-						<datalist id="lista-planes">
-							<option>Plan de campo</option>
-							<option>Plan de ciudad</option>
-						</datalist>
-					</div>
-					<button>Buscar</button>
-				</form>
-			</section>
-			<section>
-				<div>
-					<h2>Aquí están los mejores planes</h2>
-					<div>
-						<h5>Filtros</h5>
-						<form>
-							<fieldset>
-								<legend>Orden</legend>
-								<button type="button">Acendente</button>
-								<button type="button">Descendente</button>
-							</fieldset>
-							<fieldset>
-								<legend>Plan</legend>
-								<button type="button">Plan de ciudad</button>
-								<button type="button">Plan de campo</button>
-							</fieldset>
-							{/* Sólo si la comunidad tiene más de una provincia.
-							Bucle con las provincias de esa comunidad,
-							si sólo selecciona una, el resto seleccionada,
-							si no selecciona ninguna todas seleccionadas
-							para que las persona pueda añadir o quitar de la comunidad */}
-						</form>
-					</div>
-				</div>
-				<div>
+			<Searcher
+				busqueda={busqueda}
+				datos={datos}
+				provincias={provincias}
+				comunidades={comunidades}
+				onCambioEnComunidad={onCambioEnComunidad}
+				onCambioEnProvincia={onCambioEnProvincia}
+				onCambioEnPlan={onCambioEnPlan}
+				comunidadInputDesactivado={comunidadInputDesactivado}
+				provinciaInputDesactivado={provinciaInputDesactivado}
+				buscarActividades={buscarActividades}
+			></Searcher>
+
+			{/* RESULTADOS DE BÚSQUEDA */}
+			<section className="activities-list">
+				<h2 className="activities-list__title">
+					{actividades.length > 0 ? (
+						datos.provincia !== "" ? (
+							<>
+								<h2 className="activities-list__title">
+									Lo más buscado de {datos.provincia}, {datos.comunidad}
+								</h2>
+							</>
+						) : (
+							<>
+								<h2 className="activities-list__title">Lo más buscado de {datos.comunidad}</h2>
+							</>
+						)
+					) : (
+						""
+					)}
+				</h2>
+
 				{/* Bucle con Componente tarjeta actividad */}
-					{/* <article>
-						<p>Imagen</p>
-						<h3>Nombre actividad</h3>
-						<p>Tipo de plan</p>
-						<p>Comunidad</p>
-						<p>Provincia</p>
-						<p>Bandera provincia</p>
-					</article> */}
+				<div className="activities-list__list">
+					{actividades.length === 0
+						? ""
+						: actividades.map(actividad => <ActivityCard actividad={actividad}></ActivityCard>)}
 				</div>
 			</section>
 		</>

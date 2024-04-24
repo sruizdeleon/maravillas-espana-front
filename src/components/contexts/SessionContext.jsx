@@ -17,7 +17,7 @@ export function SessionProvider({ children }) {
   function login(userData) {
     setUser(userData);
 
-    setCookie("user", user);
+    setCookie("user", userData);
   }
 
   function logout() {
