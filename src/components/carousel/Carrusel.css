@@ -2,11 +2,12 @@
     position: relative;
     max-width: 1920px;
     width: 95%;
-    background-color: red;
+    /* background-color: red; */
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 5px;
-    padding-bottom: 15px
+    padding-bottom: 15px;
+    min-height: calc(100vh - 115px);
 }
 
 .title-carrusel{
@@ -24,7 +25,8 @@
     margin: 0 auto;
     border-radius: 20px;
     background-color: blue;
-    width:90%;
+    width:clamp(375px, 100%, 1920px);
+    height: clamp(200px, 60vw, 600px);
     overflow: hidden;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -40,7 +42,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    object-fit:contain;
+    object-fit:cover;
     height: 100%;
     width: 100%
 }
@@ -95,7 +97,7 @@
 }
 
 /* Media query para min 1000px*/
-/* @media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1500px) {
     .total-carrusel{
         height: 90%;
         width: 90%;
@@ -116,7 +118,7 @@
         top: 88%;
         left: 63%;
     }
-} */
+}
 
 /* ---------------------------------------------------------------------- */
 
@@ -126,9 +128,14 @@
         height: 18vh;
         width: 87vw;
     }
-} */
+    .text-localization{
+        top: 88%;
+        left: 63%;
+        font-size:medium;
+    }
+}
 
-/* @media (min-width: 380px) and (max-width: 800px){
+@media (min-width: 380px) and (max-width: 800px){
 
     .carrusel{
         height: 20vh;
