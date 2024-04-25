@@ -43,4 +43,10 @@ table tr:hover {
   text-align: center;
 }
 
+@media screen and (min-width: 767px){
+  .deleteUsers{
+      width: 70%;
+  }
+}
+
 

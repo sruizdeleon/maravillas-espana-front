@@ -28,6 +28,7 @@
     height: 50px;
     margin-right: 10px;
     color: black;
+    background-color: white;
     border-radius: 10px;
     text-align: center;
     font-size: clamp(14px, 3vw, 18px);
@@ -53,7 +54,6 @@
         width: 40%;
         height: 150px;
         margin-top: 40px;
-        
     }
 }
 
