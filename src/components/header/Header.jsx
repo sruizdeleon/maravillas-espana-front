@@ -17,7 +17,7 @@ const Header = () => {
         <header>
             <h3>Maravillas de España</h3>
             <nav>
-                {user?<div className="login">
+                {user?<div className="home">
                     <Link to="/home">Home</Link>
                 </div>: ''}
                 {user? '': <div className="login">
@@ -29,7 +29,7 @@ const Header = () => {
                 {user && user.role === 'admin' ?<div className="admin-usuarios">
                     <Link to="/admin-usuarios">Admin-usuarios</Link>
                 </div>: ''}
-                {user? <button onClick={cerrarSesion}><Link className='logout'>Logout</Link></button>: ''}
+                {user? <div className='logout'onClick={cerrarSesion}><Link>Logout</Link></div>: ''}
             </nav>
         </header>
     );
