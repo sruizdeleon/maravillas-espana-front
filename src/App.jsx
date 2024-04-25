@@ -9,6 +9,7 @@ import { useContext } from "react";
 import Header from "./components/header/Header";
 import GoodFooter from "./components/footer/Footer";
 import Landing from "./pages/landing/Landing";
+import Activity from "./pages/activity/Activity";
 
 
 function App() {
@@ -39,6 +40,11 @@ function App() {
               path="/login"
               element={user ? <Navigate to="/home"></Navigate> : <Login></Login>}>
               Registro
+            </Route>
+          </Routes>
+          <Routes>
+            <Route path="/activity" element={<Activity></Activity>}>
+              Actividad
             </Route>
           </Routes>
         </Container>
