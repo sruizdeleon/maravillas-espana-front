@@ -14,7 +14,8 @@ import AdminUsers from "./pages/admin-users/Admin-users";
 
 function App() {
   const { user } = useContext(SessionContext);
-  
+ 
+ 
   return (
     <>
       <Header></Header>
@@ -39,10 +40,6 @@ function App() {
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
             ></Route>
-              element={user ? <Navigate to="/home"></Navigate> : <Login></Login>}>
-              {/* element={<Login></Login>}> */}
-              Registro
-            </Route>
           </Routes>
         </Container>
       </main>
