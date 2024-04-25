@@ -10,12 +10,13 @@ import Header from "./components/header/Header";
 import GoodFooter from "./components/footer/Footer";
 import Landing from "./pages/landing/Landing";
 import AdminUsers from "./pages/admin-users/Admin-users";
+import Activity from "./pages/activity/Activity";
 
 
 function App() {
   const { user } = useContext(SessionContext);
- 
- 
+
+
   return (
     <>
       <Header></Header>
@@ -40,6 +41,9 @@ function App() {
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
             ></Route>
+            <Route path="/activity" element={<Activity></Activity>}>
+              Actividad
+            </Route>
           </Routes>
         </div>
       </main>
