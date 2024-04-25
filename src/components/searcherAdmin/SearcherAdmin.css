@@ -12,24 +12,21 @@
     margin-right: 10px;
     color: black;
     background-color: white;
+    font-size: clamp(14px, 3vw, 18px);
     font-weight: 600;
     text-align: center;
     border-radius: 10px;
 }
 .btn-primary{
-    width: 30%;
+    width: 140px;
+    height: 50px;
     padding: 3px;
+    font-size: clamp(16px, 3vw, 18px);
     font-weight: 600;
     color: white;
     border: 2px white solid;
 }
 
-@media screen and (max-width: 766px){
-    .divSearcher{
-        display: flex;
-        flex-direction: row;
-        width: 90%;
-    }
-}
+
     
 
