@@ -20,7 +20,7 @@ function App() {
     <>
       <Header></Header>
       <main>
-        <Container>
+        <div>
           <Routes>
             <Route path="/" element={user ? "" : <Landing></Landing>}></Route>
             <Route path="/home" element={user ? <Home></Home> : ""}></Route>
@@ -41,7 +41,7 @@ function App() {
               }
             ></Route>
           </Routes>
-        </Container>
+        </div>
       </main>
       <GoodFooter></GoodFooter>
     </>

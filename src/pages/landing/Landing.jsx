@@ -7,7 +7,8 @@ const Landing = () => {
 
 	return (
 		<>
-			<Carrusel></Carrusel>
+			<Carrusel className='Carrusel'></Carrusel>
+
 		</>
 	);
 };
