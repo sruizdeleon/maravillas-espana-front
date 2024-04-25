@@ -34,6 +34,20 @@ export default function TableAdminUsers() {
     setFiltradosUsers(filtroUsers);
   }
 
+
+  const [anchoPantalla, setAnchoPantalla] = useState(window.innerWidth);
+
+  const handleResize = () => {
+    setAnchoPantalla(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
       <div className="buscador">
@@ -45,6 +59,7 @@ export default function TableAdminUsers() {
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
+                {anchoPantalla > 767?<th>Rol Usuario</th> : ''}
               </tr>
             </thead>
             <tbody>
@@ -53,6 +68,7 @@ export default function TableAdminUsers() {
                   <td>{x.id}</td>
                   <td>{x.name}</td>
                   <td>{x.email}</td>
+                  {anchoPantalla > 767?<td>{x.role}</td> : ''}
                 </tr>
               ))}
             </tbody>
