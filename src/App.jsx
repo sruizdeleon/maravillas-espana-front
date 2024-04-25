@@ -10,6 +10,7 @@ import Header from "./components/header/Header";
 import GoodFooter from "./components/footer/Footer";
 import Landing from "./pages/landing/Landing";
 import AdminUsers from "./pages/admin-users/Admin-users";
+import Activity from "./pages/activity/Activity";
 
 
 function App() {
