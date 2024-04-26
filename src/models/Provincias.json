@@ -1,6 +1,14 @@
 {
 	"provincias": [
 		{
+			"value": "a coruña",
+			"name": "A Coruña"
+		},
+		{
+			"value": "álava",
+			"name": "Álava"
+		},
+		{
 			"value": "albacete",
 			"name": "Albacete"
 		},
@@ -9,24 +17,28 @@
 			"name": "Alicante"
 		},
 		{
-			"value": "alava",
-			"name": "Álava"
+			"value": "almería",
+			"name": "Almería"
 		},
 		{
-			"value": "asturias",
-			"name": "Principado de Asturias"
+			"value": "ávila",
+			"name": "Ávila"
 		},
 		{
 			"value": "badajoz",
 			"name": "Badajoz"
 		},
 		{
+			"value": "baleares",
+			"name": "Baleares"
+		},
+		{
 			"value": "barcelona",
 			"name": "Barcelona"
 		},
 		{
-			"value": "bizcaia",
-			"name": "Bizcaia"
+			"value": "bizkaia",
+			"name": "Bizkaia"
 		},
 		{
 			"value": "burgos",
@@ -49,20 +61,28 @@
 			"name": "Castellón"
 		},
 		{
+			"value": "ceuta",
+			"name": "Ceuta"
+		},
+		{
 			"value": "ciudad real",
 			"name": "Ciudad Real"
+		},
+		{
+			"value": "córdoba",
+			"name": "Córdoba"
 		},
 		{
 			"value": "cuenca",
 			"name": "Cuenca"
 		},
 		{
-			"value": "girona",
-			"name": "Girona"
-		},
-		{
 			"value": "gipuzcoa",
 			"name": "Gipuzcoa"
+		},
+		{
+			"value": "girona",
+			"name": "Girona"
 		},
 		{
 			"value": "granada",
@@ -83,10 +103,6 @@
 		{
 			"value": "jaén",
 			"name": "Jaén"
-		},
-		{
-			"value": "la coruña",
-			"name": "A Coruña"
 		},
 		{
 			"value": "la rioja",
@@ -117,6 +133,10 @@
 			"name": "Málaga"
 		},
 		{
+			"value": "melilla",
+			"name": "Melilla"
+		},
+		{
 			"value": "murcia",
 			"name": "Murcia"
 		},
@@ -135,6 +155,10 @@
 		{
 			"value": "pontevedra",
 			"name": "Pontevedra"
+		},
+		{
+			"value": "principado de asturias",
+			"name": "Principado de Asturias"
 		},
 		{
 			"value": "salamanca",

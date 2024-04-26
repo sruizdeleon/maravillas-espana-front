@@ -1,7 +1,41 @@
 {
 	"comunidades": [
 		{
-			"value": "aragon",
+			"value": "andalucía",
+			"name": "Andalucía",
+			"provincias": [
+				{
+					"value": "almería",
+					"name": "Almería"
+				},
+				{
+					"value": "cádiz",
+					"name": "Cádiz"
+				},
+				{
+					"value": "córdoba",
+					"name": "Córdoba"
+				},
+				{
+					"value": "granada",
+					"name": "Granada"
+				},
+				{
+					"value": "huelva",
+					"name": "Huelva"
+				},
+				{
+					"value": "jaén",
+					"name": "Jaén"
+				},
+				{
+					"value": "sevilla",
+					"name": "Sevilla"
+				}
+			]
+		},
+		{
+			"value": "aragón",
 			"name": "Aragón",
 			"provincias": [
 				{
@@ -19,6 +53,16 @@
 			]
 		},
 		{
+			"value": "canarias",
+			"name": "Canarias",
+			"provincias": [
+				{
+					"value": "santa cruz de tenerife",
+					"name": "Santa Cruz de Tenerife"
+				}
+			]
+		},
+		{
 			"value": "cantabria",
 			"name": "Cantabria",
 			"provincias": [
@@ -29,55 +73,7 @@
 			]
 		},
 		{
-			"value": "cataluna",
-			"name": "Cataluña",
-			"provincias": [
-				{
-					"value": "barcelona",
-					"name": "Barcelona"
-				},
-				{
-					"value": "girona",
-					"name": "Girona"
-				},
-				{
-					"value": "lleida",
-					"name": "Lleida"
-				},
-				{
-					"value": "tarragona",
-					"name": "Tarragona"
-				}
-			]
-		},
-		{
-			"value": "castilla la mancha",
-			"name": "Castilla-La Mancha",
-			"provincias": [
-				{
-					"value": "albacete",
-					"name": "Albacete"
-				},
-				{
-					"value": "ciudad real",
-					"name": "Ciudad Real"
-				},
-				{
-					"value": "cuenca",
-					"name": "Cuenca"
-				},
-				{
-					"value": "guadalajara",
-					"name": "Guadalajara"
-				},
-				{
-					"value": "toledo",
-					"name": "Toledo"
-				}
-			]
-		},
-		{
-			"value": "castilla y leon",
+			"value": "castilla y león",
 			"name": "Castilla y León",
 			"provincias": [
 				{
@@ -111,6 +107,64 @@
 				{
 					"value": "zamora",
 					"name": "Zamora"
+				}
+			]
+		},
+		{
+			"value": "castilla la mancha",
+			"name": "Castilla-La Mancha",
+			"provincias": [
+				{
+					"value": "albacete",
+					"name": "Albacete"
+				},
+				{
+					"value": "ciudad real",
+					"name": "Ciudad Real"
+				},
+				{
+					"value": "cuenca",
+					"name": "Cuenca"
+				},
+				{
+					"value": "guadalajara",
+					"name": "Guadalajara"
+				},
+				{
+					"value": "toledo",
+					"name": "Toledo"
+				}
+			]
+		},
+		{
+			"value": "cataluna",
+			"name": "Cataluña",
+			"provincias": [
+				{
+					"value": "barcelona",
+					"name": "Barcelona"
+				},
+				{
+					"value": "girona",
+					"name": "Girona"
+				},
+				{
+					"value": "lleida",
+					"name": "Lleida"
+				},
+				{
+					"value": "tarragona",
+					"name": "Tarragona"
+				}
+			]
+		},
+		{
+			"value": "ceuta",
+			"name": "Ceuta",
+			"provincias": [
+				{
+					"value": "ceuta",
+					"name": "Ceuta"
 				}
 			]
 		},
@@ -179,6 +233,16 @@
 			]
 		},
 		{
+			"value": "islas baleares",
+			"name": "Islas Baleares",
+			"provincias": [
+				{
+					"value": "las palmas",
+					"name": "Las Palmas"
+				}
+			]
+		},
+		{
 			"value": "la rioja",
 			"name": "La Rioja",
 			"provincias": [
@@ -213,12 +277,12 @@
 			"name": "País Vasco",
 			"provincias": [
 				{
-					"value": "alava",
+					"value": "álava",
 					"name": "Álava"
 				},
 				{
-					"value": "bizcaia",
-					"name": "Bizcaia"
+					"value": "bizkaia",
+					"name": "Bizkaia"
 				},
 				{
 					"value": "gipuzcoa",
