@@ -1,19 +1,21 @@
 import './Home.css'
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import comunidadesData from '../../models/Comunidades.json';
 import provinciasData from '../../models/Provincias.json';
-// import { SessionContext } from "../../contexts/SessionContext";
+import { SessionContext } from "../../components/contexts/SessionContext";
 import axios from 'axios';
 import ActivityCard from '../../components/activityCard/ActivityCard';
 import Searcher from '../../components/searcher/Searcher';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
 	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: ""}
 	const COMUNIDADES = comunidadesData.comunidades;
 	const PROVINCIAS = provinciasData.provincias;
+	const navigate = useNavigate()
 
-	// const { user } = useContext(SessionContext);
+	const { user, actividadContext } = useContext(SessionContext);
 	const [actividades, setActividades] = useState([]);
 	const [datos, setDatos] = useState(DEFAULTDATOS)
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
@@ -23,8 +25,6 @@ const Home = () => {
 	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false)
 	const [provinciaInputDesactivado, setProvinciaInputDesactivado] = useState(false)
 
-	console.log("Normales", actividades);
-	console.log("Búsqueda", datos);
 
 	useEffect(()=>{
 		axios
@@ -35,7 +35,6 @@ const Home = () => {
 				const provinciasConId = response.data.provinciasEncontradas.map((prov)=>{
 					return prov
 				})
-				console.log(provinciasConId);
 				setProvinciasConId(provinciasConId)
 			})
 			.catch(error => {
@@ -122,6 +121,11 @@ const Home = () => {
 		}
 	}
 
+	function editarActividad(actividad) {
+		actividadContext(actividad);
+		navigate("/activity-form");
+	}
+
 	function borrarActividad(actividad) {
 		Swal.fire({
 			icon:"warning",
@@ -161,7 +165,6 @@ const Home = () => {
 
 	async function buscarActividades() {
 		let idEncontrado;
-		console.log(datos.provincia)
 		if (datos.provincia !== "") {
 			provinciasConId.map(prov => {
 				if (datos.provincia === prov.nombre) {
@@ -220,7 +223,14 @@ const Home = () => {
 				<div className="activities-list__list">
 					{actividades.length === 0
 						? ""
-						: actividades.map(actividad => <ActivityCard onBorrarActividad={borrarActividad} actividad={actividad}></ActivityCard>)}
+						: actividades.map((actividad, i)=> (
+								<ActivityCard
+									key={i}
+									onEditarActividad={editarActividad}
+									onBorrarActividad={borrarActividad}
+									actividad={actividad}
+								></ActivityCard>
+						  ))}
 				</div>
 			</section>
 		</>
