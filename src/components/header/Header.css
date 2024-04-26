@@ -10,7 +10,7 @@ header {
 
 h3 {
     margin: 0;
-    padding: 20px;
+    padding: clamp(0px, 0vw, 2px);
 }
 
 nav {
@@ -18,7 +18,7 @@ nav {
 }
 
 .registrarse {
-    margin-left: 20px;
+    margin-right: clamp(20px, 5vw, 50px);
     cursor: pointer;
     color: #f5f4f4;
     background-color: #4fadc0;
@@ -29,11 +29,47 @@ nav {
 }
 
 .login {
-    margin-left: 20px;
+    margin-right: 20px;
     cursor: pointer;
     color: rgb(71, 69, 69);
     border-radius: 5px;
     border: 1px solid rgb(71, 69, 69);
     padding: 8px 16px;
     font-weight: bold;
+}
+
+.home {
+    margin-right: 20px;
+    cursor: pointer;
+    color: rgb(71, 69, 69);
+    border-radius: 5px;
+    border: 1px solid rgb(71, 69, 69);
+    padding: 8px 16px;
+    font-weight: bold;
+    height: 50px;
+}
+
+.admin-usuarios {
+    margin-right: 20px;
+    cursor: pointer;
+    color: rgb(71, 69, 69);
+    border-radius: 5px;
+    border: 1px solid rgb(71, 69, 69);
+    padding: 8px 16px;
+    font-weight: bold;
+    height: 50px;
+    width: 155px;
+}
+
+.logout {
+    margin-right: 20px;
+    cursor: pointer;
+    color: rgb(71, 69, 69);
+    border-radius: 5px;
+    border: 1px solid rgb(71, 69, 69);
+    padding: 8px 16px;
+    margin-top: 10px;
+    font-weight: bold;
+    height: 50px;
+    margin: 0;
 }

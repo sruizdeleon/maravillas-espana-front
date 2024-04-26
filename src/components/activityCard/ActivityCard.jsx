@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import "./ActivityCard.css";
 import Paragraph from "../shared/Paragraph";
 
-const ActivityCard = ({ actividad }) => {
+const ActivityCard = ({ actividad, onBorrarActividad }) => {
 
 	function recortarTexto(texto, longitud) {
 		if (texto.length > longitud) {
@@ -40,17 +40,17 @@ const ActivityCard = ({ actividad }) => {
 				<Paragraph className="activity-card__description" text={actividad.descripcion} maxLength={120}></Paragraph>
 			</div>
 			<div className="activity-card__footer">
-				<Link to={actividad._id}>
+				<Link to={`${actividad._id}`}>
 					<button className="activity-card__button-see-more">Ver más</button>
 				</Link>
 				<div className="activity-card__container-province">
-					<img className="activity-card__img-province" src={actividad?.provincia.imgenBandera}></img>
-					<p className="activity-card__province">{actividad?.provincia.nombre}</p>
+					<img className="activity-card__img-province" src={actividad?.provincia?.imgenBandera}></img>
+					<p className="activity-card__province">{actividad?.provincia?.nombre}</p>
 				</div>
 			</div>
 			<div className="activity-card__admin">
 				<button className="activity-card__admin-button activity-card__admin-button--edit">✏️</button>
-				<button className="activity-card__admin-button activity-card__admin-button--delete">🗑️</button>
+				<button className="activity-card__admin-button activity-card__admin-button--delete" onClick={()=>onBorrarActividad(actividad)}>🗑️</button>
 			</div>
 		</article>
 	);

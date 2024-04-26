@@ -16,7 +16,7 @@
     /* text-align: center; */
     width: 100%;
     padding-top: 10px;
-    padding-left: 70px
+    padding-left: 10px
 }
 
 .carrusel {
@@ -90,14 +90,14 @@
     font-size: larger;
     color: rgb(255, 255, 255);
     font-weight: bold;
-    top: 88%;
-    left: 62%; /* Lo posiciona en el centro horizontalmente */
+    top: 83%;
+    left: 80%; /* Lo posiciona en el centro horizontalmente */
     z-index: 2; /* Asegura que el botón esté por encima de la imagen */
     background-color: rgba(255, 255, 255, 0); /* Fondo casi transparente */
 }
 
 /* Media query para min 1000px*/
-@media only screen and (min-width: 1500px) {
+/* @media only screen and (min-width: 1500px) {
     .total-carrusel{
         height: 90%;
         width: 90%;
@@ -119,7 +119,7 @@
         left: 63%;
     }
 }
-
+ */
 /* ---------------------------------------------------------------------- */
 
 /* @media (max-width: 380px){

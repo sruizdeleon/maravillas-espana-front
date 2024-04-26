@@ -10,13 +10,12 @@ import Header from "./components/header/Header";
 import GoodFooter from "./components/footer/Footer";
 import Landing from "./pages/landing/Landing";
 import AdminUsers from "./pages/admin-users/Admin-users";
+import Activity from "./pages/activity/Activity";
 import ActivityFormPage from "./pages/activityFormPage/ActivityFormPage";
 
 
 function App() {
   const { user } = useContext(SessionContext);
- 
- 
   return (
     <>
       <Header></Header>
@@ -40,10 +39,6 @@ function App() {
               element={
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
-            ></Route>
-            <Route
-              path="/activity-form"
-              element={<ActivityFormPage></ActivityFormPage>}
             ></Route>
           </Routes>
         </div>
