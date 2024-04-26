@@ -10,6 +10,7 @@ import Header from "./components/header/Header";
 import GoodFooter from "./components/footer/Footer";
 import Landing from "./pages/landing/Landing";
 import AdminUsers from "./pages/admin-users/Admin-users";
+import ActivityFormPage from "./pages/activityFormPage/ActivityFormPage";
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <main>
         <div>
           <Routes>
-            <Route path="/" element={user ? "" : <Landing></Landing>}></Route>
+            <Route path="/" element={<Landing></Landing>}></Route>
             <Route path="/home" element={user ? <Home></Home> : ""}></Route>
             <Route
               path="/signup"
@@ -39,6 +40,10 @@ function App() {
               element={
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
+            ></Route>
+            <Route
+              path="/activity-form"
+              element={<ActivityFormPage></ActivityFormPage>}
             ></Route>
           </Routes>
         </div>

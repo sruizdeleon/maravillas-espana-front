@@ -43,13 +43,10 @@ const Home = () => {
 	}, [])
 
 	useEffect(()=>{
-		console.log(busqueda)
 		if(actividades?.length > 0) {
 			setBusqueda(true);
-			console.log("Entro a ponerlo a true")
 		} else {
 			setBusqueda(false);
-			console.log("Entro a ponerlo a false")
 		}
 	}, [actividades])
 
