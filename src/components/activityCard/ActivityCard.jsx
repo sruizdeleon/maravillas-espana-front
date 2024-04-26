@@ -3,15 +3,7 @@ import { Link } from 'react-router-dom'
 import "./ActivityCard.css";
 import Paragraph from "../shared/Paragraph";
 
-const ActivityCard = ({ actividad, onBorrarActividad }) => {
-
-	function recortarTexto(texto, longitud) {
-		if (texto.length > longitud) {
-			return (texto.slice(0, (longitud - 3)) + "...");
-		} else {
-			return texto
-		}
-	}
+const ActivityCard = ({ actividad, onBorrarActividad, onEditarActividad }) => {
 
 	return (
 		<article className="activity-card">
@@ -49,7 +41,7 @@ const ActivityCard = ({ actividad, onBorrarActividad }) => {
 				</div>
 			</div>
 			<div className="activity-card__admin">
-				<button className="activity-card__admin-button activity-card__admin-button--edit">✏️</button>
+				<button className="activity-card__admin-button activity-card__admin-button--edit" onClick={()=>onEditarActividad(actividad)}>✏️</button>
 				<button className="activity-card__admin-button activity-card__admin-button--delete" onClick={()=>onBorrarActividad(actividad)}>🗑️</button>
 			</div>
 		</article>
