@@ -40,6 +40,13 @@ function App() {
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
             ></Route>
+            <Route path="/home/:id" element={<Activity></Activity>}>
+              Actividad
+            </Route>
+            <Route
+              path="/activity-form"
+              element={<ActivityFormPage></ActivityFormPage>}
+            ></Route>
           </Routes>
         </div>
       </main>
