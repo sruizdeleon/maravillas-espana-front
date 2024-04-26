@@ -11,6 +11,7 @@ import GoodFooter from "./components/footer/Footer";
 import Landing from "./pages/landing/Landing";
 import AdminUsers from "./pages/admin-users/Admin-users";
 import Activity from "./pages/activity/Activity";
+import ActivityFormPage from "./pages/activityFormPage/ActivityFormPage";
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
       <main>
         <div>
           <Routes>
-            <Route path="/" element={user ? "" : <Landing></Landing>}></Route>
+            <Route path="/" element={<Landing></Landing>}></Route>
             <Route path="/home" element={user ? <Home></Home> : ""}></Route>
             <Route
               path="/signup"
@@ -42,6 +43,10 @@ function App() {
             <Route path="/home/:id" element={<Activity></Activity>}>
               Actividad
             </Route>
+            <Route
+              path="/activity-form"
+              element={<ActivityFormPage></ActivityFormPage>}
+            ></Route>
           </Routes>
         </div>
       </main>
