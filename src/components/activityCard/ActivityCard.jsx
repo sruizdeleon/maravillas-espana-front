@@ -5,14 +5,6 @@ import Paragraph from "../shared/Paragraph";
 
 const ActivityCard = ({ actividad, onBorrarActividad }) => {
 
-	function recortarTexto(texto, longitud) {
-		if (texto.length > longitud) {
-			return (texto.slice(0, (longitud - 3)) + "...");
-		} else {
-			return texto
-		}
-	}
-
 	return (
 		<article className="activity-card">
 			<div className="activity-card__header" style={{ backgroundImage: `url(${actividad?.img})` }}>
