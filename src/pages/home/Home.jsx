@@ -6,6 +6,7 @@ import provinciasData from '../../models/Provincias.json';
 import axios from 'axios';
 import ActivityCard from '../../components/activityCard/ActivityCard';
 import Searcher from '../../components/searcher/Searcher';
+import Swal from 'sweetalert2';
 
 const Home = () => {
 	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: ""}
@@ -43,13 +44,10 @@ const Home = () => {
 	}, [])
 
 	useEffect(()=>{
-		console.log(busqueda)
 		if(actividades?.length > 0) {
 			setBusqueda(true);
-			console.log("Entro a ponerlo a true")
 		} else {
 			setBusqueda(false);
-			console.log("Entro a ponerlo a false")
 		}
 	}, [actividades])
 
@@ -124,6 +122,43 @@ const Home = () => {
 		}
 	}
 
+	function borrarActividad(actividad) {
+		Swal.fire({
+			icon:"warning",
+			title: "Eliminar actividad",
+			text: `¿Quieres eliminar la actividad: ${actividad.nombre}?`,
+			showConfirmButton: true,
+			confirmButtonText: "Eliminar",
+			showCancelButton: true,
+			cancelButtonText: "Cancelar",
+		}).then((result)=>{
+			if(result.isConfirmed){
+				borrarActividadPorId(actividad._id)
+			}
+		})
+	}
+
+	function borrarActividadPorId(id) {
+		axios
+			.delete(`http://localhost:3000/api/actividades/${id}`)
+			.then(response => {
+				setActividades(actividades.filter(act => act._id !== id));
+				Swal({
+					icon: "success",
+					title: "Actividad eliminada correctamente",
+				});
+			})
+			.catch(error => {
+				console.log(error);
+				Swal({
+					icon: "error",
+					title: "Error",
+					text: "No se ha podido eliminar la actividad. Prueba de nuevo más tarde.",
+					cancel: "Cerrar",
+				});
+			});
+	}
+
 	async function buscarActividades() {
 		let idEncontrado;
 		console.log(datos.provincia)
@@ -185,7 +220,7 @@ const Home = () => {
 				<div className="activities-list__list">
 					{actividades.length === 0
 						? ""
-						: actividades.map(actividad => <ActivityCard actividad={actividad}></ActivityCard>)}
+						: actividades.map(actividad => <ActivityCard onBorrarActividad={borrarActividad} actividad={actividad}></ActivityCard>)}
 				</div>
 			</section>
 		</>
