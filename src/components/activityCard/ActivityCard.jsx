@@ -40,7 +40,7 @@ const ActivityCard = ({ actividad }) => {
 				<Paragraph className="activity-card__description" text={actividad.descripcion} maxLength={120}></Paragraph>
 			</div>
 			<div className="activity-card__footer">
-				<Link to={actividad._id}>
+				<Link to={`${actividad._id}`}>
 					<button className="activity-card__button-see-more">Ver más</button>
 				</Link>
 				<div className="activity-card__container-province">

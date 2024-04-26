@@ -11,12 +11,10 @@ import GoodFooter from "./components/footer/Footer";
 import Landing from "./pages/landing/Landing";
 import AdminUsers from "./pages/admin-users/Admin-users";
 import ActivityFormPage from "./pages/activityFormPage/ActivityFormPage";
-
+import Activity from "./pages/activity/Activity";
 
 function App() {
   const { user } = useContext(SessionContext);
- 
- 
   return (
     <>
       <Header></Header>
@@ -45,6 +43,9 @@ function App() {
               path="/activity-form"
               element={<ActivityFormPage></ActivityFormPage>}
             ></Route>
+            <Route path="/home/:id" element={<Activity></Activity>}>
+              Actividad
+            </Route>
           </Routes>
         </div>
       </main>
