@@ -12,13 +12,13 @@ export default function InputValidation({ value, onChange, type, rules }) {
 
       {rules &&
       value.length > 0 &&{} ? (
-        <ul className="alert alert-dark p-2 m-0 rounded-0">
+        <ul className="alert alert-dark p-2 m-0 rounded-0 custom">
           {rules.map((rule) => {
             {
               return (
-                <li className="list-unstyled custom-li fs-7">
+                <li className="list-unstyled custom fs-7">
                   {" "}
-                  {rule.fn(value) ? "✔️ " : "❗"} {rule.text}
+                  {rule.fn(value) ? "🟢 " : "🔴"} {rule.text}
                 </li>
               );
             }
