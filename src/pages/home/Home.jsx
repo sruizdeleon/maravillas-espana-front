@@ -21,6 +21,7 @@ const Home = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [actividades, setActividades] = useState([]);
 	const [datos, setDatos] = useState(DEFAULTDATOS);
+	const [busqueda, setBusqueda] = useState(DEFAULTDATOS)
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
 	const [provincias, setProvincias] = useState(PROVINCIAS);
 	const [provinciasConId, setProvinciasConId] = useState([]);
@@ -61,8 +62,7 @@ const Home = () => {
 		}
 	}, [searchParams,provinciasConId]);
 
-	function onCambioEnComunidad(e) {
-		const input = String(e.target.value);
+	function onCambioEnComunidad(input) {
 		setDatos({ ...datos, comunidad: input });
 		if (datos.provincia === "" && input === "") {
 			setDatos({ ...datos, comunidad: "", provincia: "" });
@@ -87,17 +87,14 @@ const Home = () => {
 		}
 	}
 
-	function onCambioEnProvincia(e) {
-		const input = String(e.target.value);
+	function onCambioEnProvincia(input) {
 		setDatos({ ...datos, provincia: input });
 		if (input === "") {
-			if (datos.comunidad === "" && input === "") {
-				setDatos({ ...datos, comunidad: "", provincia: "" });
-				setComunidadInputDesactivado(false);
-				setProvinciaInputDesactivado(false);
-				setComunidades(COMUNIDADES);
-				setProvincias(PROVINCIAS);
-			}
+			setDatos({ ...datos, comunidad: "", provincia: "" });
+			setComunidadInputDesactivado(false);
+			setProvinciaInputDesactivado(false);
+			setComunidades(COMUNIDADES);
+			setProvincias(PROVINCIAS);
 		} else {
 			setComunidadInputDesactivado(true);
 			let contieneProvincia = false;
@@ -121,14 +118,13 @@ const Home = () => {
 		}
 	}
 
-	function onCambioEnPlan(e) {
-		const input = String(e.target.value);
+	function onCambioEnPlan(input) {
 		if (input === "Plan de ciudad") {
-			setDatos({ ...datos, plan: "ciudad" });
+			setDatos({ ...datos, tipo: "ciudad" });
 		} else if (input === "Plan rural") {
-			setDatos({ ...datos, plan: "rural" });
+			setDatos({ ...datos, tipo: "rural" });
 		} else {
-			setDatos({ ...datos, plan: "" });
+			setDatos({ ...datos, tipo: "" });
 		}
 	}
 
@@ -173,11 +169,45 @@ const Home = () => {
 		});
 	}
 
+	function limpiarInput(input) {
+		input==="comunidad" ? onCambioEnComunidad("") : false;
+		input==="provincia" ? onCambioEnProvincia("") : false;
+		input==="tipo" ? onCambioEnPlan("") : false;
+	}
+
 	function aplicarFiltro() {
 		navigate({
 			pathname: "/home",
-			search: `?comunidad=${datos.comunidad}&provincia=${datos.provincia}&tipo=${datos.plan}`,
+			search: `?comunidad=${datos.comunidad}&provincia=${datos.provincia}&tipo=${datos.tipo}`,
 		});
+	}
+
+	function textoBusqueda(){
+		return (
+					<>
+						<h2>
+							{`Los mejores planes
+                        ${
+													busqueda.tipo === "rural"
+														? " rurales"
+														: busqueda.tipo === "ciudad"
+														? " de ciudad"
+														: ""
+												}
+												${
+													(busqueda.comunidad !== "" || busqueda.provincia !== "")
+														? " en:" :""
+												}
+                        ${busqueda.provincia !== "" ? ` ${busqueda.provincia}` : ""}${
+													busqueda.comunidad !== ""
+														? busqueda.provincia !==""
+															? `, ${busqueda.comunidad}`
+															: ` ${busqueda.comunidad}`
+														: ""
+												}`}
+						</h2>
+					</>
+				)
 	}
 
 	async function buscarActividades(tipo, comunidad, provincia) {
@@ -187,6 +217,7 @@ const Home = () => {
 			})
 			.then(response => {
 				setActividades(response.data.actividadesEncontradas);
+				setBusqueda(datos);
 			})
 			.catch(error => {
 				Swal.fire({
@@ -203,6 +234,7 @@ const Home = () => {
 		<>
 			<Searcher
 				datos={datos}
+				onLimpiarInput={limpiarInput}
 				existeBusqueda={actividades.length > 0 ? true : false}
 				provincias={provincias}
 				comunidades={comunidades}
@@ -214,48 +246,35 @@ const Home = () => {
 				buscarActividades={aplicarFiltro}
 			></Searcher>
 
-			{user.role === "admin" ? (
+			{/* {user.role === "admin" ? (
 				<button type="button" onClick={crearActividad}>
 					Crear una actividad
 				</button>
 			) : (
 				""
-			)}
+			)} */}
 
 			{/* RESULTADOS DE BÚSQUEDA */}
-			<section className="activities-list">
-				<h2 className="activities-list__title">
-					{actividades.length > 0 ? (
-						datos.provincia !== "" ? (
-							<>
-								<h2 className="activities-list__title">
-									Lo más buscado de {datos.provincia}, {datos.comunidad}
-								</h2>
-							</>
-						) : (
-							<>
-								<h2 className="activities-list__title">Lo más buscado de {datos.comunidad}</h2>
-							</>
-						)
-					) : (
-						""
-					)}
-				</h2>
+			{
+				actividades.length > 0
+					? <section className="activities-list">
+						{actividades.length > 0 && (busqueda.comunidad !== "" || busqueda.provincia !== "" || busqueda.tipo !== "") && textoBusqueda()}
 
-				{/* Bucle con Componente tarjeta actividad */}
-				<div className="activities-list__list">
-					{actividades.length === 0
-						? ""
-						: actividades.map((actividad, i) => (
-								<ActivityCard
-									key={i}
-									onEditarActividad={editarActividad}
-									onBorrarActividad={borrarActividad}
-									actividad={actividad}
-								></ActivityCard>
-						  ))}
-				</div>
-			</section>
+						{/* Bucle con Componente tarjeta actividad */}
+						<div className="activities-list__list">
+
+								{actividades.map((actividad, i) => (
+										<ActivityCard
+											key={i}
+											onEditarActividad={editarActividad}
+											onBorrarActividad={borrarActividad}
+											actividad={actividad}
+										></ActivityCard>
+									))}
+						</div>
+					</section>
+					: ""
+			}
 		</>
 	);
 };

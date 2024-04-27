@@ -2,6 +2,8 @@ import React from 'react'
 
 const ProvinceInput = ({
 	provincias,
+	datos,
+	onLimpiarInput,
 	onCambioEnProvincia,
 	provinciaInputDesactivado,
 }) => {
@@ -22,21 +24,31 @@ const ProvinceInput = ({
 				<label className="searcher__label" htmlFor="provincia">
 					Provincia
 				</label>
-				<input
-					className="searcher__input"
-					id="provincia"
-					name="provincia"
-					multiple
-					list="lista-provincias"
-					placeholder="Provincias"
-					onChange={e => onCambioEnProvincia(e)}
-					disabled={provinciaInputDesactivado}
-				></input>
-				<datalist id="lista-provincias">
-					{provincias.map((provincia, index) => (
-						<option key={index}>{provincia.name}</option>
-					))}
-				</datalist>
+				<div className="searcher__contianer--close">
+					<input
+						className="searcher__input"
+						id="provincia"
+						name="provincia"
+						multiple
+						value={datos.provincia}
+						list="lista-provincias"
+						placeholder="Provincias"
+						onChange={e => onCambioEnProvincia(String(e.target.value))}
+						disabled={provinciaInputDesactivado}
+					></input>
+					<datalist id="lista-provincias">
+						{provincias.map((provincia, index) => (
+							<option key={index}>{provincia.name}</option>
+						))}
+					</datalist>
+					{datos.provincia === "" ? (
+						""
+					) : (
+						<button className="searcher__button-clean" type="button" onClick={() => onLimpiarInput("provincia")}>
+							X
+						</button>
+					)}
+				</div>
 			</div>
 		</div>
 	);

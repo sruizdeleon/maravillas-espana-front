@@ -2,6 +2,7 @@ import React from 'react'
 
 const CommunityInput = ({
 	datos,
+	onLimpiarInput,
 	comunidades,
 	onCambioEnComunidad,
 	comunidadInputDesactivado,
@@ -23,22 +24,31 @@ const CommunityInput = ({
 				<label className="searcher__label" htmlFor="comunidad">
 					Comunidad
 				</label>
-				<input
-					className="searcher__input"
-					id="comunidad"
-					name="comunidad"
-					multiple
-					list="lista-comunidades"
-					placeholder="Comunidad"
-					value={datos.comunidad}
-					onChange={e => onCambioEnComunidad(e)}
-					disabled={comunidadInputDesactivado}
-				></input>
-				<datalist id="lista-comunidades">
-					{comunidades.map((comunidad, index) => (
-						<option key={index}>{comunidad.name}</option>
-					))}
-				</datalist>
+				<div className="searcher__contianer--close">
+					<input
+						className="searcher__input"
+						id="comunidad"
+						name="comunidad"
+						multiple
+						list="lista-comunidades"
+						placeholder="Comunidad"
+						value={datos.comunidad}
+						onChange={e => onCambioEnComunidad(String(e.target.value))}
+						disabled={comunidadInputDesactivado}
+					></input>
+					<datalist id="lista-comunidades">
+						{comunidades.map((comunidad, index) => (
+							<option key={index}>{comunidad.name}</option>
+						))}
+					</datalist>
+					{datos.comunidad === "" ? (
+						""
+					) : (
+						<button className="searcher__button-clean" type="button" onClick={() => onLimpiarInput("comunidad")}>
+							X
+						</button>
+					)}
+				</div>
 			</div>
 		</div>
 	);

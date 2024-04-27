@@ -185,7 +185,7 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onEditar}) => {
 
 			{/* PROVINCIA */}
 			<fieldset>
-				<label htmlFor="provincia">Provincia {actividad.comunidad}</label>
+				<label htmlFor="provincia">Provincia</label>
 				<input
 					id="provincia"
 					name="provincia"
