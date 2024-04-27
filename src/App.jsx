@@ -13,7 +13,7 @@ import AdminUsers from "./pages/admin-users/Admin-users";
 import Activity from "./pages/activity/Activity";
 import ActivityFormPageCreate from "./pages/activityFormPage/activityFormPageCreate/ActivityFormPageCreate";
 import ActivityFormPageEdit from "./pages/activityFormPage/activityFormPageEdit/ActivityFormPageEdit";
-
+import MyProfile from "./pages/my-profile/My-profile";
 
 
 function App() {
@@ -42,6 +42,7 @@ function App() {
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
             ></Route>
+            <Route path="/mi-perfil" element={user ? <MyProfile></MyProfile> : ""}></Route>
             <Route path="/home/:id" element={<Activity></Activity>}>
               Actividad
             </Route>

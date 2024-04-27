@@ -4,21 +4,19 @@ import { useNavigate } from "react-router-dom";
 import InputValidation from "../shared/InputValidacion";
 import Swal from "sweetalert2";
 
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./SignupForm.css";
 
 export default function SignupForm() {
   //const { t } = useTranslation();
 
-  const [datos, setDatos] = useState({ email: "", password: "", name: ""});
+  const [datos, setDatos] = useState({ email: "", password: "", name: "" });
   const navigate = useNavigate();
 
   function onSignup() {
     // Verifica si las contraseñas coinciden
     if (datos.password !== datos.repetirPassword) {
       console.log("Las contraseñas no coinciden");
-
       // Mostrar alerta con SweetAlert2
       Swal.fire({
         icon: "error",
@@ -39,6 +37,16 @@ export default function SignupForm() {
         confirmButtonText: "Aceptar",
       });
       return; // Detiene la función si el email está vacío
+    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(datos.email)) {
+      console.log("El email no sigue el formato requerido");
+      // Mostrar alerta con SweetAlert2
+      Swal.fire({
+        icon: "error",
+        title: "",
+        text: "El formato del correo electrónico no es válido",
+        confirmButtonText: "Aceptar",
+      });
+      return;
     }
     if (datos.name === "") {
       console.log("El nombre está vacío");
@@ -67,21 +75,22 @@ export default function SignupForm() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header text-black">Regístrate
-            </div>
+            <div className="card-header text-black">Regístrate</div>
             <div className="card-body">
-            <div className="bienvenido">Bienvenido</div>
+              <div className="bienvenido">Bienvenido</div>
               <div>
-              <div className="mb-3 form-floating border">
-                <input
-                  value={datos.name}
-                  onChange={(e) => setDatos({ ...datos, name: e.target.value })}
-                  type="text"
-                  className="form-control"
-                  id="exampleInputName"
-                />
-                <label htmlFor="exampleInputName">Nombre</label>
-              </div>
+                <div className="mb-3 form-floating border">
+                  <input
+                    value={datos.name}
+                    onChange={(e) =>
+                      setDatos({ ...datos, name: e.target.value })
+                    }
+                    type="text"
+                    className="form-control"
+                    id="exampleInputName"
+                  />
+                  <label htmlFor="exampleInputName">Nombre</label>
+                </div>
                 <div className="mb-3 form-floating border">
                   <InputValidation
                     rules={[
@@ -111,7 +120,10 @@ export default function SignupForm() {
                         text: "longitud menor que 8",
                         fn: (p) => p.length >= 8,
                       },
-                      { text: "no contiene @", fn: (p) => p.includes("@") },
+                      {
+                        text: "contiene al menos un carácter especial",
+                        fn: (p) => /[!@#$%^&*(),.?":{}|<>]/.test(p),
+                      },
                     ]}
                     type="password"
                     value={datos.password}

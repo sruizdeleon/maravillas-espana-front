@@ -18,18 +18,21 @@ const Header = () => {
             <h3>Maravillas de España</h3>
             <nav>
                 {user?<div className="home">
-                    <Link to="/home">Home</Link>
+                    <Link className='link' to="/home">Home</Link>
                 </div>: ''}
                 {user? '': <div className="login">
-                    <Link to="/login">Iniciar Sesión</Link>
+                    <Link className='link' to="/login">Iniciar Sesión</Link>
                 </div>}
                 {user? '': <div className="registrarse">
-                    <Link to="/signup">Registrar</Link>
+                    <Link className='link' to="/signup">Registrar</Link>
                 </div>}
                 {user && user.role === 'admin' ?<div className="admin-usuarios">
-                    <Link to="/admin-usuarios">Admin-usuarios</Link>
+                    <Link className='link' to="/admin-usuarios">Admin-usuarios</Link>
                 </div>: ''}
-                {user? <div className='logout'onClick={cerrarSesion}><Link>Logout</Link></div>: ''}
+                {user?<div className="mi-perfil">
+                    <Link className='link' to="/mi-perfil">Ver Mi Perfil</Link>
+                </div>: ''}
+                {user? <div className='logout'onClick={cerrarSesion}><Link className='link'>Logout</Link></div>: ''}
             </nav>
         </header>
     );
