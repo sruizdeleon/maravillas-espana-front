@@ -1,76 +1,87 @@
-import './Home.css'
-import { useContext, useEffect, useState } from 'react';
-import comunidadesData from '../../models/Comunidades.json';
-import provinciasData from '../../models/Provincias.json';
+import "./Home.css";
+import { useContext, useEffect, useState } from "react";
+import comunidadesData from "../../models/Comunidades.json";
+import provinciasData from "../../models/Provincias.json";
 import { SessionContext } from "../../components/contexts/SessionContext";
-import axios from 'axios';
-import ActivityCard from '../../components/activityCard/ActivityCard';
-import Searcher from '../../components/searcher/Searcher';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import ActivityCard from "../../components/activityCard/ActivityCard";
+import Searcher from "../../components/searcher/Searcher";
+import Swal from "sweetalert2";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Home = () => {
-	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: ""}
+	// Importación de datos
+	const DEFAULTDATOS = { comunidad: "", provincia: "", plan: "" };
 	const COMUNIDADES = comunidadesData.comunidades;
 	const PROVINCIAS = provinciasData.provincias;
-	const navigate = useNavigate()
 
+	// Variables y contextos
+	const navigate = useNavigate();
 	const { user, setActividadForm } = useContext(SessionContext);
+	const [searchParams, setSearchParams] = useSearchParams();
 	const [actividades, setActividades] = useState([]);
-	const [datos, setDatos] = useState(DEFAULTDATOS)
+	const [datos, setDatos] = useState(DEFAULTDATOS);
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
-	const [busqueda, setBusqueda] = useState(false);
-	const [provincias, setProvincias] = useState(PROVINCIAS)
-	const [provinciasConId, setProvinciasConId] = useState("");
-	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false)
-	const [provinciaInputDesactivado, setProvinciaInputDesactivado] = useState(false)
+	const [provincias, setProvincias] = useState(PROVINCIAS);
+	const [provinciasConId, setProvinciasConId] = useState([]);
+	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false);
+	const [provinciaInputDesactivado, setProvinciaInputDesactivado] = useState(false);
 
-
-	useEffect(()=>{
+	useEffect(() => {
 		axios
-			.get(
-				`http://localhost:3000/api/provincias`
-			)
+			.get(`http://localhost:3000/api/provincias`)
 			.then(response => {
-				const provinciasConId = response.data.provinciasEncontradas.map((prov)=>{
-					return prov
-				})
-				setProvinciasConId(provinciasConId)
+				const provinciasConId = response.data.provinciasEncontradas.map(prov => {
+					return prov;
+				});
+				setProvinciasConId(provinciasConId);
 			})
 			.catch(error => {
 				console.log(error);
 			});
-	}, [])
+	}, []);
 
-	useEffect(()=>{
-		if(actividades?.length > 0) {
-			setBusqueda(true);
-		} else {
-			setBusqueda(false);
+	useEffect(() => {
+		if(!provinciasConId.length) return
+		const tipo = searchParams.get("tipo");
+		const comunidad = searchParams.get("comunidad");
+		const provincia = searchParams.get("provincia");
+
+		setDatos({ tipo: tipo ?? "", comunidad: comunidad ?? "", provincia: provincia ?? ""  });
+
+		if (tipo || comunidad || provincia) {
+			let provinciaId = ""
+			if(provincia){
+				provinciaId = provinciasConId.find(x=>x.nombre === provincia)
+			}
+			buscarActividades(tipo === "undefined" ? "" : tipo, comunidad === "undefined" ? "" : comunidad, provinciaId);
 		}
-	}, [actividades])
+		else{
+			setActividades([])
+		}
+	}, [searchParams,provinciasConId]);
 
 	function onCambioEnComunidad(e) {
 		const input = String(e.target.value);
-		setDatos({...datos, comunidad: input})
-		if(datos.provincia === "" && input === ""){
-			setDatos({ ...datos, comunidad: "", provincia: ""});
+		setDatos({ ...datos, comunidad: input });
+		if (datos.provincia === "" && input === "") {
+			setDatos({ ...datos, comunidad: "", provincia: "" });
 			setComunidadInputDesactivado(false);
 			setProvinciaInputDesactivado(false);
 			setComunidades(COMUNIDADES);
 			setProvincias(PROVINCIAS);
 		}
-		if(input !== ""){
-			setProvinciaInputDesactivado(true)
+		if (input !== "") {
+			setProvinciaInputDesactivado(true);
 			let contineComunidad = false;
-			COMUNIDADES.map((com)=>{
-				if(com.name === input) {
+			COMUNIDADES.map(com => {
+				if (com.name === input) {
 					contineComunidad = true;
 					com.provincias && setProvincias(com.provincias);
 					setProvinciaInputDesactivado(false);
 				}
-			})
-			if(!contineComunidad){
+			});
+			if (!contineComunidad) {
 				setProvincias(PROVINCIAS);
 			}
 		}
@@ -79,13 +90,13 @@ const Home = () => {
 	function onCambioEnProvincia(e) {
 		const input = String(e.target.value);
 		setDatos({ ...datos, provincia: input });
-		if(input === "") {
-			if(datos.comunidad === "" && input === "") {
-				setDatos({...datos, comunidad: "", provincia: ""})
-				setComunidadInputDesactivado(false)
-				setProvinciaInputDesactivado(false)
-				setComunidades(COMUNIDADES)
-				setProvincias(PROVINCIAS)
+		if (input === "") {
+			if (datos.comunidad === "" && input === "") {
+				setDatos({ ...datos, comunidad: "", provincia: "" });
+				setComunidadInputDesactivado(false);
+				setProvinciaInputDesactivado(false);
+				setComunidades(COMUNIDADES);
+				setProvincias(PROVINCIAS);
 			}
 		} else {
 			setComunidadInputDesactivado(true);
@@ -100,7 +111,7 @@ const Home = () => {
 					com.provincias &&
 						com.provincias.map(prov => {
 							if (prov.name === input) {
-								setDatos({ ...datos, comunidad: com.name, provincia: input});
+								setDatos({ ...datos, comunidad: com.name, provincia: input });
 							}
 						});
 				});
@@ -112,9 +123,9 @@ const Home = () => {
 
 	function onCambioEnPlan(e) {
 		const input = String(e.target.value);
-		if(input === "Plan de ciudad") {
+		if (input === "Plan de ciudad") {
 			setDatos({ ...datos, plan: "ciudad" });
-		} else if(input === "Plan rural") {
+		} else if (input === "Plan rural") {
 			setDatos({ ...datos, plan: "rural" });
 		} else {
 			setDatos({ ...datos, plan: "" });
@@ -131,58 +142,59 @@ const Home = () => {
 
 	function borrarActividad(actividad) {
 		Swal.fire({
-			icon:"warning",
+			icon: "warning",
 			title: "Eliminar actividad",
 			text: `¿Quieres eliminar la actividad: ${actividad.nombre}?`,
 			showConfirmButton: true,
 			confirmButtonText: "Eliminar",
 			showCancelButton: true,
 			cancelButtonText: "Cancelar",
-		}).then((result)=>{
-			if(result.isConfirmed){
-				borrarActividadPorId(actividad._id)
+		}).then(result => {
+			if (result.isConfirmed) {
+				axios
+					.delete(`http://localhost:3000/api/actividades/${actividad._id}`)
+					.then(response => {
+						setActividades(actividades.filter(act => act._id !== actividad._id));
+						Swal.fire({
+							icon: "success",
+							title: "Actividad eliminada correctamente",
+						});
+					})
+					.catch(error => {
+						console.log(error);
+						Swal.fire({
+							icon: "error",
+							title: "Error",
+							text: `No se ha podido eliminar la actividad. Error: ${error}.`,
+							cancel: "Cerrar",
+						});
+					});
 			}
-		})
+		});
 	}
 
-	function borrarActividadPorId(id) {
+	function aplicarFiltro() {
+		navigate({
+			pathname: "/home",
+			search: `?comunidad=${datos.comunidad}&provincia=${datos.provincia}&tipo=${datos.plan}`,
+		});
+	}
+
+	async function buscarActividades(tipo, comunidad, provincia) {
 		axios
-			.delete(`http://localhost:3000/api/actividades/${id}`)
-			.then(response => {
-				setActividades(actividades.filter(act => act._id !== id));
-				Swal({
-					icon: "success",
-					title: "Actividad eliminada correctamente",
-				});
+			.get(`http://localhost:3000/api/actividades`, {
+				params: { comunidad: comunidad, provincia: provincia, tipo: tipo },
 			})
-			.catch(error => {
-				console.log(error);
-				Swal({
-					icon: "error",
-					title: "Error",
-					text: "No se ha podido eliminar la actividad. Prueba de nuevo más tarde.",
-					cancel: "Cerrar",
-				});
-			});
-	}
-
-	async function buscarActividades() {
-		let idEncontrado;
-		if (datos.provincia !== "") {
-			provinciasConId.map(prov => {
-				if (datos.provincia === prov.nombre) {
-					idEncontrado = prov._id;
-				}
-			});
-		}
-		axios
-			.get(
-				`http://localhost:3000/api/actividades`,{params: {comunidad: datos.comunidad, provincia:idEncontrado, tipo: datos.plan}}
-			)
 			.then(response => {
 				setActividades(response.data.actividadesEncontradas);
 			})
 			.catch(error => {
+				Swal.fire({
+					icon: "error",
+					title: "Error",
+					text: `No se ha podido eliminar la actividad. Error: ${error}.`,
+					cancel: "Cerrar",
+				});
 				console.log(error);
 			});
 	}
@@ -190,8 +202,8 @@ const Home = () => {
 	return (
 		<>
 			<Searcher
-				busqueda={busqueda}
 				datos={datos}
+				existeBusqueda={actividades.length > 0 ? true : false}
 				provincias={provincias}
 				comunidades={comunidades}
 				onCambioEnComunidad={onCambioEnComunidad}
@@ -199,14 +211,16 @@ const Home = () => {
 				onCambioEnPlan={onCambioEnPlan}
 				comunidadInputDesactivado={comunidadInputDesactivado}
 				provinciaInputDesactivado={provinciaInputDesactivado}
-				buscarActividades={buscarActividades}
+				buscarActividades={aplicarFiltro}
 			></Searcher>
 
-			{
-				user.role==="admin"?
-					<button type='button' onClick={crearActividad}>Crear una actividad</button>
-					:""
-			}
+			{user.role === "admin" ? (
+				<button type="button" onClick={crearActividad}>
+					Crear una actividad
+				</button>
+			) : (
+				""
+			)}
 
 			{/* RESULTADOS DE BÚSQUEDA */}
 			<section className="activities-list">
@@ -232,7 +246,7 @@ const Home = () => {
 				<div className="activities-list__list">
 					{actividades.length === 0
 						? ""
-						: actividades.map((actividad, i)=> (
+						: actividades.map((actividad, i) => (
 								<ActivityCard
 									key={i}
 									onEditarActividad={editarActividad}

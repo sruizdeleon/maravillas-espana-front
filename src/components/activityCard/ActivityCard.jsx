@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import "./ActivityCard.css";
 import Paragraph from "../shared/Paragraph";
+import { useEffect } from 'react';
 
 const ActivityCard = ({ actividad, onBorrarActividad, onEditarActividad }) => {
+
+	const navigate = useNavigate()
 
 	return (
 		<article className="activity-card">
@@ -32,9 +34,7 @@ const ActivityCard = ({ actividad, onBorrarActividad, onEditarActividad }) => {
 				<Paragraph className="activity-card__description" text={actividad.descripcion} maxLength={120}></Paragraph>
 			</div>
 			<div className="activity-card__footer">
-				<Link to={`${actividad._id}`}>
-					<button className="activity-card__button-see-more">Ver más</button>
-				</Link>
+					<button type='button' onClick={()=>navigate(`/activity/${actividad._id}`)} className="activity-card__button-see-more">Ver más</button>
 				<div className="activity-card__container-province">
 					<img className="activity-card__img-province" src={actividad?.provincia?.imgenBandera}></img>
 					<p className="activity-card__province">{actividad?.provincia?.nombre}</p>

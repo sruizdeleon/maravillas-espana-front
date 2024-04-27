@@ -1,4 +1,3 @@
-import React from 'react'
 import CommunityInput from './communityInput/CommunityInput';
 import ProvinceInput from './provinceInput/ProvinceInput';
 import PlanInput from './planInput/PlanInput';
@@ -6,7 +5,7 @@ import './Searcher.css'
 
 const Searcher = ({
 	datos,
-	busqueda,
+	existeBusqueda,
 	provincias,
 	comunidades,
 	onCambioEnComunidad,
@@ -16,11 +15,12 @@ const Searcher = ({
 	provinciaInputDesactivado,
 	buscarActividades,
 }) => {
+
 	return (
 		<section
 			className="searcher"
 			style={
-				busqueda
+				existeBusqueda
 					? { height: "fit-content" }
 					: {
 							height: "calc(100vh - 154px)",

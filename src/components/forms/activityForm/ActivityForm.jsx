@@ -1,18 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react'
 import comunidadesData from "../../../models/Comunidades.json";
+import provinciasData from "../../../models/Provincias.json";
+
 import { SessionContext } from "../../contexts/SessionContext";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar}) => {
+const ActivityForm = ({actividad, setActividad, onGuardar, onEditar}) => {
 
+	const actividadVacia = {
+		_id: "",
+		provincia: "",
+		comunidad: "",
+		nombre: "",
+		descripcion: "",
+		img: "",
+		tipo: "",
+	};
 	const COMUNIDADES = comunidadesData.comunidades;
+	const PROVINCIAS = provinciasData.provincias;
+	const navigate = useNavigate()
 
-
+	const { user } = useContext(SessionContext);
 	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false);
 	const [provinciaInputDesactivado, setProvinciaInputDesactivado] = useState(false);
-	const { user } = useContext(SessionContext);
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
-	const [provincias, setProvincias] = useState([]);
+	const [provincias, setProvincias] = useState(PROVINCIAS);
 
 	useEffect(() => {
 		obtenerProvincias();
@@ -29,23 +42,64 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar})
 			});
 	}
 
-
 	function onCambioEnComunidad(e) {
 		const input = String(e.target.value);
 		setActividad({ ...actividad, comunidad: input });
+		if (actividad.provincia === "" && input === "") {
+			setActividad({ ...actividad, comunidad: "", provincia: "" });
+			setComunidadInputDesactivado(false);
+			setProvinciaInputDesactivado(false);
+			setComunidades(COMUNIDADES);
+			setProvincias(PROVINCIAS);
+		}
+		if (input !== "") {
+			setProvinciaInputDesactivado(true);
+			let contineComunidad = false;
+			COMUNIDADES.map(com => {
+				if (com.name === input) {
+					contineComunidad = true;
+					com.provincias && setProvincias(com.provincias);
+					setProvinciaInputDesactivado(false);
+				}
+			});
+			if (!contineComunidad) {
+				setProvincias(PROVINCIAS);
+			}
+		}
 	}
-
 
 	function onCambioEnProvincia(e) {
 		const input = String(e.target.value);
-		let nombreComunidad = "";
-		if(input !== "") {
-			const comunidad = comunidades.find(x=>x.provincias.map(y=>y.name).includes(input))
-			if(comunidad){
-				nombreComunidad = comunidad.name
+		setActividad({ ...actividad, provincia: input });
+		if (input === "") {
+			if (actividad.comunidad === "" && input === "") {
+				setActividad({ ...actividad, comunidad: "", provincia: "" });
+				setComunidadInputDesactivado(false);
+				setProvinciaInputDesactivado(false);
+				setComunidades(COMUNIDADES);
+				setProvincias(PROVINCIAS);
+			}
+		} else {
+			setComunidadInputDesactivado(true);
+			let contieneProvincia = false;
+			PROVINCIAS.map(prov => {
+				if (prov.name === input) {
+					contieneProvincia = true;
+				}
+			});
+			if (contieneProvincia) {
+				COMUNIDADES.map(com => {
+					com.provincias &&
+						com.provincias.map(prov => {
+							if (prov.name === input) {
+								setActividad({ ...actividad, comunidad: com.name, provincia: input });
+							}
+						});
+				});
+			} else {
+				setActividad({ ...actividad, comunidad: "", provincia: input });
 			}
 		}
-		setActividad({...actividad, comunidad: nombreComunidad, provincia: input})
 	}
 
 	function onCambioEnPlan(e) {
@@ -59,10 +113,20 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar})
 		}
 	}
 
+	function limpiarDatos() {
+		setActividad(actividadVacia);
+		setProvincias(PROVINCIAS);
+		setComunidades(COMUNIDADES);
+		setProvinciaInputDesactivado(false);
+		setComunidadInputDesactivado(false);
+		navigate(`/activity-create`)
+	}
 
   return (
 		<form>
 			<fieldset>
+
+			{/* NOMBRE */}
 				<label htmlFor="nombre">Nombre de la actividad</label>
 				<input
 					value={actividad?.nombre}
@@ -71,6 +135,8 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar})
 					name="nombre"
 				></input>
 			</fieldset>
+
+			{/* DESCRIPCION */}
 			<fieldset>
 				<label htmlFor="descripcion">Descripción de la actividad</label>
 				<textarea
@@ -79,6 +145,9 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar})
 					name="descripcion"
 				></textarea>
 			</fieldset>
+
+
+			{/* TIPO DE ACTIVIDAD */}
 			<fieldset>
 				<label htmlFor="tipo">Tipo de actividad</label>
 				<select
@@ -89,6 +158,9 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar})
 					<option name="rural">Plan rural</option>
 				</select>
 			</fieldset>
+
+
+			{/* COMUNIDAD */}
 			<fieldset>
 				<label htmlFor="comunidad">Comunidad</label>
 				<input
@@ -102,15 +174,16 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar})
 					disabled={comunidadInputDesactivado}
 				></input>
 				<datalist id="lista-comunidades">
-					{comunidades.map((com, i) => {
-						return (
-							<option key={i} selected={com.name === actividad.comunidad}>
-								{com.name}
-							</option>
-						);
-					})}
+					<datalist id="lista-comunidades">
+						{comunidades.map((comunidad, index) => (
+							<option key={index}>{comunidad.name}</option>
+						))}
+					</datalist>
 				</datalist>
 			</fieldset>
+
+
+			{/* PROVINCIA */}
 			<fieldset>
 				<label htmlFor="provincia">Provincia {actividad.comunidad}</label>
 				<input
@@ -124,26 +197,14 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar})
 					disabled={provinciaInputDesactivado}
 				></input>
 				<datalist id="lista-provincias">
-					{comunidades.find(y => y.name === actividad.comunidad)
-						? provincias
-								.filter(x =>
-									comunidades
-										.find(y => y.name === actividad.comunidad)
-										.provincias.map(y => y.name)
-										.includes(x.nombre)
-								)
-								.map((pro, i) => (
-									<option key={i} selected={pro.nombre === actividad.provincia}>
-										{pro.nombre}
-									</option>
-								))
-						: provincias.map((pro, i) => (
-								<option key={i} selected={pro.nombre === actividad.provincia}>
-									{pro.nombre}
-								</option>
-						  ))}
+					{provincias.map((provincia, index) => (
+						<option key={index}>{provincia.name}</option>
+					))}
 				</datalist>
 			</fieldset>
+
+
+			{/* IMAGEN ACTIVIDAD */}
 			<fieldset>
 				<label htmlFor="img">Imagen de la actividad</label>
 				<input
@@ -154,21 +215,24 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar})
 				></input>
 			</fieldset>
 			{actividad.img ? <img style={{ width: "100px" }} src={actividad.img}></img> : ""}
-			{onGuardar ? (
+
+
+			{/* BOTONES */}
+			{onGuardar && actividad._id === "" ? (
 				<button type="button" onClick={onGuardar}>
 					Crear actividad
 				</button>
 			) : (
 				""
 			)}
-			{onEditar ? (
+			{onEditar && actividad._id !== "" ? (
 				<button type="button" onClick={onEditar}>
 					Guardar cambios
 				</button>
 			) : (
 				""
 			)}
-			<button type="button" onClick={onLimpiar}>
+			<button type="button" onClick={limpiarDatos}>
 				Limiar datos
 			</button>
 		</form>

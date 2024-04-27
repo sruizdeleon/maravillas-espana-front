@@ -59,6 +59,10 @@
 				{
 					"value": "santa cruz de tenerife",
 					"name": "Santa Cruz de Tenerife"
+				},
+				{
+					"value": "las palmas",
+					"name": "Las Palmas"
 				}
 			]
 		},
@@ -237,8 +241,8 @@
 			"name": "Islas Baleares",
 			"provincias": [
 				{
-					"value": "las palmas",
-					"name": "Las Palmas"
+					"value": "Baleares",
+					"name": "Baleares"
 				}
 			]
 		},

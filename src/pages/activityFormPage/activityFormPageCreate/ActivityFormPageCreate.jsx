@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 const ActivityFormPageCreate = () => {
   const actividadVacia = {
+		_id: "",
 		provincia: "",
 		comunidad: "",
 		nombre: "",
@@ -57,19 +58,11 @@ const ActivityFormPageCreate = () => {
 			});
 	}
 
-		function limpiarDatos() {
-			setActividad(actividadVacia);
-			// setProvincias(PROVINCIAS);
-			// setComunidades(COMUNIDADES);
-			// setProvinciaInputDesactivado(false);
-			// setComunidadInputDesactivado(false);
-		}
-
   return (
     <section className='page'>
       <div className='activity-fomr__contianer'>
         <h1 className='activity-form__title'>Formulario de actividad</h1>
-        <ActivityForm actividad={actividad} setActividad={setActividad} onGuardar={crearActividad} onLimpiar={limpiarDatos}></ActivityForm>
+        <ActivityForm actividad={actividad} setActividad={setActividad} onGuardar={crearActividad}></ActivityForm>
       </div>
     </section>
   )
