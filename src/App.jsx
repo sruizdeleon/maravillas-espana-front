@@ -11,7 +11,8 @@ import GoodFooter from "./components/footer/Footer";
 import Landing from "./pages/landing/Landing";
 import AdminUsers from "./pages/admin-users/Admin-users";
 import Activity from "./pages/activity/Activity";
-import ActivityFormPage from "./pages/activityFormPage/ActivityFormPageCreate";
+import ActivityFormPageCreate from "./pages/activityFormPage/activityFormPageCreate/ActivityFormPageCreate";
+import ActivityFormPageEdit from "./pages/activityFormPage/activityFormPageEdit/ActivityFormPageEdit";
 import MyProfile from "./pages/my-profile/My-profile";
 
 
@@ -47,11 +48,11 @@ function App() {
             </Route>
             <Route
               path="/activity-create"
-              element={<ActivityFormPage></ActivityFormPage>}
+              element={<ActivityFormPageCreate></ActivityFormPageCreate>}
             ></Route>
             <Route
               path="/activity-edit/:id"
-              element={<ActivityFormPage></ActivityFormPage>}
+              element={<ActivityFormPageEdit></ActivityFormPageEdit>}
             ></Route>
           </Routes>
         </div>
