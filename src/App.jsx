@@ -15,7 +15,6 @@ import ActivityFormPageCreate from "./pages/activityFormPage/activityFormPageCre
 import ActivityFormPageEdit from "./pages/activityFormPage/activityFormPageEdit/ActivityFormPageEdit";
 import MyProfile from "./pages/my-profile/My-profile";
 
-
 function App() {
   const { user } = useContext(SessionContext);
   return (
