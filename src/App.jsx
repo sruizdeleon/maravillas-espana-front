@@ -14,7 +14,6 @@ import Activity from "./pages/activity/Activity";
 import ActivityFormPage from "./pages/activityFormPage/ActivityFormPageCreate";
 import MyProfile from "./pages/my-profile/My-profile";
 
-
 function App() {
   const { user } = useContext(SessionContext);
   return (
@@ -41,7 +40,10 @@ function App() {
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
             ></Route>
-            <Route path="/mi-perfil" element={user ? <MyProfile></MyProfile> : ""}></Route>
+            <Route
+              path="/mi-perfil"
+              element={user ? <MyProfile></MyProfile> : ""}
+            ></Route>
             <Route path="/home/:id" element={<Activity></Activity>}>
               Actividad
             </Route>

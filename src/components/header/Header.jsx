@@ -30,7 +30,7 @@ const Header = () => {
                     <Link className='link' to="/admin-usuarios">Admin-usuarios</Link>
                 </div>: ''}
                 {user?<div className="mi-perfil">
-                    <Link className='link' to="/mi-perfil">Ver Mi Perfil</Link>
+                    <Link className='link' to="/mi-perfil">Mi Perfil</Link>
                 </div>: ''}
                 {user? <div className='logout'onClick={cerrarSesion}><Link className='link'>Logout</Link></div>: ''}
             </nav>

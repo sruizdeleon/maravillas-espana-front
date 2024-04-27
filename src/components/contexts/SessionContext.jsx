@@ -19,6 +19,7 @@ export function SessionProvider({ children }) {
 
   function login(userData) {
     setUser(userData);
+    console.log(userData);
 
     setCookie("user", userData);
   }
