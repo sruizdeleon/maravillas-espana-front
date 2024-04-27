@@ -1,15 +1,15 @@
 import React from 'react'
 
-const Comment = ({ comentario }) => {
+const Comment = ({ comentario, usuario, valoracion }) => {
     return (
         <div className="comentario">
             <div className="perfil-usuario">
-                <h3 className="nombre-usuario">{comentario.usuario.name}</h3>
+                <h3 className="nombre-usuario">{usuario}</h3>
             </div>
             <div className="puntaje-usuario">
-                <span>{comentario.valoracion}/5.0</span>
+                <span>{valoracion}/5.0</span>
             </div>
-            <p className="comentario-texto">{comentario.comentario}</p>
+            <p className="comentario-texto">{comentario}</p>
         </div>
     )
 }
