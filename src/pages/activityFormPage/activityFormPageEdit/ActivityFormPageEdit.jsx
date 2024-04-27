@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import ActivityForm from '../../../components/forms/activityForm/ActivityForm'
 import './ActivityFormPageEdit.css'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const ActivityFormPageEdit = () => {
   const actividadVacia = {
+    _id: "",
 		provincia: "",
 		comunidad: "",
 		nombre: "",
@@ -16,7 +17,7 @@ const ActivityFormPageEdit = () => {
 	};
   const { id } = useParams();
   const [actividad, setActividad] = useState(actividadVacia);
-
+  const navigate = useNavigate()
     useEffect(() => {
       getActivityById();
     }, []);
@@ -51,7 +52,7 @@ const ActivityFormPageEdit = () => {
                 text: `La actividad: ${actividad.nombre}, fue modificada con éxito.`
               })
               console.log(response);
-              getActivityById();
+              navigate(-1)
             })
             .catch(error => {
               console.log(error);
@@ -60,20 +61,11 @@ const ActivityFormPageEdit = () => {
       });
 		}
 
-		function limpiarDatos() {
-			setActividad(actividadVacia);
-			// setProvincias(PROVINCIAS);
-			// setComunidades(COMUNIDADES);
-			// setProvinciaInputDesactivado(false);
-			// setComunidadInputDesactivado(false);
-		}
-
-
   return (
     <section className='page'>
       <div className='activity-fomr__contianer'>
         <h1 className='activity-form__title'>Formulario de actividad</h1>
-        <ActivityForm actividad={actividad} setActividad={setActividad} onEditar={editarActividad} onLimpiar={limpiarDatos}></ActivityForm>
+        <ActivityForm actividad={actividad} setActividad={setActividad} onEditar={editarActividad}></ActivityForm>
       </div>
     </section>
   )

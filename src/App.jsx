@@ -41,13 +41,8 @@ function App() {
                 user && user.role === "admin" ? <AdminUsers></AdminUsers> : ""
               }
             ></Route>
-            <Route
-              path="/mi-perfil"
-              element={user ? <MyProfile></MyProfile> : ""}
-            ></Route>
-            <Route path="/home/:id" element={<Activity></Activity>}>
-              Actividad
-            </Route>
+            <Route path="/activity/:id" element={<Activity></Activity>}></Route>
+            <Route path="/mi-perfil" element={user ? <MyProfile></MyProfile> : ""}></Route>
             <Route
               path="/activity-create"
               element={<ActivityFormPageCreate></ActivityFormPageCreate>}
