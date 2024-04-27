@@ -1,8 +1,8 @@
 .actividad-body {
     margin-top: 1.875rem;
     margin-bottom: 1.875rem;
-    margin-right: 300px;
-    margin-left: 300px;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
 }
 
 /* TARJETA ACTIVIDAD */
@@ -18,13 +18,14 @@
 
 .titulo {
     font-size: clamp(1.25rem, 3vw, 3rem);
+    width: 12.5rem;
     font-weight: 700;
     margin: 0;
 }
 
 .btn-edit-delete {
     display: flex;
-    align-self: center;
+    /* align-self: center; */
     gap: 0.625rem;
 }
 
@@ -58,17 +59,20 @@
     background-color: #E76267;
     color: #FFFFFF;
     border-radius: 0.5rem;
+    font-size: 0.75rem;
     font-weight: 700;
     align-content: center;
-    font-size: clamp(0.875rem, 3vw, 1.25rem);
-    height: 100%;
+    text-align: center;
+    height: auto;
+    width: auto;
     padding: 0.313rem 0.625rem;
 }
 
 .localizacion {
     display: flex;
-    align-content: center;
+    justify-content: left;
     gap: 0.188rem;
+    width: auto;
 }
 
 .mapa-punto {
@@ -76,22 +80,28 @@
     position: relative;
     overflow: hidden;
     width: clamp(0.813rem, 3vw, 1.25rem);
-    height: 100%;
+    height: auto;
 }
 
 .prov-com {
-    font-size: clamp(0.875rem, 3vw, 1.25rem);
+    font-size: clamp(0.75rem, 3vw, 1.25rem);
     font-weight: bold;
     align-content: center;
-    text-align: center;
+    text-align: left;
     height: 100%;
+    width: 9.375rem;
+}
+
+.bandera-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bandera {
-    position: relative;
-    overflow: hidden;
     border-radius: 0.25rem;
-    width: clamp(1.563rem, 3vw, 2.188rem);
+    width: auto;
+    height: 25px;
 }
 
 /* IMAGEN DE LA ACTIVIDAD */
@@ -178,6 +188,23 @@
 /* __________________ RESPONSIVE __________________ */
 
 @media (min-width: 576px) {
+    .actividad-body {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    .titulo {
+        width: 37.5rem;
+    }
+
+    .destaque {
+        font-size: 0.875rem;
+    }
+
+    .prov-com {
+        width: 18.75rem;
+    }
+
     .comentarios {
         display: flex;
         flex-wrap: wrap;
@@ -189,7 +216,31 @@
     }
 }
 
+@media (min-width: 776px) {
+    .actividad-body {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+
+    .prov-com {
+        width: auto;
+    }
+}
+
 @media (min-width: 992px) {
+    .actividad-body {
+        margin-left: 6.25rem;
+        margin-right: 6.25rem;
+    }
+
+    .titulo {
+        width: 50rem;
+    }
+
+    .prov-com {
+        width: auto;
+    }
+
     .comentarios {
         display: flex;
         flex-wrap: wrap;
@@ -198,12 +249,22 @@
     .comentario {
         flex-grow: 1;
         max-width: calc(47% - 2rem);
-        margin-left: 1rem;
-        margin-right: 1rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
     }
 }
 
 @media (min-width: 1200px) {
+    .actividad-body {
+        max-width: 62.5rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .destaque {
+        font-size: 1.25rem;
+    }
+
     .comentarios {
         display: flex;
         flex-wrap: wrap;
@@ -211,8 +272,8 @@
 
     .comentario {
         flex-grow: 1;
-        max-width: calc(47% - 2rem);
-        margin-left: 2rem;
-        margin-right: 2rem;
+        max-width: calc(45% - 2rem);
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
     }
 }

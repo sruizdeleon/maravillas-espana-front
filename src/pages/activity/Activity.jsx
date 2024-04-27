@@ -7,7 +7,7 @@ import Comment from '../../components/comment/Comment'
 const Activity = () => {
 
     const { id } = useParams()
-    console.log(id)
+    /* console.log(id) */
 
     const [actividad, setActividad] = useState({})
 
@@ -15,17 +15,17 @@ const Activity = () => {
         const getActivityById = async () => {
             const resultado = await axios.get(`http://localhost:3000/api/actividades/${id}`)
             setActividad(resultado.data.actividadEncontrada)
-            console.log(resultado.data.actividadEncontrada)
+            /* console.log(resultado.data.actividadEncontrada) */
         }
         getActivityById()
     }, [])
 
-    const [valoraciones, setValoraciones] = useState([])
+    const [valoraciones, setValoraciones] = useState([]);
 
     useEffect(() => {
         const getCommentById = async () => {
-            const resultado = await axios.get(`http://localhost:3000/api/valoraciones/${actividad._id}`)
-            console.log(resultado.data.valoracionEncontrada)
+            const resultado = await axios.get(`http://localhost:3000/api/valoraciones`, {params: {actividad: id}})
+            console.log(resultado)
         }
         getCommentById()
     }, [])
@@ -52,7 +52,9 @@ const Activity = () => {
                         <img className="mapa-punto" src="../../../assets/map_pointer.svg" alt="pointer" />
                         <p className="prov-com">{actividad.provincia?.nombre}, {actividad.comunidad}</p>
                     </div>
-                    <img className="bandera" src={actividad.provincia?.imagenBandera} alt={actividad.provincia?.nombre} />
+                    <div className='bandera-container'>
+                        <img className="bandera" src={actividad.provincia?.imagenBandera} alt={actividad.provincia?.nombre} />
+                    </div>
                 </div>
 
                 <div className="foto-descripcion">
@@ -69,12 +71,12 @@ const Activity = () => {
             <div className="div-rating">
                 <span className="rating">4.8</span>
                 <span>⭐⭐⭐⭐⭐</span>
-                <p className="total-resenas">(1.758 reseñas)</p>
+                <p className="total-resenas">({valoraciones.length} reseñas)</p>
             </div>
 
             <div className="comentarios">
                 {valoraciones.map((val) => {
-                    return(<Comment comentario={val}></Comment>)
+                    return (<Comment comentario={val}></Comment>)
                 })}
 
                 {/* <div className="comentario">
