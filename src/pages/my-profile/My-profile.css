@@ -1,0 +1,127 @@
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: calc(100vh - 155px);
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 40px;
+}
+.email {
+  margin-bottom: 0;
+}
+
+.avatar {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+  background-color: #193948;
+  height: 45px;
+  width: 170px;
+}
+
+.delete {
+  border-radius: 25px;
+  background-color: #193948;
+  height: 45px;
+  width: 170px;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.button.view {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.button.edit {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+.button.delete {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.delete-image {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-image:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+.avatar-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.upload-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}

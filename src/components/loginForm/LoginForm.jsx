@@ -19,10 +19,11 @@ export default function LoginForm() {
       .then((response) => {
         console.log(response.data);
         login({
+          nombre:response.data.nombre,
           email: datos.email,
           token: response.data.token,
           role: response.data.role,
-          _id: response.data._id
+          _id: response.data.usuarioId
         });
       })
       .catch((err) => {
