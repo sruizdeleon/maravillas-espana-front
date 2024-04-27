@@ -121,9 +121,12 @@ const Home = () => {
 		}
 	}
 
+	function crearActividad() {
+		navigate(`/activity-create`);
+	}
+
 	function editarActividad(actividad) {
-		setActividadForm(actividad);
-		navigate("activity-edit/:id");
+		navigate(`/activity-edit/${actividad._id}`);
 	}
 
 	function borrarActividad(actividad) {
@@ -198,6 +201,12 @@ const Home = () => {
 				provinciaInputDesactivado={provinciaInputDesactivado}
 				buscarActividades={buscarActividades}
 			></Searcher>
+
+			{
+				user.role==="admin"?
+					<button type='button' onClick={crearActividad}>Crear una actividad</button>
+					:""
+			}
 
 			{/* RESULTADOS DE BÚSQUEDA */}
 			<section className="activities-list">

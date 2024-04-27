@@ -3,7 +3,7 @@ import comunidadesData from "../../../models/Comunidades.json";
 import { SessionContext } from "../../contexts/SessionContext";
 import axios from 'axios';
 
-const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar}) => {
+const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar, onEditar}) => {
 
 	const COMUNIDADES = comunidadesData.comunidades;
 
@@ -48,6 +48,17 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar}) => {
 		setActividad({...actividad, comunidad: nombreComunidad, provincia: input})
 	}
 
+	function onCambioEnPlan(e) {
+		const input = String(e.target.value);
+		if (input === "Plan de ciudad") {
+			setActividad({ ...actividad, tipo: "ciudad" });
+		} else if (input === "Plan rural") {
+			setActividad({ ...actividad, tipo: "rural" });
+		} else {
+			setActividad({ ...actividad, tipo: "" });
+		}
+	}
+
 
   return (
 		<form>
@@ -72,7 +83,7 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar}) => {
 				<label htmlFor="tipo">Tipo de actividad</label>
 				<select
 					value={actividad?.tipo === "ciudad" ? "Plan de ciudad" : "Plan rural"}
-					onChange={e => setActividad({ ...actividad, tipo: e.target.value })}
+					onChange={e => onCambioEnPlan(e)}
 				>
 					<option name="ciudad">Plan de ciudad</option>
 					<option name="rural">Plan rural</option>
@@ -142,9 +153,21 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onLimpiar}) => {
 					name="img"
 				></input>
 			</fieldset>
-			<button type="button" onClick={onGuardar}>
-				Crear actividad
-			</button>
+			{actividad.img ? <img style={{ width: "100px" }} src={actividad.img}></img> : ""}
+			{onGuardar ? (
+				<button type="button" onClick={onGuardar}>
+					Crear actividad
+				</button>
+			) : (
+				""
+			)}
+			{onEditar ? (
+				<button type="button" onClick={onEditar}>
+					Guardar cambios
+				</button>
+			) : (
+				""
+			)}
 			<button type="button" onClick={onLimpiar}>
 				Limiar datos
 			</button>
