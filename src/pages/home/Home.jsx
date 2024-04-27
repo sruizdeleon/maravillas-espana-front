@@ -15,7 +15,7 @@ const Home = () => {
 	const PROVINCIAS = provinciasData.provincias;
 	const navigate = useNavigate()
 
-	const { user, actividadContext } = useContext(SessionContext);
+	const { user, setActividadForm } = useContext(SessionContext);
 	const [actividades, setActividades] = useState([]);
 	const [datos, setDatos] = useState(DEFAULTDATOS)
 	const [comunidades, setComunidades] = useState(COMUNIDADES);
@@ -122,8 +122,8 @@ const Home = () => {
 	}
 
 	function editarActividad(actividad) {
-		actividadContext(actividad);
-		navigate("/activity-form");
+		setActividadForm(actividad);
+		navigate("activity-edit/:id");
 	}
 
 	function borrarActividad(actividad) {
