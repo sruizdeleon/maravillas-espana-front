@@ -16,7 +16,7 @@
 }
 .btn {
   display: inline-flex;
-  padding: 10px 32px;
+  padding: 3px 32px;
   justify-content: center;
   align-items: center;
   gap: 10px;

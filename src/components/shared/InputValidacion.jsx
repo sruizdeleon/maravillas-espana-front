@@ -1,4 +1,4 @@
-import "./InputValidacion.css";
+
 
 export default function InputValidation({ value, onChange, type, rules }) {
   return (
@@ -11,20 +11,14 @@ export default function InputValidation({ value, onChange, type, rules }) {
       ></input>
 
       {rules &&
-      value.length > 0 &&
-      {
-        /*     rules.map((rule) => rule.fn(value)).includes(false) */
-      } ? (
-        <ul className="alert alert-danger">
+      value.length > 0 &&{} ? (
+        <ul className="alert alert-dark p-2 m-0 rounded-0 custom">
           {rules.map((rule) => {
             {
-              /*  if (!rule.fn(value)) */
-            }
-            {
               return (
-                <li>
+                <li className="list-unstyled custom fs-7">
                   {" "}
-                  {rule.fn(value) ? "✅ " : "❌"} {rule.text}
+                  {rule.fn(value) ? "🟢 " : "🔴"} {rule.text}
                 </li>
               );
             }
