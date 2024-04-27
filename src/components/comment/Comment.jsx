@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Comment = ({ comentario, usuario, valoracion }) => {
+const Comment = ({ usuario, valoracion, comentario }) => {
     return (
         <div className="comentario">
             <div className="perfil-usuario">
