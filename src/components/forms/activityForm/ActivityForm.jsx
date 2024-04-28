@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from "react";
 import comunidadesData from "../../../models/Comunidades.json";
 import provinciasData from "../../../models/Provincias.json";
 
 import { SessionContext } from "../../contexts/SessionContext";
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./ActivityForm.css";
 
-const ActivityForm = ({actividad, setActividad, onGuardar, onEditar}) => {
-
+const ActivityForm = ({ actividad, setActividad, onGuardar, onEditar }) => {
 	const actividadVacia = {
 		_id: "",
 		provincia: "",
@@ -19,7 +19,7 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onEditar}) => {
 	};
 	const COMUNIDADES = comunidadesData.comunidades;
 	const PROVINCIAS = provinciasData.provincias;
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
 	const { user } = useContext(SessionContext);
 	const [comunidadInputDesactivado, setComunidadInputDesactivado] = useState(false);
@@ -119,124 +119,167 @@ const ActivityForm = ({actividad, setActividad, onGuardar, onEditar}) => {
 		setComunidades(COMUNIDADES);
 		setProvinciaInputDesactivado(false);
 		setComunidadInputDesactivado(false);
-		navigate(`/activity-create`)
+		navigate(`/activity-create`);
 	}
 
-  return (
-		<form>
-			<fieldset>
+	return (
+		<form className="activity-form__form">
+			<div className="activity-form__body">
+				<div className="activity-form__columns">
+					{/* NOMBRE */}
+					<fieldset className="activity-form__fieldset">
+						<label className="activity-form__label" htmlFor="nombre">
+							Nombre de la actividad
+						</label>
+						<input
+							placeholder="Actividad"
+							className="activity-form__input"
+							value={actividad?.nombre}
+							onChange={e => setActividad({ ...actividad, nombre: e.target.value })}
+							type="text"
+							name="nombre"
+						></input>
+					</fieldset>
 
-			{/* NOMBRE */}
-				<label htmlFor="nombre">Nombre de la actividad</label>
-				<input
-					value={actividad?.nombre}
-					onChange={e => setActividad({ ...actividad, nombre: e.target.value })}
-					type="text"
-					name="nombre"
-				></input>
-			</fieldset>
+					{/* DESCRIPCION */}
+					<fieldset className="activity-form__fieldset--text-area">
+						<label className="activity-form__label" htmlFor="descripcion">
+							Descripción de la actividad
+						</label>
+						<textarea
+							placeholder="En esta actividad..."
+							className="activity-form__text-area"
+							value={actividad?.descripcion}
+							onChange={e => setActividad({ ...actividad, descripcion: e.target.value })}
+							name="descripcion"
+						></textarea>
+					</fieldset>
+				</div>
+				<div className="activity-form__columns">
+					<div className="activity-form__rows">
+						{/* COMUNIDAD */}
+						<fieldset className="activity-form__fieldset">
+							<label className="activity-form__label" htmlFor="comunidad">
+								Comunidad
+							</label>
+							<input
+								className="activity-form__input"
+								id="comunidad"
+								name="comunidad"
+								multiple
+								list="lista-comunidades"
+								placeholder="Comunidad"
+								value={actividad?.comunidad}
+								onChange={e => onCambioEnComunidad(e)}
+								disabled={comunidadInputDesactivado}
+							></input>
+							<datalist id="lista-comunidades">
+								{comunidades.map((comunidad, index) => (
+									<option key={index}>{comunidad.name}</option>
+								))}
+							</datalist>
+						</fieldset>
 
-			{/* DESCRIPCION */}
-			<fieldset>
-				<label htmlFor="descripcion">Descripción de la actividad</label>
-				<textarea
-					value={actividad?.descripcion}
-					onChange={e => setActividad({ ...actividad, descripcion: e.target.value })}
-					name="descripcion"
-				></textarea>
-			</fieldset>
+						{/* PROVINCIA */}
+						<fieldset className="activity-form__fieldset">
+							<label className="activity-form__label" htmlFor="provincia">
+								Provincia
+							</label>
+							<input
+								className="activity-form__input"
+								id="provincia"
+								name="provincia"
+								multiple
+								list="lista-provincias"
+								placeholder="Provincia"
+								value={actividad?.provincia}
+								onChange={e => onCambioEnProvincia(e)}
+								disabled={provinciaInputDesactivado}
+							></input>
+							<datalist id="lista-provincias">
+								{provincias.map((provincia, index) => (
+									<option key={index}>{provincia.name}</option>
+								))}
+							</datalist>
+						</fieldset>
+					</div>
 
+					<div className="activity-form__rows">
+						{/* TIPO DE ACTIVIDAD */}
+						<fieldset className="activity-form__fieldset">
+							<label className="activity-form__label" htmlFor="tipo">
+								Tipo de actividad
+							</label>
+							<input
+								className="activity-form__input"
+								placeholder="Tipo de actividad"
+								value={actividad?.tipo === "" ? "" : actividad.tipo === "ciudad" ? "Plan de ciudad" : "Plan rural"}
+								list="lista-tipos"
+								onChange={e => onCambioEnPlan(e)}
+							></input>
+							<datalist id="lista-tipos">
+								<option name="ciudad">Plan de ciudad</option>
+								<option name="rural">Plan rural</option>
+							</datalist>
+						</fieldset>
 
-			{/* TIPO DE ACTIVIDAD */}
-			<fieldset>
-				<label htmlFor="tipo">Tipo de actividad</label>
-				<select
-					value={actividad?.tipo === "ciudad" ? "Plan de ciudad" : "Plan rural"}
-					onChange={e => onCambioEnPlan(e)}
-				>
-					<option name="ciudad">Plan de ciudad</option>
-					<option name="rural">Plan rural</option>
-				</select>
-			</fieldset>
+						{/* IMAGEN ACTIVIDAD */}
+						<fieldset className="activity-form__fieldset">
+							<label className="activity-form__label" htmlFor="img">
+								Imagen de la actividad
+							</label>
+							<input
+								placeholder="https://..."
+								className="activity-form__input"
+								value={actividad?.img}
+								onChange={e => setActividad({ ...actividad, img: e.target.value })}
+								type="text"
+								name="img"
+							></input>
+						</fieldset>
+					</div>
 
-
-			{/* COMUNIDAD */}
-			<fieldset>
-				<label htmlFor="comunidad">Comunidad</label>
-				<input
-					id="comunidad"
-					name="comunidad"
-					multiple
-					list="lista-comunidades"
-					placeholder="Comunidad"
-					value={actividad?.comunidad}
-					onChange={e => onCambioEnComunidad(e)}
-					disabled={comunidadInputDesactivado}
-				></input>
-				<datalist id="lista-comunidades">
-					<datalist id="lista-comunidades">
-						{comunidades.map((comunidad, index) => (
-							<option key={index}>{comunidad.name}</option>
-						))}
-					</datalist>
-				</datalist>
-			</fieldset>
-
-
-			{/* PROVINCIA */}
-			<fieldset>
-				<label htmlFor="provincia">Provincia</label>
-				<input
-					id="provincia"
-					name="provincia"
-					multiple
-					list="lista-provincias"
-					placeholder="Provincia"
-					value={actividad?.provincia}
-					onChange={e => onCambioEnProvincia(e)}
-					disabled={provinciaInputDesactivado}
-				></input>
-				<datalist id="lista-provincias">
-					{provincias.map((provincia, index) => (
-						<option key={index}>{provincia.name}</option>
-					))}
-				</datalist>
-			</fieldset>
-
-
-			{/* IMAGEN ACTIVIDAD */}
-			<fieldset>
-				<label htmlFor="img">Imagen de la actividad</label>
-				<input
-					value={actividad?.img}
-					onChange={e => setActividad({ ...actividad, img: e.target.value })}
-					type="text"
-					name="img"
-				></input>
-			</fieldset>
-			{actividad.img ? <img style={{ width: "100px" }} src={actividad.img}></img> : ""}
-
-
-			{/* BOTONES */}
-			{onGuardar && actividad._id === "" ? (
-				<button type="button" onClick={onGuardar}>
-					Crear actividad
+					{actividad.img ? (
+						<img className="activity-form__img" src={actividad.img}></img>
+					) : (
+						<div className="activity-form__img-skeleton">
+							<p>Añade tu imgen para previsualizarla</p>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="80"
+								height="80"
+								fill="white"
+								class="bi bi-image-fill"
+								viewBox="0 0 16 16"
+							>
+								<path d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2zm1 9v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062zm5-6.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0" />
+							</svg>
+						</div>
+					)}
+				</div>
+			</div>
+			<div className="activity-form__footer">
+				{/* BOTONES */}
+				{onGuardar && actividad._id === "" ? (
+					<button className="activity-form__button" type="button" onClick={onGuardar}>
+						Crear actividad
+					</button>
+				) : (
+					""
+				)}
+				{onEditar && actividad._id !== "" ? (
+					<button className="activity-form__button" stype="button" onClick={onEditar}>
+						Guardar cambios
+					</button>
+				) : (
+					""
+				)}
+				<button className="activity-form__button" type="button" onClick={limpiarDatos}>
+					Limiar datos
 				</button>
-			) : (
-				""
-			)}
-			{onEditar && actividad._id !== "" ? (
-				<button type="button" onClick={onEditar}>
-					Guardar cambios
-				</button>
-			) : (
-				""
-			)}
-			<button type="button" onClick={limpiarDatos}>
-				Limiar datos
-			</button>
+			</div>
 		</form>
 	);
-}
+};
 
-export default ActivityForm
+export default ActivityForm;

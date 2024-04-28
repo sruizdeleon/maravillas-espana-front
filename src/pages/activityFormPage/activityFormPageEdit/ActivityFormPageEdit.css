@@ -1,0 +1,20 @@
+.page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 0px;
+  width: 100%;
+  min-height: calc(100vh - 90px);
+}
+
+.activity-form__container {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.activity-form__title {
+  color: var(--col-l-blue);
+  width: calc(100% - 20px);
+  padding: 0px 10px;
+}

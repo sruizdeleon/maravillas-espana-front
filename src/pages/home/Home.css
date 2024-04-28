@@ -26,7 +26,11 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   column-gap: 20px;
   row-gap: 40px;
+}
+
+.activities-list__list > :nth-last-child(-n+1) {
+  margin-right: auto;
 }
