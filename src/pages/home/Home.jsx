@@ -17,7 +17,7 @@ const Home = () => {
 
 	// Variables y contextos
 	const navigate = useNavigate();
-	const { user, setActividadForm } = useContext(SessionContext);
+	const { user } = useContext(SessionContext);
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [actividades, setActividades] = useState([]);
 	const [datos, setDatos] = useState(DEFAULTDATOS);
@@ -29,8 +29,9 @@ const Home = () => {
 	const [provinciaInputDesactivado, setProvinciaInputDesactivado] = useState(false);
 
 	useEffect(() => {
+		const token = user.token;
 		axios
-			.get(`http://localhost:3000/api/provincias`)
+			.get(`http://localhost:3000/api/provincias?token=${token}`)
 			.then(response => {
 				const provinciasConId = response.data.provinciasEncontradas.map(prov => {
 					return prov;
@@ -137,6 +138,7 @@ const Home = () => {
 	}
 
 	function borrarActividad(actividad) {
+		const token = user.token;
 		Swal.fire({
 			icon: "warning",
 			title: "Eliminar actividad",
@@ -148,7 +150,7 @@ const Home = () => {
 		}).then(result => {
 			if (result.isConfirmed) {
 				axios
-					.delete(`http://localhost:3000/api/actividades/${actividad._id}`)
+					.delete(`http://localhost:3000/api/actividades/${actividad._id}?token=${token}`)
 					.then(response => {
 						setActividades(actividades.filter(act => act._id !== actividad._id));
 						Swal.fire({
@@ -211,8 +213,9 @@ const Home = () => {
 	}
 
 	async function buscarActividades(tipo, comunidad, provincia) {
+		const token = user.token;
 		axios
-			.get(`http://localhost:3000/api/actividades`, {
+			.get(`http://localhost:3000/api/actividades?token=${token}`, {
 				params: { comunidad: comunidad, provincia: provincia, tipo: tipo },
 			})
 			.then(response => {

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import ActivityForm from '../../../components/forms/activityForm/ActivityForm'
 import './ActivityFormPageEdit.css'
 import { useNavigate, useParams } from 'react-router-dom';
+import { SessionContext } from "../../../components/contexts/SessionContext";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import "./ActivityFormPageEdit.css";
+import { useContext } from 'react';
 
 const ActivityFormPageEdit = () => {
   const actividadVacia = {
@@ -16,6 +18,7 @@ const ActivityFormPageEdit = () => {
 		img: "",
 		tipo: "",
 	};
+	const { user } = useContext(SessionContext);
   const { id } = useParams();
   const [actividad, setActividad] = useState(actividadVacia);
   const navigate = useNavigate()
@@ -24,7 +27,8 @@ const ActivityFormPageEdit = () => {
     }, []);
 
     const getActivityById = async () => {
-      const resultado = await axios.get(`http://localhost:3000/api/actividades/${id}`);
+      const token = user.token
+      const resultado = await axios.get(`http://localhost:3000/api/actividades/${id}?token=${token}`);
       setActividad({
         ...resultado.data.actividadEncontrada,
         provincia: resultado.data.actividadEncontrada.provincia.nombre,
@@ -32,6 +36,7 @@ const ActivityFormPageEdit = () => {
     };
 
   	function editarActividad() {
+      const token = user.token
       Swal.fire({
         icon: "warning",
         title: "Guardar cambios en actividad",
@@ -45,19 +50,19 @@ const ActivityFormPageEdit = () => {
           let actividadPut = actividad;
           actividadPut.provincia = actividad.provincia._id
           axios
-            .put(`http://localhost:3000/api/actividades/${actividad._id}`, actividadPut)
-            .then(response => {
-              Swal.fire({
-                icon: "success",
-                title: "Actividad modificada",
-                text: `La actividad: ${actividad.nombre}, fue modificada con éxito.`
-              })
-              console.log(response);
-              navigate(-2)
-            })
-            .catch(error => {
-              console.log(error);
-            });
+						.put(`http://localhost:3000/api/actividades/${actividad._id}?token=${token}`, actividadPut)
+						.then(response => {
+							Swal.fire({
+								icon: "success",
+								title: "Actividad modificada",
+								text: `La actividad: ${actividad.nombre}, fue modificada con éxito.`,
+							});
+							console.log(response);
+							navigate(`/activity/${actividad._id}`);
+						})
+						.catch(error => {
+							console.log(error);
+						});
         }
       });
 		}

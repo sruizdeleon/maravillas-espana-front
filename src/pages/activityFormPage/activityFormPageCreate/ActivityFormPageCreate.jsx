@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ActivityForm from '../../../components/forms/activityForm/ActivityForm'
+import { SessionContext } from "../../../components/contexts/SessionContext";
 import './ActivityFormPageCreate.css'
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ActivityFormPageCreate = () => {
   const actividadVacia = {
@@ -14,7 +17,9 @@ const ActivityFormPageCreate = () => {
 		img: "",
 		tipo: "",
 	};
-
+	
+	const navigate = useNavigate()
+	const { user } = useContext(SessionContext);
   const [actividad, setActividad] = useState(actividadVacia);
 	const [provincias, setProvincias] = useState([]);
 
@@ -23,14 +28,15 @@ const ActivityFormPageCreate = () => {
 	}, []);
 
 	async function obtenerProvincias() {
+		const token = user.token
 		axios
-			.get(`http://localhost:3000/api/provincias`)
-			.then(response => {
-				setProvincias(response.data.provinciasEncontradas);
-			})
-			.catch(error => {
-				console.log(error);
-			});
+				.get(`http://localhost:3000/api/provincias?token=${token}`)
+				.then(response => {
+					setProvincias(response.data.provinciasEncontradas);
+				})
+				.catch(error => {
+					console.log(error);
+				});
 	}
 
 	function crearActividad() {
@@ -43,8 +49,9 @@ const ActivityFormPageCreate = () => {
 			});
 		}
 		console.log(actividadPost)
+		const token = user.token;
 		axios
-			.post(`http://localhost:3000/api/actividades`, actividadPost)
+			.post(`http://localhost:3000/api/actividades?token=${token}`, actividadPost)
 			.then(response => {
 				Swal.fire({
 					icon: "success",
@@ -52,6 +59,7 @@ const ActivityFormPageCreate = () => {
 					text: `La actividad: ${actividad.nombre}, fue creada con éxito.`,
 				});
 				console.log(response);
+				navigate(`/activity/${response.data.nuevaActividad._id}`)
 			})
 			.catch(error => {
 				console.log(error);
