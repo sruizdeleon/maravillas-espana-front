@@ -1,8 +1,8 @@
-import CommunityInput from './communityInput/CommunityInput';
-import ProvinceInput from './provinceInput/ProvinceInput';
-import PlanInput from './planInput/PlanInput';
-import './Searcher.css'
-import { useEffect, useState } from 'react';
+import CommunityInput from "./communityInput/CommunityInput";
+import ProvinceInput from "./provinceInput/ProvinceInput";
+import PlanInput from "./planInput/PlanInput";
+import "./Searcher.css";
+import { useEffect, useState } from "react";
 
 const Searcher = ({
 	datos,
@@ -17,13 +17,14 @@ const Searcher = ({
 	provinciaInputDesactivado,
 	buscarActividades,
 }) => {
-
 	const [currentImage, setCurrentImage] = useState(0);
 
 	const images = [
-		"https://www.spain.info/.content/imagenes/cabeceras-grandes/naturaleza/castellfollit-de-la-roca-girona-s1419125804.jpg",
-		"https://www.spain.info/.content/imagenes/cabeceras-grandes/cataluna/palafrugell-girona-s144973225.jpg",
-		"https://www.spain.info/.content/imagenes/cabeceras-grandes/parques-nacionales/pn-aiguestortes-s1556525279.jpg",
+		"https://i.postimg.cc/NF1jrNzP/picos-de-europa-asturias.jpg",
+		"https://i.postimg.cc/kgMgBvFf/c4260f8e-cda5-478a-9017-6ac8aaadedee-source-aspect-ratio-default-0.jpg",
+		"https://i.postimg.cc/wTpvdptK/DEST-SPAIN-BARCELONA-PARK-GUELL-Getty-Images-511515106.jpg",
+		"https://i.postimg.cc/65fQWmR8/gaztelugatxe-gipuzkoa.jpg",
+		"https://i.postimg.cc/v89BjBZL/planza-de-espa-a-de-sevilla.jpg",
 	];
 
 	useEffect(() => {
@@ -45,14 +46,14 @@ const Searcher = ({
 					  }
 			}
 		>
-			{
-				existeBusqueda ?
-					"" :
-					<>
-						<div className='searcher__background'></div>
-						<h1 className='searcher__title'>¿Qué te gustaría descubrir?</h1>
-					</>
-			}
+			{existeBusqueda ? (
+				""
+			) : (
+				<>
+					<div className="searcher__background"></div>
+					<h1 className="searcher__title">¿Qué te gustaría descubrir?</h1>
+				</>
+			)}
 			<form className="searcher__form">
 				<CommunityInput
 					datos={datos}
@@ -83,4 +84,4 @@ const Searcher = ({
 	);
 };
 
-export default Searcher
+export default Searcher;

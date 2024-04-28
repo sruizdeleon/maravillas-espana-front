@@ -8,8 +8,11 @@
   width: 100%;
   gap: 40px;
   position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   transition-timing-function: linear;
-  transition-duration: 1s;
+  transition-duration: 2s;
   transition-property: "height background";
 }
 
