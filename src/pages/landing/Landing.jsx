@@ -1,6 +1,5 @@
-import Header from "../../components/header/Header";
-import GoodFooter from "../../components/footer/Footer";
 import Carrusel from "../../components/carousel/Carrusel";
+import CiudadLanding from "../../components/imagenesLanding/CiudadLanding";
 
 
 const Landing = () => {
@@ -8,6 +7,7 @@ const Landing = () => {
 	return (
 		<>
 			<Carrusel className='Carrusel'></Carrusel>
+			<CiudadLanding></CiudadLanding>
 
 		</>
 	);

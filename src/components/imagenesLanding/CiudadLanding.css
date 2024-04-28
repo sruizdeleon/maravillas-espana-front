@@ -1,0 +1,250 @@
+/*------------------------IMAGEN CIUDAD-------------------------------------*/
+
+.img-ciudad{
+    height: clamp(250px, 60vh, 800px);
+    width: clamp(375px, 100%, 1920px);
+    position: relative;
+    z-index: 1;
+    object-fit:cover;
+}
+
+.titulo-ciudad{
+    position: absolute;
+    z-index: 2;
+    color: beige;
+    width: 80%;
+    margin-top: clamp(50px, 50vh, 250px);
+    margin-left: clamp(60px, 0vw, 150px);
+}
+
+.parrafo-ciudad{
+    position: absolute;
+    z-index: 2;
+    color: beige;
+    margin-top: clamp(350px,8vh,600px);
+    margin-left: clamp(128px,8vw,150px)
+}
+
+/*------------------------IMAGEN RURAL ----------------------------------------*/
+
+.img-rural{
+    height: clamp(250px, 10vh, 500px);
+    object-fit: cover;
+    width: clamp(375px, 100%, 1920px);
+    position: relative;
+    z-index: 1;
+}
+
+.titulo-rural-01{
+    position: absolute;
+    z-index: 2;
+    color: beige;
+    margin-top: 25px;
+    width: 100%;
+    text-align: center;
+}
+.titulo-rural-02{
+    position: absolute;
+    z-index: 2;
+    color: beige;
+    margin-top: 195px;
+    width: 100%;
+    text-align: center;
+    object-fit: cover;
+}
+
+.img-maravillas{
+    position: absolute;
+    height: 120px;
+    width: fit-content;
+    z-index: 2;
+    margin-top: 60px;
+    margin-left: clamp(50px, 50vw, 810px);
+}
+
+@media screen and (max-width: 380px) {
+    .img-maravillas {
+        margin-left: clamp(50px, 0vw, 810px);
+    }
+}
+/*------------------------BACKGROUND NEGRO 01----------------------------------------*/
+
+.img-black-01{
+    height: 4vh;
+    width: clamp(375px, 100%, 1920px);
+    position: relative;
+    z-index: 1;
+}
+
+
+/*------------------------BACKGROUND NEGRO 02----------------------------------------*/
+.background-black-02{
+    position: relative;
+    z-index: 1;
+    height: 530px;
+    width: clamp(375px, 100%, 1920px);
+}
+
+
+
+.img-black-02{
+    position: relative;
+    height: 530px;
+    width: clamp(375px, 100%, 1920px);
+    z-index: 1;
+}
+
+/*------------------------ICON 01----------------------------------------*/
+
+.icon-01{
+    position: absolute;
+    z-index: 2;
+    height: 230px;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.titulo-black-01{
+    z-index: 2;
+    color: beige;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    margin-left: 30vw;
+}
+
+.img-01{
+    z-index: 2;
+    height: 80px;
+    margin-left: 30vw;
+    padding-left: 35px;
+}
+
+.text-01{
+    height: 120px;
+    width: 150px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: beige;
+    margin-left: 30vw;
+}
+
+
+/*------------------------ICON 02----------------------------------------*/
+.icon-02{
+    position: absolute;
+    z-index: 2;
+    height: 230px;
+    width: 100%;
+    margin-top: 280px;
+}
+
+.titulo-black-02{
+    z-index: 2;
+    color: beige;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    margin-left: 30vw;
+}
+
+.img-02{
+    z-index: 2;
+    height: 80px;
+    margin-left: 35px;
+    margin-left: 30vw;
+    padding-left: 35px;
+}
+.text-02{
+    height: 120px;
+    width: 150px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: beige;
+    margin-left: 30vw;
+}
+
+/*------------------------ICON 03----------------------------------------*/
+.icon-03{
+    position: absolute;
+    z-index: 2;
+    height: 230px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.titulo-black-03{
+    z-index: 2;
+    color: beige;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    margin-left: 60vw;
+}
+
+.img-03{
+    z-index: 2;
+    height: 80px;
+    margin-left: 60vw;
+    padding-left: 35px;
+}
+.text-03{
+    height: 120px;
+    width: 150px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: beige;
+    margin-left: 60vw;
+}
+
+/*------------------------ICON 04----------------------------------------*/
+.icon-04{
+    position: absolute;
+    z-index: 2;
+    height: 230px;
+    width: 100%;
+    margin-top: 280px;
+}
+
+.titulo-black-04{
+    z-index: 2;
+    color: beige;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    margin-left: 60vw;
+}
+.img-04{
+    z-index: 2;
+    height: 80px;
+    margin-left: 60vw;
+    padding-left: 35px;
+}
+.text-04{
+    height: 120px;
+    width: 150px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    color: beige;
+    margin-left: 60vw;
+}
+
+@media screen and (max-width: 600px) {
+    .titulo-black-01{
+        margin-left: 15vw;
+    }
+    .img-01{
+
+        margin-left: 15vw;
+
+    }
+    .text-01{
+
+        margin-left: 15vw;
+    }
+}
