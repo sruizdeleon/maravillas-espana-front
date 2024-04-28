@@ -1,0 +1,98 @@
+/* PUNTAJE */
+.div-rating {
+    text-align: right;
+    margin: 0 0 1.875rem 0;
+}
+
+.rating {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: bold;
+    color: #FCDC73;
+}
+
+.total-resenas {
+    color: #666;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+    margin: 0.313rem 0 0 0;
+}
+
+/* COMENTARIOS */
+.comentario {
+    margin: 1.25rem 0;
+}
+
+.perfil-usuario {
+    margin-bottom: 1.125rem;
+}
+
+.nombre-usuario {
+    color: #101415;
+    font-size: clamp(1.125rem, 3vw, 1.25rem);
+    padding: 0;
+    margin: 0;
+}
+
+.localizacion-usuario {
+    color: #101415;
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    padding: 0;
+    margin: 0.313rem 0 0 0;
+}
+
+.puntaje-usuario {
+    color: #101415d4;
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.comentario-texto {
+    color: #101415d4;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+}
+
+/* __________________ RESPONSIVE __________________ */
+
+@media (min-width: 576px) {
+    .comentarios {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .comentario {
+        flex-grow: 1;
+        max-width: calc(100% - 1.25rem);
+    }
+}
+
+@media (min-width: 992px) {
+    .comentarios {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .comentario {
+        flex-grow: 1;
+        max-width: calc(47% - 2rem);
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .comentarios {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .comentario {
+        flex-grow: 1;
+        max-width: calc(47% - 2rem);
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+}

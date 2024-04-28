@@ -1,0 +1,11 @@
+.actividad-body {
+    margin: 1.875rem 0;
+}
+
+/* SEPARADOR */
+.separador {
+    border: 0.063rem solid #cccccc91;
+    border-radius: 2rem;
+    margin-top: clamp(2.813rem, 5vw, 8.125rem);
+    margin-bottom: clamp(2.813rem, 5vw, 8.125rem);
+}

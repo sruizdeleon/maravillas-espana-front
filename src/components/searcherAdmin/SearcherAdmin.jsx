@@ -10,7 +10,7 @@ export default function SearcherAdmin({onFiltrar}){
         <div className="divSearcher">
           <input
             className="inputSearcher"
-            placeholder="Buscar Usuario"
+            placeholder="Nombre del Usuario"
             type="text"
             value={texto}
             onChange={(e) => {
@@ -18,7 +18,7 @@ export default function SearcherAdmin({onFiltrar}){
             }}
           ></input>
           <button className="btn btn-primary" onClick={(e) => onFiltrar(texto)}>
-            🔎Buscar
+            🔎 Buscar
           </button>
         </div>
       </>

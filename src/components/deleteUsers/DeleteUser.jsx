@@ -40,7 +40,7 @@ export default function DeleteUsers() {
             deleteUser(id);
           }}
         >
-          Eliminar
+          🗑️ Eliminar
         </button>
         </div>
       </div>
