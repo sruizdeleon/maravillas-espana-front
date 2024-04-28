@@ -32,8 +32,9 @@ const ActivityForm = ({ actividad, setActividad, onGuardar, onEditar }) => {
 	}, []);
 
 	async function obtenerProvincias() {
+		const token = user.token;
 		axios
-			.get(`http://localhost:3000/api/provincias`)
+			.get(`http://localhost:3000/api/provincias?token=${token}`)
 			.then(response => {
 				setProvincias(response.data.provinciasEncontradas);
 			})
@@ -123,7 +124,7 @@ const ActivityForm = ({ actividad, setActividad, onGuardar, onEditar }) => {
 	}
 
 	return (
-		<form className="activity-form__form">
+		<form  className="activity-form__form">
 			<div className="activity-form__body">
 				<div className="activity-form__columns">
 					{/* NOMBRE */}
@@ -268,7 +269,7 @@ const ActivityForm = ({ actividad, setActividad, onGuardar, onEditar }) => {
 					""
 				)}
 				{onEditar && actividad._id !== "" ? (
-					<button className="activity-form__button" stype="button" onClick={onEditar}>
+					<button className="activity-form__button" type="button" onClick={onEditar}>
 						Guardar cambios
 					</button>
 				) : (
