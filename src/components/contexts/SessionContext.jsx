@@ -5,9 +5,6 @@ export const SessionContext = createContext();
 
 export function SessionProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [actividadForm, setActividadForm] = useState({
-    
-  });
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   useEffect(() => {
@@ -19,6 +16,7 @@ export function SessionProvider({ children }) {
 
   function login(userData) {
     setUser(userData);
+    console.log(userData);
 
     setCookie("user", userData);
   }
@@ -29,14 +27,9 @@ export function SessionProvider({ children }) {
     removeCookie("user");
   }
 
-  function deleteActividadContext() {
-    console.log("Borro", actividadForm)
-    setActividadForm(false);
-  }
-
   return (
 		<SessionContext.Provider
-			value={{ user, actividadForm, login, logout, setActividadForm, deleteActividadContext,  }}
+			value={{ user, login, logout }}
 		>
 			{children}
 		</SessionContext.Provider>

@@ -15,6 +15,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 const Header = () => {
+
   const { user, logout } = useContext(SessionContext);
   const navigate = useNavigate();
   const cerrarSesion = () => {
@@ -226,5 +227,6 @@ const Header = () => {
     </header>
   );
 };
+
 
 export default Header;

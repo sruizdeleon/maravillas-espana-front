@@ -1,9 +1,7 @@
 import React from 'react'
 
-const PlanInput = ({
-	onCambioEnPlan,
-}) => {
-  return (
+const PlanInput = ({ onCambioEnPlan, datos, onLimpiarInput }) => {
+	return (
 		<div className="searcher__container">
 			<div className="searcher__icon-container">
 				<svg
@@ -20,22 +18,32 @@ const PlanInput = ({
 				<label className="searcher__label" htmlFor="plan">
 					Tipo de plan
 				</label>
-				<input
-					className="searcher__input"
-					id="plan"
-					name="plan"
-					multiple
-					list="lista-planes"
-					placeholder="Tipo de plan"
-					onChange={e => onCambioEnPlan(e)}
-				></input>
-				<datalist id="lista-planes">
-					<option>Plan de ciudad</option>
-					<option>Plan rural</option>
-				</datalist>
+				<div className="searcher__contianer--close">
+					<input
+						className="searcher__input"
+						id="plan"
+						name="plan"
+						multiple
+						list="lista-planes"
+						value={datos.tipo === "ciudad" ? "Plan de ciudad" : datos.tipo === "rural" ? "Plan rural" : ""}
+						placeholder="Tipo de plan"
+						onChange={e => onCambioEnPlan(String(e.target.value))}
+					></input>
+					<datalist id="lista-planes">
+						<option>Plan de ciudad</option>
+						<option>Plan rural</option>
+					</datalist>
+					{
+						datos.tipo === ""
+						?	""
+						: <button className="searcher__button-clean" type="button" onClick={() => onLimpiarInput("tipo")}>
+						X
+					</button>
+					}
+				</div>
 			</div>
 		</div>
 	);
-}
+};
 
 export default PlanInput

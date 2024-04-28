@@ -1,12 +1,13 @@
-import React from 'react'
-import CommunityInput from './communityInput/CommunityInput';
-import ProvinceInput from './provinceInput/ProvinceInput';
-import PlanInput from './planInput/PlanInput';
-import './Searcher.css'
+import CommunityInput from "./communityInput/CommunityInput";
+import ProvinceInput from "./provinceInput/ProvinceInput";
+import PlanInput from "./planInput/PlanInput";
+import "./Searcher.css";
+import { useEffect, useState } from "react";
 
 const Searcher = ({
 	datos,
-	busqueda,
+	onLimpiarInput,
+	existeBusqueda,
 	provincias,
 	comunidades,
 	onCambioEnComunidad,
@@ -16,36 +17,59 @@ const Searcher = ({
 	provinciaInputDesactivado,
 	buscarActividades,
 }) => {
+	const [currentImage, setCurrentImage] = useState(0);
+
+	const images = [
+		"https://i.postimg.cc/NF1jrNzP/picos-de-europa-asturias.jpg",
+		"https://i.postimg.cc/kgMgBvFf/c4260f8e-cda5-478a-9017-6ac8aaadedee-source-aspect-ratio-default-0.jpg",
+		"https://i.postimg.cc/wTpvdptK/DEST-SPAIN-BARCELONA-PARK-GUELL-Getty-Images-511515106.jpg",
+		"https://i.postimg.cc/65fQWmR8/gaztelugatxe-gipuzkoa.jpg",
+		"https://i.postimg.cc/v89BjBZL/planza-de-espa-a-de-sevilla.jpg",
+	];
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentImage(prevImage => (prevImage - 1 + images.length) % images.length);
+		}, 5000);
+		return () => clearInterval(interval);
+	}, []);
+
 	return (
 		<section
-			className="searcher"
+			className="searcher {existeBusqueda? search__part-screen : search__full-scree}"
 			style={
-				busqueda
-					? { height: "fit-content" }
+				existeBusqueda
+					? { height: "fit-content", backgroundColor: "white" }
 					: {
-							height: "calc(100vh - 154px)",
-							transitionProperty: "height",
-							transitionDuration: "1s",
-							transitionTimingFunction: "linear",
+							height: "calc(100vh - 90px)",
+							backgroundImage: `url(${images[currentImage]})`,
 					  }
 			}
 		>
+			{existeBusqueda ? (
+				""
+			) : (
+				<>
+					<div className="searcher__background"></div>
+					<h1 className="searcher__title">¿Qué te gustaría descubrir?</h1>
+				</>
+			)}
 			<form className="searcher__form">
 				<CommunityInput
 					datos={datos}
+					onLimpiarInput={onLimpiarInput}
 					comunidades={comunidades}
 					onCambioEnComunidad={onCambioEnComunidad}
 					comunidadInputDesactivado={comunidadInputDesactivado}
 				></CommunityInput>
-
 				<ProvinceInput
+					datos={datos}
 					provincias={provincias}
+					onLimpiarInput={onLimpiarInput}
 					onCambioEnProvincia={onCambioEnProvincia}
 					provinciaInputDesactivado={provinciaInputDesactivado}
 				></ProvinceInput>
-
-				<PlanInput onCambioEnPlan={onCambioEnPlan}></PlanInput>
-
+				<PlanInput datos={datos} onLimpiarInput={onLimpiarInput} onCambioEnPlan={onCambioEnPlan}></PlanInput>
 				{/* BUTTON BUSCAR */}
 				<button className="searcher__button" type="button" onClick={buscarActividades}>
 					<div className="searcher__button-icon">
@@ -60,4 +84,4 @@ const Searcher = ({
 	);
 };
 
-export default Searcher
+export default Searcher;

@@ -19,9 +19,11 @@ export default function LoginForm() {
       .then((response) => {
         console.log(response.data);
         login({
+          nombre:response.data.nombre,
           email: datos.email,
           token: response.data.token,
           role: response.data.role,
+          _id: response.data.usuarioId
         });
       })
       .catch((err) => {
@@ -87,7 +89,7 @@ export default function LoginForm() {
                 </div>
                 <button
                   type="submit"
-                  className="btn btn-secondary text-white pointer"
+                  className="btn btn-secondary text-white pointer fs-5"
                 >
                   Iniciar Sesión
                 </button>
