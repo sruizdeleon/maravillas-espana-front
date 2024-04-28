@@ -1,0 +1,43 @@
+.valoraciones-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .valoracion-card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .valoracion-card p {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .button.view {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .button.view:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .button.view:focus {
+    outline: none;
+  }
+  
+  .button.view:active {
+    transform: translateY(1px);
+  }

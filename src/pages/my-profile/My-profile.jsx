@@ -5,12 +5,15 @@ import "./My-profile.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaPlus } from "react-icons/fa";
+import RatingProfile from "../../components/ratingProfile/RatingProfille";
 
 export default function MyProfile() {
   const { user, logout } = useContext(SessionContext);
   const navigate = useNavigate();
   const [avatarImage, setAvatarImage] = useState(null);
   const fileInputRef = useRef(null);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -53,6 +56,40 @@ export default function MyProfile() {
     }
   };
 
+  const handlePasswordChangeClick = () => {
+    setShowPasswordForm(!showPasswordForm); // Mostrar el formulario de cambio de contraseña
+  };
+  const handlePasswordChangeSubmit = async (event) => {
+    event.preventDefault();
+    const password = event.target.elements.password.value;
+    const repeatedPassword = event.target.elements.repeatedPassword.value;
+
+    if (password !== repeatedPassword) {
+      // Si las contraseñas no coinciden, mostrar mensaje de error
+      Swal.fire({
+        title: "Error",
+        text: "Las contraseñas no coinciden",
+        icon: "error",
+      });
+      return;
+    }
+
+    try {
+      // Petición Axios PUT para cambiar la contraseña
+      await axios.put(`http://localhost:3000/api/users/${user._id}`, {
+        password,
+      });
+      setShowPasswordForm(false); // Ocultar el formulario después de cambiar la contraseña
+      Swal.fire({
+        title: "Contraseña cambiada",
+        text: "Tu contraseña se ha cambiado correctamente",
+        icon: "success",
+      });
+    } catch (error) {
+      console.error("Error al cambiar la contraseña:", error);
+    }
+  };
+
   return (
     <>
       <div className="contenedor">
@@ -78,11 +115,27 @@ export default function MyProfile() {
           </div>
         </div>
         <div className="options">
-          <button className="edit">Modificar contraseña</button>
-          <button onClick={borrarUsuario} className="delete">
-            Eliminar cuenta
+          <button className="edit" onClick={handlePasswordChangeClick}>
+          {showPasswordForm ? "Volver" : "Modificar contraseña"}
           </button>
+          {/* Formulario de cambio de contraseña */}
+        {showPasswordForm && (
+          <form className="formPassword" onSubmit={handlePasswordChangeSubmit}>
+            <input className="inputPassword" type="password" name="password" placeholder="Nueva contraseña" required />
+            <input className="inputPassword" type="password" name="repeatedPassword" placeholder="Repetir nueva contraseña" required />
+            <button className="newPassword" type="submit">Confirmar contraseña</button>
+          </form>
+        )}
+        {!showPasswordForm && (
+            <button onClick={borrarUsuario} className="delete">
+              Eliminar cuenta
+            </button>
+          )}
+{/*           {!showPasswordForm &&
+          <RatingProfile></RatingProfile>
+        } */}
         </div>
+        
       </div>
     </>
   );
