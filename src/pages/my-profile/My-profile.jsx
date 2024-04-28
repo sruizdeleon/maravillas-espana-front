@@ -5,7 +5,6 @@ import "./My-profile.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { FaPlus } from "react-icons/fa";
 
 export default function MyProfile() {
   const { user, logout } = useContext(SessionContext);

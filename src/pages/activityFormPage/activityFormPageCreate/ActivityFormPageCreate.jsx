@@ -60,8 +60,8 @@ const ActivityFormPageCreate = () => {
 
   return (
     <section className='page'>
-      <div className='activity-fomr__contianer'>
-        <h1 className='activity-form__title'>Formulario de actividad</h1>
+      <div className='activity-form__container'>
+        <h1 className='activity-form__title'>Crear actividad</h1>
         <ActivityForm actividad={actividad} setActividad={setActividad} onGuardar={crearActividad}></ActivityForm>
       </div>
     </section>

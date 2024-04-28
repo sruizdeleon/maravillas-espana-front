@@ -4,6 +4,7 @@ import './ActivityFormPageEdit.css'
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import "./ActivityFormPageEdit.css";
 
 const ActivityFormPageEdit = () => {
   const actividadVacia = {
@@ -52,7 +53,7 @@ const ActivityFormPageEdit = () => {
                 text: `La actividad: ${actividad.nombre}, fue modificada con éxito.`
               })
               console.log(response);
-              navigate(-1)
+              navigate(-2)
             })
             .catch(error => {
               console.log(error);
@@ -62,13 +63,13 @@ const ActivityFormPageEdit = () => {
 		}
 
   return (
-    <section className='page'>
-      <div className='activity-fomr__contianer'>
-        <h1 className='activity-form__title'>Formulario de actividad</h1>
-        <ActivityForm actividad={actividad} setActividad={setActividad} onEditar={editarActividad}></ActivityForm>
-      </div>
-    </section>
-  )
+		<section className="page">
+			<div className="activity-form__container">
+				<h1 className="activity-form__title">Editar actividad</h1>
+				<ActivityForm actividad={actividad} setActividad={setActividad} onEditar={editarActividad}></ActivityForm>
+			</div>
+		</section>
+	);
 }
 
 export default ActivityFormPageEdit
