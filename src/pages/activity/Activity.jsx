@@ -209,7 +209,7 @@ const Activity = () => {
                 {console.log(nuevoComentario)}
             </form>
 
-            {/* Promedio de las valoraciones y total de reseñas */}
+            
             <div className="div-rating">
                 <div className="media-fija">
                     <span className="rating">{mediaValoraciones !== 0 ? mediaValoraciones.toFixed(1) : "0"}</span>
