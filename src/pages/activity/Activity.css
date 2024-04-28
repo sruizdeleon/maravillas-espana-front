@@ -25,8 +25,8 @@
 
 .btn-edit-delete {
     display: flex;
-    /* align-self: center; */
-    gap: 0.625rem;
+    align-self: center;
+    gap: 1rem;
 }
 
 .edit-btn {
@@ -34,8 +34,8 @@
     background-repeat: no-repeat;
     background-color: transparent;
     border: none;
-    width: clamp(1.25rem, 3vw, 1.875rem);
-    height: clamp(1.25rem, 3vw, 1.875rem);
+    width: clamp(1.25rem, 3vw, 1.75rem);
+    height: clamp(1.25rem, 3vw, 1.75rem);
 }
 
 .delete-btn {
@@ -43,8 +43,8 @@
     background-repeat: no-repeat;
     background-color: transparent;
     border: none;
-    width: clamp(1.25rem, 3vw, 1.875rem);
-    height: clamp(1.25rem, 3vw, 1.875rem);
+    width: clamp(1.25rem, 3vw, 1.75rem);
+    height: clamp(1.25rem, 3vw, 1.75rem);
 }
 
 /* LOCALIZACIÓN DE LA ACTIVIDAD Y BANDERA */
@@ -134,9 +134,19 @@
     margin: 0 0 1.875rem 0;
 }
 
+.media-fija {
+    display: flex;
+    justify-content: right;
+    gap: 0.313rem;
+}
+
 .rating {
     font-size: clamp(1rem, 3vw, 1.25rem);
     font-weight: bold;
+    color: #FCDC73;
+}
+
+.estrellas-color {
     color: #FCDC73;
 }
 
