@@ -7,9 +7,10 @@ export default function AdminUsers(){
 
     return (
       <>
-        <div className="divAdmin">
-          <h2 className="divAdmin_h2">Bienvenido Admin</h2>
-          <h3 className="divAdmin_h3">
+        <div className="Admin">
+         <div className='Admin_tarjeta'>
+         <h2 className="Admin_h2">Bienvenido Admin</h2>
+          <h3 className="Admin_h3">
             En este área podrás buscar y borrar los usuarios deseados de la base
             de datos
           </h3>
@@ -18,6 +19,8 @@ export default function AdminUsers(){
             <TableAdminUsers className="listaBuscador"></TableAdminUsers>
           </div>
         </div>
+         </div>
+          
       </>
     );
 }
