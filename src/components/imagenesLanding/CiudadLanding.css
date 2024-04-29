@@ -38,7 +38,7 @@
 .values__title-section {
     color: white;
     font-weight: 800;
-    font-size: clamp(1.5rem, 5vw, 4rem);
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
 }
 
 .values__section {
@@ -86,7 +86,7 @@
     text-align: center;
     font-weight: 700;
     color: white;
-    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-size: clamp(1.1rem, 3vw, 1.7rem);
 
 }
 
@@ -100,14 +100,14 @@
 }
 
 .values__icon {
-    width: 40px;
+    width: 60px;
 }
 
 .values__content {
     text-align: center;
     color: white;
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    font-weight: 300;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-weight: 400;
 }
 
 
@@ -117,7 +117,7 @@
 /* SLOGAN SECTION */
 
 .slogan {
-    height: 100vh;
+    height: 50vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -128,6 +128,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     gap: 70px;
+}
+
+
+@media screen and (min-width: 767px)
+{
+    .slogan {
+        height: 100vh;
+    }
 }
 
 .slogan__logo {
@@ -173,7 +181,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .collage__section{

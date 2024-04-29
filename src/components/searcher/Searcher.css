@@ -18,7 +18,7 @@
 
 .searcher__background {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 0;
   height: inherit;
   width: inherit;
