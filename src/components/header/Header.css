@@ -12,7 +12,7 @@ h1 {
     display:flex;
     flex-direction: row;
     text-align: center;
-    width: 35%;
+    width: 34%;
     font-size: clamp(24px, 3vw, 42px);
     
 }
@@ -26,7 +26,7 @@ h1 {
     flex-direction: row wrap;
     justify-content: space-around;
     position: absolute;
-    width: 65%;
+    width: 63%;
     top: 20px;
     
 }
@@ -185,9 +185,7 @@ h1 {
     align-items: center;
     width: auto;
     height: 50px;
-    margin-right: 20px;
     cursor: pointer;
-    padding-right: 25px;
     font-weight: bold;
     margin: 0;
     text-decoration: none;
