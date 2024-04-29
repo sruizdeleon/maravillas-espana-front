@@ -67,7 +67,7 @@ const Carrusel = () => {
 							</h4>
 						</div>
 						<div className="carrusel__main-container">
-							<h2 className="carrusel__title">Los mejores planes urbanos y rurales</h2>
+							<h1 className="carrusel__title">Los mejores planes urbanos y rurales</h1>
 							<p className="carrusel__content">Disfruta de más de 400 planes por toda España a tan solo un clic.</p>
 							<div className="carrusel__button-container">
 								<button type="button" onClick={() => navigate("/signup")} className="carrusel__button">

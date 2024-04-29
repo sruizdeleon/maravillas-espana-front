@@ -51,7 +51,7 @@ const Searcher = ({
 			) : (
 				<>
 					<div className="searcher__background"></div>
-					<h2 className="searcher__title">¿Qué te gustaría descubrir?</h2>
+					<h1 className="searcher__title">¿Qué te gustaría descubrir?</h1>
 				</>
 			)}
 			<form className="searcher__form">
