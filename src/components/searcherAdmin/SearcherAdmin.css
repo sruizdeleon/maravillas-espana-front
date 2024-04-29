@@ -1,13 +1,13 @@
 .divSearcher{
     display: flex;
-    flex-direction: row;
-    margin: 20px auto;
+    margin: 30px auto;
     margin-bottom: 20px;
-    width: 100%;
+    width: 95%;
+    padding: 15px 15px 0 15px;
 }
 
 .inputSearcher{
-    width: 65%;
+    width: 70%;
     height: 50px;
     margin-right: 10px;
     color: black;
@@ -25,6 +25,18 @@
     font-weight: 600;
     color: white;
     border: 2px white solid;
+}
+
+@media screen and (min-width: 767px){
+    .divSearcher{
+        width: 85%;
+    }
+}
+
+@media screen and (min-width: 1123px){
+    .divSearcher{
+        width: 50%;
+    }
 }
 
 

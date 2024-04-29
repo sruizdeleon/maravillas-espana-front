@@ -1,17 +1,16 @@
 .deleteUsers{
     display: flex;
     flex-flow: column wrap;
-    width: 100%;
-    max-width: 550px;
+    width: 95%;
     justify-content: flex-start;
     margin: 0px;
     padding: 15px;
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius: 10px;
 }
 .deleteUsers h3{
     width: 100%;
-    font-size: 20px;
+    font-size: clamp(20px, 3vw, 26px);
     color: black;
     margin-bottom: 10px;
     padding: 5px 3px;
@@ -32,7 +31,7 @@
     border-radius: 10px;
     text-align: center;
     font-size: clamp(14px, 3vw, 18px);
-    font-weight: 600;
+    font-weight: 500;
 }
 .btn-primary{
     width: 140px;
@@ -44,16 +43,16 @@
     border: 2px white solid;
 }
 
+
 @media screen and (min-width: 767px){
     .deleteUsers{
-        width: 70%;
+        width: 85%;
     }
-}
-@media screen and (min-width: 1123px){
+  }
+
+  @media screen and (min-width: 1123px){
     .deleteUsers{
-        width: 40%;
-        height: 150px;
-        margin-top: 40px;
+        width: 50%;
     }
-}
+  }
 
