@@ -1,154 +1,148 @@
-.total-carrusel{
-    position: relative;
-    max-width: 1920px;
-    /* width: 95%; */
-    /* background-color: red; */
-    margin: 0 auto;
-    /* margin-top: 20px; */
-    /* margin-bottom: 5px; */
-    /* padding-bottom: 15px; */
-    /* min-height: calc(100vh - 115px); */
-}
+/* CARRUSEL SECTION */
 
-/* .title-carrusel{
-    height: 80px;
-    margin: 0 auto;
+.carrusel__page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 90px);
     width: 100%;
-    padding-top: 25px;
-    padding-left: 10px;
-    background-color: black;
-    color:beige;
-} */
-
-.title-carrusel{
-    position: absolute;
-    width: 100%;
-    padding-left: 60px;
-    color:beige;
-    z-index: 2;
-    margin-top: 50px;
-}
-
-.carrusel {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition-property: "background-image";
+    transition-duration: 1s;
+    transition-timing-function: linear;
     position: relative;
-    height: 720px;
-    /* margin: 0 auto; */
-    /* border-radius: 20px; */
-    /* background-color: blue; */
-    width:clamp(375px, 100%, 1920px);
-    height: clamp(200px, 60vw, 600px);
-    overflow: hidden;
-   /*  margin-top: 10px; */
-    /* margin-bottom: 10px; */
-    /* padding: 50px; */
 }
 
+.carrusel__section{
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr;
+    background-position: left;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    max-width: 1200px;
+}
 
-.img-carrusel {
-    position: absolute;
-    /* font-weight: bold; */
-    margin: auto;
+.carrusel__background {
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: inherit;
+}
+
+.carrusel__location-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.carrusel__location{
+    text-align: right;
+    z-index: 2;
+    color: white;
+    font-size: clamp(0.8rem, 3vw, 1rem);
+}
+
+.carrusel__location-icon{
+    text-align: right;
+    z-index: 2;
+    color: white;
+    width: 15px;
+    height: 15px;
+}
+
+@media screen and (min-width: 576px)
+{
+    .carrusel__location-icon{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.carrusel__main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 2;
+}
+
+.carrusel__title {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    object-fit:cover;
-    height: 100%;
-    width: 100%
+    transform: translate(-50% -50%);
+    width: 90%;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 800;
+    font-size: clamp(2rem, 6vw, 3.2rem);
 }
 
-
-.prev-button{
-    position:absolute;
-    color: rgb(71, 69, 69);
-    border-radius: 5px;
-    border: 1px solid rgb(71, 69, 69);
-    padding: 6px 8px;
-    font-weight: bold;
-    top: 44%;
-    z-index: 2;
-    left: 2%;
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo casi transparente */
-
+.carrusel__content {
+    width: 90%;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
-.next-button{
-    position:absolute;
-    color: rgb(71, 69, 69);
-    border-radius: 5px;
-    border: 1px solid rgb(71, 69, 69);
-    padding: 6px 8px;
-    font-weight: bold;
-    top: 44%;
-    z-index: 2;
-    left: 93%;
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo casi transparente */
+.carrusel__button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px
 }
-
-.localization{
-    position:absolute;
-    padding: 6px 8px;
-    top: 90%; /* Lo posiciona en el centro verticalmente */
-    left: 50%; /* Lo posiciona en el centro horizontalmente */
-    transform: translate(-50%, -50%); /* Centra el botón correctamente */
-    z-index: 2; /* Asegura que el botón esté por encima de la imagen */
-    background-color: rgba(255, 255, 255, 0); /* Fondo casi transparente */
-}
-
-.text-localization{
-    position:absolute;
-    font-size: larger;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    top: 83%;
-    left: 70%; /* Lo posiciona en el centro horizontalmente */
-    z-index: 2; /* Asegura que el botón esté por encima de la imagen */
-    background-color: rgba(255, 255, 255, 0); /* Fondo casi transparente */
-}
-
-/* Media query para min 1000px*/
-/* @media only screen and (min-width: 1500px) {
-    .total-carrusel{
-        height: 90%;
-        width: 90%;
-    }
-
-    .text-localization{
-        top: 88%;
-        left: 63%;
+@media screen and (min-width: 992px)
+{
+    .carrusel__button-container{
+        flex-direction: row;
     }
 }
 
-@media only screen and (min-width: 1000px) and (min-width: 1500px){
-    .total-carrusel{
-        height: 90%;
-        width: 90%;
-    }
-    .text-localization{
-        top: 88%;
-        left: 63%;
-    }
-}
- */
-/* ---------------------------------------------------------------------- */
-
-/* @media (max-width: 380px){
-
-    .carrusel{
-        height: 18vh;
-        width: 87vw;
-    }
-    .text-localization{
-        top: 88%;
-        left: 63%;
-        font-size:medium;
-    }
+.carrusel__button {
+    color: black;
+    padding: 5px 20px;
+    width: 150px;
+    border-radius: 40px;
+    background-color: white;
+    border: white 2px solid;
+    mix-blend-mode: screen;
+    font-weight: 700;
 }
 
-@media (min-width: 380px) and (max-width: 800px){
+.carrusel__button:hover {
+    background-color:  var(--col-l-blue);
+    transition-property: "background-color";
+    transition-duration: 0.5s;
+}
 
-    .carrusel{
-        height: 20vh;
-        width: 87vw;
-    }
-} */
+.carrusel__button-trans {
+    font-weight: 700;
+    color: white;
+    padding: 5px 20px;
+    width: 150px;
+    border-radius: 40px;
+    background-color: transparent;
+    border: white 2px solid;
+}
+
+.carrusel__button-trans:hover {
+    background-color: var(--col-l-blue);
+    mix-blend-mode: screen;
+    color: black;
+    transition-property: "background-color";
+    transition-duration: 0.5s;
+}
+
+
+
+

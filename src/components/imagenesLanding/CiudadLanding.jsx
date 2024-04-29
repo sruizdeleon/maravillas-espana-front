@@ -5,50 +5,69 @@ const CiudadLanding = () =>{
 
 
     return (
-        <>
-            <div className='imagenes-landing'>
-                <div className="background-black-01">
-                        <img className="img-black-01" src={"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/2048px-Solid_black.svg.png"}/>
-                </div>
-                <div className="imagen-ciudad">
-                    <h4 className='titulo-ciudad'>LOS MEJORES PLANES URBANOS Y RURALES</h4>
-                    <h6 className='parrafo-ciudad'>Con más de 600 actividades donde escoger</h6>
-                    <img className="img-ciudad" src={"https://i.postimg.cc/QNH0BmPm/01-vista-aerea-valencia-oscuro.jpg"}/>
-                </div>
-                <div className="background-black-02">
-                    <div className='icons'>
-                        <div className="icon-01">
-                            <h6 className='titulo-black-01'>PLANES URBANOS</h6>
-                            <img className="img-01" src={"https://i.postimg.cc/7ZnZggct/cityscape-white.png"}/>
-                            <h6 className="text-01">Los mejores planes urbanos de cada ciudad.</h6>
-                        </div>
-                        <div className="icon-02">
-                            <h6 className='titulo-black-02'>PLANES RURALES</h6>
-                            <img className="img-02" src={"https://i.postimg.cc/g0ck4xbz/landscape-white.png"}/>
-                            <h6 className="text-02">Todo tipo de planes rurales para todos los niveles.</h6>
-                        </div>
-                        <div className="icon-03">
-                            <h6 className='titulo-black-03'>CERCA DE TI</h6>
-                            <img className="img-03" src={"https://i.postimg.cc/26VjRg5g/radar-white.png"}/>
-                            <h6 className="text-03">Nuestro buscador te mostrará los mejores planes cerca de ti.</h6>
-                        </div>
-                        <div className="icon-04">
-                            <h6 className='titulo-black-04'>RECORRIDOS</h6>
-                            <img className="img-04" src={"https://i.postimg.cc/25HjtCC4/roadmap-white.png"}/>
-                            <h6 className="text-04">Diferentes recorridos según el tipo de plan y el nivel escogido.</h6>
-                        </div>
-                    </div>
-                    <img className="img-black-02" src={"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Solid_black.svg/2048px-Solid_black.svg.png"}/>
-                </div>
-                <div className="imagen-rural">
-                <img className='img-maravillas'src={"https://i.postimg.cc/66yPFFWZ/maravillas-espa-a-white.png"}/>
-                    <h4 className='titulo-rural-01'>Nosotros ponemos los planes</h4>
-                    <h4 className='titulo-rural-02'>Tú pones las ganas</h4>
-                    <img className="img-rural" src={"https://i.postimg.cc/t7G4z7D5/03-playa-as-catedrais-galicia-oscuro.jpg"}/>
-                </div>
-            </div>
-        </>
-    );
+			<>
+				<section className="values__page">
+					<h2 className="values__title-section">¿Por qué elegirnos?</h2>
+					<div className="values__section">
+						<div className="values__container">
+							<h6 className="values__title">PLANES URBANOS</h6>
+							<img className="values__icon" src={"https://i.postimg.cc/7ZnZggct/cityscape-white.png"} />
+							<h6 className="values__content">Los mejores planes urbanos de cada ciudad.</h6>
+						</div>
+						<div className="values__container">
+							<h6 className="values__title">PLANES RURALES</h6>
+							<img className="values__icon" src={"https://i.postimg.cc/g0ck4xbz/landscape-white.png"} />
+							<h6 className="values__content">Todo tipo de planes rurales para todos los niveles.</h6>
+						</div>
+						<div className="values__container">
+							<h6 className="values__title">CERCA DE TI</h6>
+							<img className="values__icon" src={"https://i.postimg.cc/26VjRg5g/radar-white.png"} />
+							<h6 className="values__content">Nuestro buscador te mostrará los mejores planes cerca de ti.</h6>
+						</div>
+						<div className="values__container">
+							<h6 className="values__title">RECORRIDOS</h6>
+							<img className="values__icon" src={"https://i.postimg.cc/25HjtCC4/roadmap-white.png"} />
+							<h6 className="values__content">Diferentes recorridos según el tipo de plan y el nivel escogido.</h6>
+						</div>
+					</div>
+				</section>
+				<section className="slogan">
+					<h4 className="slogan__text">Nosotros ponemos los planes</h4>
+					<img className="slogan__logo" src={"https://i.postimg.cc/66yPFFWZ/maravillas-espa-a-white.png"} />
+					<h4 className="slogan__text">Tú pones las ganas</h4>
+				</section>
+				<section className="collage__page">
+                    <span className='collage__background'></span>
+                    <h2 className='collage__title'>Descubre nuestros más de 400 planes</h2>
+					<div className="collage__section">
+						<article className="collage__container collage__position-1">
+                            <span className='collage__background-card'></span>
+							<h3 className="collage__text">Catedrales</h3>
+						</article>
+						<article className="collage__container collage__position-2">
+                            <span className='collage__background-card'></span>
+							<h3 className="collage__text">Castillos</h3>
+						</article>
+						<article className="collage__container collage__position-3">
+                            <span className='collage__background-card'></span>
+							<h3 className="collage__text">Museos</h3>
+						</article>
+						<article className="collage__container collage__position-4">
+                            <span className='collage__background-card'></span>
+							<h3 className="collage__text">Naturaleza</h3>
+						</article>
+						<article className="collage__container collage__position-5">
+                            <span className='collage__background-card'></span>
+							<h3 className="collage__text">Pueblos</h3>
+						</article>
+						<article className="collage__container collage__position-6">
+                            <span className='collage__background-card'></span>
+							<h3 className="collage__text">Playas</h3>
+						</article>
+					</div>
+				</section>
+			</>
+		);
 };
 
 export default CiudadLanding;
