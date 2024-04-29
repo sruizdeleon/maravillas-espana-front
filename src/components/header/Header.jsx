@@ -52,7 +52,7 @@ const Header = () => {
 
   return (
     <header>
-      <h1>Maravillas de España</h1>
+      <h1 className="header_h1"><img src="https://i.postimg.cc/RhPPx18k/maravillas-espana-black.png" alt="logo" className='logoHeader'/></h1>
       <nav className="navGlobal">
         <div className="navLanding">
           {user ? (
