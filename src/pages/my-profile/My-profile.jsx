@@ -107,7 +107,7 @@ export default function MyProfile() {
 
   return (
     <>
-      <div className="contenedor">
+      <div className="contenedor_mi_perfil">
         <div className="card_mi_perfil">
           <div className="user-profile">
             <div className="avatar-container">
