@@ -27,7 +27,7 @@
     margin: 20px 20px;
     font-weight: 700;
 }
-.Admin_h3{
+.Admin_p{
     text-align: center;
     font-size: clamp(18px, 3vw, 24px);
     font-weight: 600;
@@ -48,8 +48,8 @@
         margin: 20px auto;
         border-radius: 20px;
     }
-    .Admin_h3{
-        width: 80%;
+    .Admin_p{
+        width: 65%;
     }
 }
 
