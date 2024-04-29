@@ -57,14 +57,15 @@ export default function MyProfile() {
   };
 
   const handlePasswordChangeClick = () => {
-    setShowPasswordForm(!showPasswordForm); // Mostrar el formulario de cambio de contraseña
+    setShowPasswordForm(!showPasswordForm); // Mostrar el formulario para el cambio de contraseña
   };
   const handlePasswordChangeSubmit = async (event) => {
     event.preventDefault();
     const password = event.target.elements.password.value;
-    const repeatedPassword = event.target.elements.repeatedPassword.value;
+    const nuevaPassword = event.target.elements.nuevaPassword.value;
+    const repetirNuevaPassword = event.target.elements.repetirNuevaPassword.value;
 
-    if (password !== repeatedPassword) {
+    if (nuevaPassword !== repetirNuevaPassword) {
       // Si las contraseñas no coinciden, mostrar mensaje de error
       Swal.fire({
         title: "Error",
@@ -75,13 +76,17 @@ export default function MyProfile() {
     }
 
     try {
+      const authToken = user.token
+      console.log(authToken);
+      const userId = user._id
+      console.log(userId);
       // Petición Axios PUT para cambiar la contraseña
-      await axios.put(`http://localhost:3000/api/users/${user._id}`, {
-        password,
+      await axios.patch(`http://localhost:3000/api/users/${userId}?token=${authToken}`, {
+        password, nuevaPassword, repetirNuevaPassword
       });
       setShowPasswordForm(false); // Ocultar el formulario después de cambiar la contraseña
       Swal.fire({
-        title: "Contraseña cambiada",
+        title: "Contraseña modificada",
         text: "Tu contraseña se ha cambiado correctamente",
         icon: "success",
       });
@@ -93,6 +98,7 @@ export default function MyProfile() {
   return (
     <>
       <div className="contenedor">
+      <div className="card_mi_perfil">
         <div className="user-profile">
         <div className="avatar-container">
         <img
@@ -100,16 +106,18 @@ export default function MyProfile() {
               src={avatarImage ? URL.createObjectURL(avatarImage) : "https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg"}
               alt="Avatar"
             />
-            {avatarImage && (
-              <button onClick={deleteImage} className="delete-image">Eliminar imagen</button>
-            )}
-            <div className="upload-icon" onClick={handleUploadClick}>
-              <FaPlus />
+            <div className="avatar-buttons">
+              {avatarImage && (
+                <button onClick={deleteImage} className="delete-image">Eliminar imagen</button>
+              )}
+              <div className="upload-icon" onClick={handleUploadClick}>
+                <FaPlus />
+              </div>
             </div>
           </div>
           <input type="file" onChange={handleImageChange} accept="image/*" ref={fileInputRef} style={{ display: "none" }} />
           <div className="user-info">
-            <h2>Bienvenida, {user ? user.nombre : ""}</h2>
+            <h2>Hola de nuevo, {user ? user.nombre : ""}</h2>
             <p className="email">📧: {user ? user.email : ""}</p>
             <p>👤: {user ? user.role : ""}</p>
           </div>
@@ -121,8 +129,9 @@ export default function MyProfile() {
           {/* Formulario de cambio de contraseña */}
         {showPasswordForm && (
           <form className="formPassword" onSubmit={handlePasswordChangeSubmit}>
-            <input className="inputPassword" type="password" name="password" placeholder="Nueva contraseña" required />
-            <input className="inputPassword" type="password" name="repeatedPassword" placeholder="Repetir nueva contraseña" required />
+            <input className="inputPassword" type="password" name="password" placeholder="Contraseña Actual" required />
+            <input className="inputPassword" type="password" name="nuevaPassword" placeholder="Nueva contraseña" required />
+            <input className="inputPassword" type="password" name="repetirNuevaPassword" placeholder="Repetir nueva contraseña" required />
             <button className="newPassword" type="submit">Confirmar contraseña</button>
           </form>
         )}
@@ -134,6 +143,7 @@ export default function MyProfile() {
 {/*           {!showPasswordForm &&
           <RatingProfile></RatingProfile>
         } */}
+        </div>
         </div>
         
       </div>
