@@ -124,7 +124,9 @@ const Activity = () => {
                     showConfirmButton: false,
                     timer: 2000
                 })
-                /* console.log(response) */
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
             })
             .catch((error) => {
                 Swal.fire({
