@@ -30,23 +30,23 @@ const Activity = () => {
         }));
     }, [user]);
 
-    /* console.log("Actividad id: ", actividad?._id) */
-
     /* Encontrar actividad por ID */
     useEffect(() => {
         const getActivityById = async () => {
-            const resultado = await axios.get(`http://localhost:3000/api/actividades/${id}`)
-            setActividad(resultado.data.actividadEncontrada)
-            /* console.log(resultado.data.actividadEncontrada) */
+            if (user?.token) {
+                const resultado = await axios.get(`http://localhost:3000/api/actividades/${id}?token=${user?.token}`)
+                setActividad(resultado.data.actividadEncontrada)
+                /* console.log(resultado.data.actividadEncontrada) */
+            }
         }
         getActivityById()
-    }, [])
+    }, [id, user?.token])
 
     /* Encontrar comentario por ID */
     useEffect(() => {
         const getCommentById = async () => {
-            const resultado = await axios.get(`http://localhost:3000/api/valoraciones`, { params: { actividad: id } })
-            /* console.log(resultado) */
+            const resultado = await axios.get(`http://localhost:3000/api/valoraciones/?actividad=${id}&token=${user.token}`)
+            console.log(resultado)
 
             const totalValoraciones = resultado.data.valoracionesDeActividadEncontradas.length
             /* console.log(totalValoraciones) */
@@ -69,7 +69,7 @@ const Activity = () => {
             setMediaValoraciones(media);
         }
         getCommentById()
-    }, [])
+    }, [id, user?.token])
 
     /* Editar actividad */
     function editarActividad() {
@@ -90,7 +90,7 @@ const Activity = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .delete(`http://localhost:3000/api/actividades/${actividad._id}`)
+                    .delete(`http://localhost:3000/api/actividades/${actividad._id}?token=${token}`)
                     .then(response => {
                         Swal.fire({
                             icon: "success",
