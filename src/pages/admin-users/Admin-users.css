@@ -17,6 +17,12 @@
     margin: auto;
     background-color: var(--col-l-grey);
 }
+.imgAdmin{
+    height: 20vh;
+    border-radius: 50%;
+    margin-top: clamp(20px, 5vh, 50px);
+    
+}
 .Admin_h2{
     margin: 20px 20px;
     font-weight: 700;
@@ -40,10 +46,15 @@
     .Admin_tarjeta{
         width: 90%;
         margin: 20px auto;
-        border: 2px black solid;
         border-radius: 20px;
     }
     .Admin_h3{
         width: 80%;
+    }
+}
+
+@media screen and (min-width: 1123px){
+    .Admin_tarjeta{
+        width: 65%;
     }
 }
