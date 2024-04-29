@@ -18,16 +18,26 @@ const Activity = () => {
     const [usuarios, setUsuarios] = useState([]);
     const [valoracionUsuarios, setValoracionUsuarios] = useState([]);
     const [mediaValoraciones, setMediaValoraciones] = useState(0);
-    const [nuevoComentario, setNuevoComentario] = useState({ actividad: "", usuario: "", valoracion: "", comentario: "" })
+    const [nuevoComentario, setNuevoComentario] = useState({ actividad: id, usuario: user?._id, valoracion: "", comentario: "" })
 
-    console.log(user)
+    /* console.log(user) */
+
+    /* Actualizar el usuario cuando se recarga la página */
+    useEffect(() => {
+        setNuevoComentario(actualizarEstado => ({
+            ...actualizarEstado,
+            usuario: user?._id
+        }));
+    }, [user]);
+
+    /* console.log("Actividad id: ", actividad?._id) */
 
     /* Encontrar actividad por ID */
     useEffect(() => {
         const getActivityById = async () => {
             const resultado = await axios.get(`http://localhost:3000/api/actividades/${id}`)
             setActividad(resultado.data.actividadEncontrada)
-            console.log(resultado.data.actividadEncontrada)
+            /* console.log(resultado.data.actividadEncontrada) */
         }
         getActivityById()
     }, [])
@@ -36,7 +46,7 @@ const Activity = () => {
     useEffect(() => {
         const getCommentById = async () => {
             const resultado = await axios.get(`http://localhost:3000/api/valoraciones`, { params: { actividad: id } })
-            console.log(resultado)
+            /* console.log(resultado) */
 
             const totalValoraciones = resultado.data.valoracionesDeActividadEncontradas.length
             /* console.log(totalValoraciones) */
@@ -104,7 +114,7 @@ const Activity = () => {
     /* Agregar un nuevo comentario */
     function agregarComentario() {
         axios.post(`http://localhost:3000/api/valoraciones`, nuevoComentario)
-            .then(() => {
+            .then((response) => {
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -112,6 +122,7 @@ const Activity = () => {
                     showConfirmButton: false,
                     timer: 2000
                 })
+                console.log(response)
             })
             .catch((error) => {
                 Swal.fire({
@@ -165,10 +176,10 @@ const Activity = () => {
 
             {/* Formulario para agregar un nuevo comentario */}
             <form className="formComentario">
-                <h3>¡Cuéntanos como fue tu experiencia!</h3>
+                <h3 className='form-titulo'>¡Cuéntanos cómo fue tu experiencia!</h3>
                 <fieldset>
                     <input
-                        value={actividad?._id}
+                        value={nuevoComentario.actividad}
                         onChange={(e) => setNuevoComentario({ ...nuevoComentario, actividad: e.target.value })}
                         type="hidden"
                         name='actividad'
@@ -176,40 +187,44 @@ const Activity = () => {
                 </fieldset>
                 <fieldset>
                     <input
-                        value={user?._id}
+                        value={nuevoComentario.usuario}
                         onChange={(e) => setNuevoComentario({ ...nuevoComentario, usuario: e.target.value })}
-                        type="text"
+                        type="hidden"
                         name='nombre'
-                        readOnly
                     />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="valoracion"></label>
-                    <Rating
-                        className='estrellas-color'
-                        value={nuevoComentario.valoracion}
-                        onChange={(e) => setNuevoComentario({ ...nuevoComentario, valoracion: e.target.value })}
-                        cancel={false}
-                    />
+                    <p className='form-usuario'>{user?.nombre}</p>
+                    <div className='valorar-estrellas'>
+                        <label htmlFor="valoracion">¿Qué te ha parecido?</label>
+                        <Rating
+                            className='form-estrellas'
+                            offIcon={<img className='offIcon-star' src={"../../../assets/star_regular.svg"} alt="" width="25px" height="25px" />}
+                            onIcon={<img className='onIcon-star' src={"../../../assets/star_solid.svg"} alt="" width="25px" height="25px" />}
+                            value={nuevoComentario.valoracion}
+                            onChange={(e) => setNuevoComentario({ ...nuevoComentario, valoracion: e.target.value })}
+                            cancel={false}
+                        />
+                    </div>
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="nombre">Comentario</label>
                     <textarea
+                        className='formComentario-textarea'
                         value={nuevoComentario.comentario}
                         onChange={(e) => setNuevoComentario({ ...nuevoComentario, comentario: e.target.value })}
                         name="comentario"
-                        cols="50"
-                        rows="10">
-                    </textarea>
+                        placeholder='Describe tu experiencia...'
+                    />
                 </fieldset>
 
-                <button onClick={agregarComentario} type='submit'>
+                <button className='btn-form-comentario' onClick={agregarComentario} type='submit'>
                     Agregar comentario
                 </button>
-                {console.log(nuevoComentario)}
             </form>
 
-            
+            <div className="separador"></div>
+
+            {/* Promedio de las valoraciones y numero de reseñas */}
             <div className="div-rating">
                 <div className="media-fija">
                     <span className="rating">{mediaValoraciones !== 0 ? mediaValoraciones.toFixed(1) : "0"}</span>
