@@ -1,6 +1,7 @@
 .card {
   border: none;
   border-radius: 20px;
+  margin-top: 20px;
 }
 .form-control:focus {
   border-color: #007bff;
