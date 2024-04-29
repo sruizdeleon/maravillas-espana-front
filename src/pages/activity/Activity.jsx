@@ -45,28 +45,30 @@ const Activity = () => {
     /* Encontrar comentario por ID */
     useEffect(() => {
         const getCommentById = async () => {
-            const resultado = await axios.get(`http://localhost:3000/api/valoraciones/?actividad=${id}&token=${user.token}`)
-            console.log(resultado)
+            if (user?.token) {
+                const resultado = await axios.get(`http://localhost:3000/api/valoraciones/?actividad=${id}&token=${user?.token}`)
+                console.log(resultado)
 
-            const totalValoraciones = resultado.data.valoracionesDeActividadEncontradas.length
-            /* console.log(totalValoraciones) */
-            setValoraciones(totalValoraciones)
+                const totalValoraciones = resultado.data.valoracionesDeActividadEncontradas.length
+                /* console.log(totalValoraciones) */
+                setValoraciones(totalValoraciones)
 
-            const comentarios = resultado.data.valoracionesDeActividadEncontradas.map(val => val.comentario);
-            /* console.log(comentarios) */
-            setComentarios(comentarios)
+                const comentarios = resultado.data.valoracionesDeActividadEncontradas.map(val => val.comentario);
+                /* console.log(comentarios) */
+                setComentarios(comentarios)
 
-            const usuarios = resultado.data.valoracionesDeActividadEncontradas.map(val => val.usuario.name);
-            /* console.log(usuarios) */
-            setUsuarios(usuarios)
+                const usuarios = resultado.data.valoracionesDeActividadEncontradas.map(val => val.usuario.name);
+                /* console.log(usuarios) */
+                setUsuarios(usuarios)
 
-            const valoracionUsuarios = resultado.data.valoracionesDeActividadEncontradas.map(val => val.valoracion);
-            /* console.log(valoracionUsuarios) */
-            setValoracionUsuarios(valoracionUsuarios)
+                const valoracionUsuarios = resultado.data.valoracionesDeActividadEncontradas.map(val => val.valoracion);
+                /* console.log(valoracionUsuarios) */
+                setValoracionUsuarios(valoracionUsuarios)
 
-            const sumaValoraciones = valoracionUsuarios.reduce((a, b) => a + b, 0);
-            const media = totalValoraciones > 0 ? sumaValoraciones / totalValoraciones : 0;
-            setMediaValoraciones(media);
+                const sumaValoraciones = valoracionUsuarios.reduce((a, b) => a + b, 0);
+                const media = totalValoraciones > 0 ? sumaValoraciones / totalValoraciones : 0;
+                setMediaValoraciones(media);
+            }
         }
         getCommentById()
     }, [id, user?.token])
@@ -90,7 +92,7 @@ const Activity = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .delete(`http://localhost:3000/api/actividades/${actividad._id}?token=${token}`)
+                    .delete(`http://localhost:3000/api/actividades/${actividad._id}?token=${user.token}`)
                     .then(response => {
                         Swal.fire({
                             icon: "success",
@@ -113,7 +115,7 @@ const Activity = () => {
 
     /* Agregar un nuevo comentario */
     function agregarComentario() {
-        axios.post(`http://localhost:3000/api/valoraciones`, nuevoComentario)
+        axios.post(`http://localhost:3000/api/valoraciones?token=${user.token}`, nuevoComentario)
             .then((response) => {
                 Swal.fire({
                     position: "center",
@@ -122,7 +124,6 @@ const Activity = () => {
                     showConfirmButton: false,
                     timer: 2000
                 })
-                console.log(response)
             })
             .catch((error) => {
                 Swal.fire({
