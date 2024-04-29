@@ -11,17 +11,21 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .card_mi_perfil {
   border-radius: 20px;
   background-color: #ebebeb;
   padding: 20px;
-  margin: auto; 
+  margin: 20px;
 }
 
 .email {
+  margin-bottom: 0;
+}
+.myProfile_userRole {
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -41,8 +45,8 @@
   margin-bottom: 10px;
   margin-top: 10px;
   border-radius: 25px;
-  background-color: #193948;
-  height: 50px;
+  background-color: #4fadc0;
+  height: 40px;
   width: 210px;
   color: #ffffff;
 }
@@ -52,8 +56,8 @@
 
 .delete {
   border-radius: 25px;
-  background-color: #193948;
-  height: 50px;
+  background-color: #4fadc0;
+  height: 40px;
   width: 210px;
   margin-bottom: 10px;
   color: #ffffff;
@@ -170,7 +174,7 @@
 .formPassword button {
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #193948;
+  background-color: #4fadc0;
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -208,7 +212,7 @@
   .options button {
     width: 250px;
   }
-  .card_mi_perfil{
+  .card_mi_perfil {
     margin-top: 60px;
   }
   .upload-icon {
@@ -245,10 +249,10 @@
     font-size: 12px;
   }
 
-  .card_mi_perfil{
+  .card_mi_perfil {
     margin: auto;
   }
-  .upload-icon{
+  .upload-icon {
     bottom: 0;
     right: 0px;
     width: 25px;
