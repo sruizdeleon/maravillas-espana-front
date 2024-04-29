@@ -124,6 +124,7 @@ const Activity = () => {
                     showConfirmButton: false,
                     timer: 2000
                 })
+                /* console.log(response) */
             })
             .catch((error) => {
                 Swal.fire({
@@ -143,7 +144,7 @@ const Activity = () => {
 
                 {/* Título de la actividad y botones de editar y borrar */}
                 <div className="titulo-fav">
-                    <h1 className="titulo">{actividad?.nombre}</h1>
+                    <h1 className="titulo-actividad">{actividad?.nombre}</h1>
                     <div className='btn-edit-delete'>
                         <button onClick={editarActividad} className='edit-btn'></button>
                         <button onClick={borrarActividad} className='delete-btn'></button>
@@ -152,9 +153,16 @@ const Activity = () => {
 
                 {/* Información de la actividad: Tipo, localización, provincia, comunidad y bandera */}
                 <div className="info-actividad">
-                    <div className="destaque">
-                        Muy buscado
-                    </div>
+                    {actividad?.tipo === "ciudad" ?
+                        <div className="destaque-ciudad">
+                            {actividad?.tipo}
+                        </div>
+                        :
+                        <div className="destaque-rural">
+                            {actividad?.tipo}
+                        </div>
+                    }
+
                     <div className="localizacion">
                         <img className="mapa-punto" src="../../../assets/map_pointer.svg" alt="pointer" />
                         <p className="prov-com">{actividad?.provincia?.nombre}, {actividad?.comunidad}</p>
@@ -167,6 +175,7 @@ const Activity = () => {
                 {/* Descripción de la actividad */}
                 <div className="foto-descripcion">
                     <img className="foto-actividad" src={actividad?.img} alt={actividad?.nombre} />
+                    <p className="descripcion-titulo">Descripción:</p>
                     <p className="descripcion">
                         {actividad?.descripcion}
                     </p>
@@ -218,7 +227,7 @@ const Activity = () => {
                     />
                 </fieldset>
 
-                <button className='btn-form-comentario' onClick={agregarComentario} type='submit'>
+                <button className='btn-form-comentario' onClick={agregarComentario} type='button'>
                     Agregar comentario
                 </button>
             </form>
