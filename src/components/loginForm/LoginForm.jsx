@@ -59,6 +59,9 @@ export default function LoginForm() {
                   <label htmlFor="floatingInputValue" className="form-label">
                     Correo Electrónico
                   </label>
+                  {errors.email?.type === "required" && (
+                    <p className="errors_login">El email es obligatorio</p>
+                  )}
                 </div>
                 <br></br>
                 <div className="form-floating mb-2">
@@ -72,10 +75,10 @@ export default function LoginForm() {
                     Contraseña
                   </label>
                   {errors.password?.type === "required" && (
-                    <p>La contraseña es obligatoria</p>
+                    <p className="errors_login">La contraseña es obligatoria</p>
                   )}
                   {errors.password?.type === "minLength" && (
-                    <p>La contraseña debe tener 8 caracteres como mínimo</p>
+                    <p className="errors_login">La contraseña debe tener 8 caracteres como mínimo</p>
                   )}
                 </div>
                 <br></br>
