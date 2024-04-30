@@ -148,7 +148,7 @@ const Activity = () => {
                 <div className="titulo-fav">
                     <h1 className="titulo-actividad">{actividad?.nombre}</h1>
                     {
-                        user.role === "admin" ?
+                        user?.role === "admin" ?
                             <div className='btn-edit-delete'>
                                 <button onClick={editarActividad} className='edit-btn'></button>
                                 <button onClick={borrarActividad} className='delete-btn'></button>
