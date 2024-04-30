@@ -184,9 +184,6 @@ export default function MyProfile() {
                 Eliminar cuenta
               </button>
             )}
-            {/*           {!showPasswordForm &&
-          <RatingProfile></RatingProfile>
-        } */}
           </div>
         </div>
       </div>
