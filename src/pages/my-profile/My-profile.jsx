@@ -6,7 +6,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaPlus } from "react-icons/fa";
-import RatingProfile from "../../components/ratingProfile/RatingProfille";
 
 export default function MyProfile() {
   const { user, logout } = useContext(SessionContext);
@@ -185,9 +184,6 @@ export default function MyProfile() {
                 Eliminar cuenta
               </button>
             )}
-            {/*           {!showPasswordForm &&
-          <RatingProfile></RatingProfile>
-        } */}
           </div>
         </div>
       </div>

@@ -14,7 +14,6 @@ import Activity from "./pages/activity/Activity";
 import ActivityFormPageCreate from "./pages/activityFormPage/activityFormPageCreate/ActivityFormPageCreate";
 import ActivityFormPageEdit from "./pages/activityFormPage/activityFormPageEdit/ActivityFormPageEdit";
 import MyProfile from "./pages/my-profile/My-profile";
-import RatingProfile from "./components/ratingProfile/RatingProfille";
 
 function App() {
   const { user } = useContext(SessionContext);
@@ -44,7 +43,6 @@ function App() {
             ></Route>
             <Route path="/activity/:id" element={<Activity></Activity>}></Route>
             <Route path="/mi-perfil" element={user ? <MyProfile></MyProfile> : ""}></Route>
-            <Route path="/mis-valoraciones" element={<RatingProfile></RatingProfile>}></Route>
             <Route
               path="/activity-create"
               element={<ActivityFormPageCreate></ActivityFormPageCreate>}
