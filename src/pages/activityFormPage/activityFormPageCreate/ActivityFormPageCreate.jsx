@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ActivityForm from '../../../components/forms/activityForm/ActivityForm'
-import { SessionContext } from "../../../components/contexts/SessionContext";
+import { SessionContext } from "../../../contexts/SessionContext";
 import './ActivityFormPageCreate.css'
 import axios from 'axios';
 import Swal from 'sweetalert2';

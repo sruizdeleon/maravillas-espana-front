@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Rating } from 'primereact/rating';
-import { SessionContext } from '../../components/contexts/SessionContext';
+import { SessionContext } from "../../contexts/SessionContext";
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import Comment from '../../components/comment/Comment'

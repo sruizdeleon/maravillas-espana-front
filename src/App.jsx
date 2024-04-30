@@ -1,10 +1,9 @@
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/home/Home";
-import { Container } from "react-bootstrap";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
-import { SessionContext } from "./components/contexts/SessionContext";
+import { SessionContext } from "./contexts/SessionContext";
 import { useContext } from "react";
 import Header from "./components/header/Header";
 import GoodFooter from "./components/footer/Footer";

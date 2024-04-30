@@ -4,7 +4,7 @@ import SearcherAdmin from "../searcherAdmin/SearcherAdmin";
 import { useContext } from "react";
 
 import "./TableAdminUsers.css";
-import { SessionContext } from "../contexts/SessionContext";
+import { SessionContext } from "../../contexts/SessionContext";
 
 export default function TableAdminUsers() {
   const { user } = useContext(SessionContext);

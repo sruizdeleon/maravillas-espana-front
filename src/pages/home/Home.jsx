@@ -2,7 +2,7 @@ import "./Home.css";
 import { useContext, useEffect, useState } from "react";
 import comunidadesData from "../../models/Comunidades.json";
 import provinciasData from "../../models/Provincias.json";
-import { SessionContext } from "../../components/contexts/SessionContext";
+import { SessionContext } from "../../contexts/SessionContext";
 import axios from "axios";
 import ActivityCard from "../../components/activityCard/ActivityCard";
 import Searcher from "../../components/searcher/Searcher";
