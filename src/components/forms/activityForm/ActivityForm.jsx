@@ -275,7 +275,7 @@ const ActivityForm = ({ actividad, setActividad, onGuardar, onEditar }) => {
 					""
 				)}
 				<button className="activity-form__button" type="button" onClick={limpiarDatos}>
-					Limiar datos
+					Limpiar datos
 				</button>
 			</div>
 		</form>

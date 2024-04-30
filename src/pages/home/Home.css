@@ -24,13 +24,33 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: 1200px;
   column-gap: 20px;
   row-gap: 40px;
 }
 
-.activities-list__list > :nth-last-child(-n+1) {
-  margin-right: auto;
+@media screen and (min-width: 500px)
+{
+  .activities-list__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-columns: auto;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 776px)
+{
+  .activities-list__list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1200px)
+{
+  .activities-list__list {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }

@@ -147,21 +147,25 @@ const Activity = () => {
                 {/* Título de la actividad y botones de editar y borrar */}
                 <div className="titulo-fav">
                     <h1 className="titulo-actividad">{actividad?.nombre}</h1>
-                    <div className='btn-edit-delete'>
-                        <button onClick={editarActividad} className='edit-btn'></button>
-                        <button onClick={borrarActividad} className='delete-btn'></button>
-                    </div>
+                    {
+                        user.role === "admin" ?
+                            <div className='btn-edit-delete'>
+                                <button onClick={editarActividad} className='edit-btn'></button>
+                                <button onClick={borrarActividad} className='delete-btn'></button>
+                            </div>
+                            :""
+                    }
                 </div>
 
                 {/* Información de la actividad: Tipo, localización, provincia, comunidad y bandera */}
                 <div className="info-actividad">
                     {actividad?.tipo === "ciudad" ?
                         <div className="destaque-ciudad">
-                            {actividad?.tipo}
+                            Plan urbano
                         </div>
                         :
                         <div className="destaque-rural">
-                            {actividad?.tipo}
+                            Plan {actividad?.tipo}
                         </div>
                     }
 
