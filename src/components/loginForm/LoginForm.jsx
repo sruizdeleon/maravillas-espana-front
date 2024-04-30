@@ -29,8 +29,8 @@ export default function LoginForm() {
       .catch((err) => {
         if (err.response.data.msg === "credenciales no validas") {
           Swal.fire({
-            title: '<i class="fa-solid fa-circle-exclamation"></i>',
-            html: "Las credenciales no son válidas",
+            icon: 'error',
+            title: "Las credenciales no son válidas",
             confirmButtonText: "Aceptar",
           });
         } else {
@@ -46,7 +46,7 @@ export default function LoginForm() {
             <div className="card-header text-black mb-2">Inicio de Sesión</div>
             <div className="card-body">
               <form onSubmit={handleSubmit(doLogin)}>
-                <form className="form-floating mb-2">
+                <div className="form-floating mb-2">
                   <input
                     type="email"
                     {...register("email", { required: true })}
@@ -57,9 +57,9 @@ export default function LoginForm() {
                   <label htmlFor="floatingInputValue" className="form-label">
                     Correo Electrónico
                   </label>
-                </form>
+                </div>
                 <br></br>
-                <form className="form-floating mb-2">
+                <div className="form-floating mb-2">
                   <input
                     type="password"
                     {...register("password", { required: true, minLength: 8 })}
@@ -75,7 +75,7 @@ export default function LoginForm() {
                   {errors.password?.type === "minLength" && (
                     <p>La contraseña debe tener 8 caracteres como mínimo</p>
                   )}
-                </form>
+                </div>
                 <br></br>
                 <div className="mb-3 form-check">
                   <input
