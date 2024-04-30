@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import comunidadesData from "../../../models/Comunidades.json";
 import provinciasData from "../../../models/Provincias.json";
-
-import { SessionContext } from "../../contexts/SessionContext";
+import { SessionContext } from "../../../contexts/SessionContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ActivityForm.css";

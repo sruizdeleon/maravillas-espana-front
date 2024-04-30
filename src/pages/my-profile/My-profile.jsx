@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useContext } from "react";
-import { SessionContext } from "../../components/contexts/SessionContext";
+import { SessionContext } from "../../contexts/SessionContext";
 import "./My-profile.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaPlus } from "react-icons/fa";
-import RatingProfile from "../../components/ratingProfile/RatingProfille";
 
 export default function MyProfile() {
   const { user, logout } = useContext(SessionContext);

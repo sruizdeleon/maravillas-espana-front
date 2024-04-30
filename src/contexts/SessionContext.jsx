@@ -28,10 +28,8 @@ export function SessionProvider({ children }) {
   }
 
   return (
-		<SessionContext.Provider
-			value={{ user, login, logout }}
-		>
-			{children}
-		</SessionContext.Provider>
-	);
+    <SessionContext.Provider value={{ user, login, logout }}>
+      {children}
+    </SessionContext.Provider>
+  );
 }

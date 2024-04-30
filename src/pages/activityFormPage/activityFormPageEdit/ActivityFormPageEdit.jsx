@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ActivityForm from '../../../components/forms/activityForm/ActivityForm'
 import './ActivityFormPageEdit.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import { SessionContext } from "../../../components/contexts/SessionContext";
+import { SessionContext } from "../../../contexts/SessionContext";
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import "./ActivityFormPageEdit.css";

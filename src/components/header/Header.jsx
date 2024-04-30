@@ -9,10 +9,9 @@ import { AiOutlineLogin } from "react-icons/ai";
 import { GiArchiveRegister } from "react-icons/gi";
 import { HiBars4 } from "react-icons/hi2";
 import { Link, useNavigate } from 'react-router-dom'
-import { SessionContext } from "../contexts/SessionContext";
+import { SessionContext } from  "../../contexts/SessionContext"
 import { useContext } from "react";
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const Header = () => {
 

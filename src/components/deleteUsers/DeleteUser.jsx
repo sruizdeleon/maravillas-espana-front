@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import "./DeleteUsers.css"
 import { useContext } from "react";
-import { SessionContext } from "../contexts/SessionContext";
+import { SessionContext } from  "../../contexts/SessionContext"
 
 
 export default function DeleteUsers() {
