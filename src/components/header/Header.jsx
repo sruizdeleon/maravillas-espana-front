@@ -146,7 +146,7 @@ const Header = () => {
                     <i className="iconosNav">
                       <RiLogoutCircleRLine />
                     </i>
-                    Logout
+                    Salir
                   </Link>
                 </div>
               ) : (
@@ -212,7 +212,7 @@ const Header = () => {
                     <i className="iconosNav">
                       <RiLogoutCircleRLine />
                     </i>
-                    Logout
+                    Salir
                   </Link>
                 </div>
               ) : (
