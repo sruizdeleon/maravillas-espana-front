@@ -20,7 +20,7 @@ function App() {
   return (
     <>
       <Header></Header>
-      <main>
+      <main className="main">
         <div>
           <Routes>
             <Route path="/" element={<Landing></Landing>}></Route>

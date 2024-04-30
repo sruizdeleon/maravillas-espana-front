@@ -15,9 +15,9 @@ const Carrusel = () => {
 			"https://www.spain.info/.content/imagenes/cabeceras-grandes/cataluna/palafrugell-girona-s144973225.jpg",
 			"https://www.spain.info/.content/imagenes/cabeceras-grandes/parques-nacionales/pn-aiguestortes-s1556525279.jpg"
 		];
-    const titles = ['Castellfollit de la roca ','Palafrugell','Parque Nacional de Aiguestortes']
+    const titles = ['Castellfollit de la roca','Palafrugell','Parque Nacional de Aiguestortes']
 
-    const locations = ['Girona','Girona','Aiguestortes']
+    const locations = ['Girona','Girona','Lérida']
 
     // Función para cambiar a la imagen siguiente
 /*     const nextImage = () => {
