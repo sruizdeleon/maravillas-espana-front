@@ -13,3 +13,8 @@
 .container{
   height: calc(100vh - 90px);
 }
+
+.errors_login{
+  font-size: 14px;
+  padding-left: 10px;
+}
