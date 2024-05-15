@@ -1,0 +1,84 @@
+.form-container{
+  height: 100%;
+  min-height: calc(100vh - 90px);
+}
+
+
+.card {
+  border: none;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+.btn {
+  display: inline-flex;
+  padding: 3px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  background: var(--Ciano, #4fadc0);
+  width: 100%;
+}
+
+.card-header {
+  background: white;
+  text-align: center;
+  font-family: "Gill Sans Nova";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.border {
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem !important;
+}
+
+.bienvenido {
+  color: var(--Black, #101415);
+  font-family: "Gill Sans Nova";
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 720px) {
+  .card-header {
+    font-size: 20px;
+  }
+
+  .bienvenido {
+    font-size: 18px;
+  }
+  .fs-5 {
+    font-size: 1rem !important;
+}
+}
+
+@media (min-width: 720) and (max-width:1200px) {
+  .card-header {
+    font-size: 22px;
+  }
+
+  .bienvenido {
+    font-size: 20px;
+  }
+  .fs-5 {
+    font-size: 1.25rem !important;
+}
+}

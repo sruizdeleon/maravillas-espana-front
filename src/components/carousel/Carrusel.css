@@ -1,0 +1,148 @@
+/* CARRUSEL SECTION */
+
+.carrusel__page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 90px);
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition-property: "background-image";
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    position: relative;
+}
+
+.carrusel__section{
+    display: grid;
+    grid-template-rows: 1fr 6fr 1fr;
+    background-position: left;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    max-width: 1200px;
+}
+
+.carrusel__background {
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: inherit;
+}
+
+.carrusel__location-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.carrusel__location{
+    text-align: right;
+    z-index: 2;
+    color: white;
+    font-size: clamp(0.8rem, 3vw, 1rem);
+}
+
+.carrusel__location-icon{
+    text-align: right;
+    z-index: 2;
+    color: white;
+    width: 15px;
+    height: 15px;
+}
+
+@media screen and (min-width: 576px)
+{
+    .carrusel__location-icon{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.carrusel__main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    z-index: 2;
+}
+
+.carrusel__title {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+    width: 90%;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 800;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+}
+
+.carrusel__content {
+    width: 90%;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+}
+
+.carrusel__button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px
+}
+@media screen and (min-width: 992px)
+{
+    .carrusel__button-container{
+        flex-direction: row;
+    }
+}
+
+.carrusel__button {
+    color: black;
+    padding: 5px 20px;
+    width: 150px;
+    border-radius: 40px;
+    background-color: white;
+    border: white 2px solid;
+    mix-blend-mode: screen;
+    font-weight: 700;
+}
+
+.carrusel__button:hover {
+    background-color:  var(--col-l-blue);
+    transition-property: "background-color";
+    transition-duration: 0.5s;
+}
+
+.carrusel__button-trans {
+    font-weight: 700;
+    color: white;
+    padding: 5px 20px;
+    width: 150px;
+    border-radius: 40px;
+    background-color: transparent;
+    border: white 2px solid;
+}
+
+.carrusel__button-trans:hover {
+    background-color: var(--col-l-blue);
+    mix-blend-mode: screen;
+    color: black;
+    transition-property: "background-color";
+    transition-duration: 0.5s;
+}
+
+
+
+

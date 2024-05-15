@@ -1,0 +1,263 @@
+.contenedor_mi_perfil {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: calc(100vh - 90px);
+  margin-top: 25px;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.card_mi_perfil {
+  border-radius: 20px;
+  background-color: #ebebeb;
+  padding: 20px;
+  margin: 20px;
+}
+
+.email {
+  margin-bottom: 0;
+}
+.myProfile_userRole {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.avatar {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 25px;
+  background-color: #4fadc0;
+  height: 40px;
+  width: 75%;
+  color: #ffffff;
+}
+.newPassword {
+  margin-bottom: 10px;
+}
+
+.delete {
+  border-radius: 25px;
+  background-color: #4fadc0;
+  height: 40px;
+  width: 75%;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputPassword {
+  background-color: white;
+  font-size: 12px;
+  color: #101415;
+}
+
+.button {
+  margin: 5px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.button.view {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.button.edit {
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+.button.delete {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.delete-image {
+  margin-top: 10px;
+  margin-left: 5px; /* Ajustar el margen izquierdo */
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.delete-image:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+.avatar-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+.avatar-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.formPassword {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.formPassword input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.formPassword button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4fadc0;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.formPassword button:hover {
+  background-color: #0f2735;
+}
+
+@media screen and (max-width: 600px) {
+  .contenedor {
+    height: calc(100vh - 145px);
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user-info h2 {
+    font-size: 25px;
+  }
+
+  .user-info p {
+    font-size: 18px;
+  }
+
+  .formPassword input,
+  .formPassword button {
+    max-width: 250px;
+  }
+
+  .options button {
+    width: 250px;
+  }
+  .card_mi_perfil {
+    margin-top: 60px;
+  }
+  .upload-icon {
+    bottom: 0px;
+    right: 0px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .contenedor {
+    height: calc(100vh - 100px);
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .user-info h2 {
+    font-size: 18px;
+  }
+
+  .user-info p {
+    font-size: 14px;
+  }
+
+  .formPassword input,
+  .formPassword button {
+    max-width: 200px;
+  }
+
+  .options button {
+    width: 190px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .card_mi_perfil {
+    display: flex;
+    flex-direction: column;
+  }
+  .upload-icon {
+    bottom: 0;
+    right: 0px;
+    width: 25px;
+    height: 24px;
+  }
+}

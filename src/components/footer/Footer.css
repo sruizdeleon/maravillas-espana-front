@@ -1,0 +1,14 @@
+/* Footer.css */
+
+footer {
+    bottom: 0; /* Alinear el pie de página en la parte inferior */
+    width: 100%; /* Ocupar el ancho completo de la pantalla */
+    background-color: #f5f4f4;
+    color: rgb(71, 69, 69);
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}

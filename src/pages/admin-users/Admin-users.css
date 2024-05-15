@@ -1,0 +1,60 @@
+.Admin{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100vh - 90px);
+    justify-content:center;
+    align-items: center;
+    color: black;
+    background-color: white;
+    
+}
+.Admin_tarjeta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    margin: auto;
+    background-color: var(--col-l-grey);
+}
+.imgAdmin{
+    height: 20vh;
+    border-radius: 50%;
+    margin-top: clamp(20px, 5vh, 50px);
+    
+}
+.Admin_h2{
+    margin: 20px 20px;
+    font-weight: 700;
+}
+.Admin_p{
+    text-align: center;
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 600;
+    margin: 20px 15px 50px 15px;
+}
+.adminUsers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 99%;
+    height: auto;
+}
+
+@media screen and (min-width: 767px){
+    
+    .Admin_tarjeta{
+        width: 90%;
+        margin: 20px auto;
+        border-radius: 20px;
+    }
+    .Admin_p{
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 1123px){
+    .Admin_tarjeta{
+        width: 65%;
+    }
+}

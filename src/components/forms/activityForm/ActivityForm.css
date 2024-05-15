@@ -1,0 +1,160 @@
+
+.activity-form__form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.activity-form__body{
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 992px)
+  {
+    flex-direction: row;
+  }
+}
+
+.activity-form__columns{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  @media screen and (min-width: 992px)
+  {
+    flex-direction: column;
+  }
+}
+
+.activity-form__rows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  @media screen and (min-width: 992px)
+  {
+    flex-direction: row;
+  }
+}
+
+.activity-form__fieldset{
+  border: 1px var(--col-l-grey) solid;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  width: calc(100% - 20px);
+}
+
+.activity-form__fieldset--text-area{
+  border: 1px var(--col-l-grey) solid;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 10px;
+  height: 100%;
+}
+
+.activity-form__label{
+  font-size: small;
+  font-weight: 700;
+  padding: 5px 10px 0px 10px;
+}
+
+.activity-form__input{
+  padding: 0px 10px 5px 10px;
+  background-color: white;
+  border: none;
+  color: black;
+}
+
+.activity-form__input:focus{
+  outline: none;
+  border: none;
+}
+.activity-form__input:active{
+  outline: none;
+  border: none;
+}
+
+.searcher__input:focus {
+  color: var(--col-black);
+  outline: none;
+}
+
+.searcher__input:active {
+  outline: none;
+  border: none;
+}
+
+.activity-form__text-area{
+  height: inherit;
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  border: none;
+}
+.activity-form__text-area:active{
+  outline: none;
+}
+.activity-form__text-area:focus{
+  outline: none;
+}
+
+.activity-form__img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.activity-form__img-skeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  margin: 10px;
+  border-radius: 20px;
+  background-color: skeleton;
+  padding: 10px;
+  color: white
+}
+
+.activity-form__footer {
+  margin: 0 auto;
+}
+
+.activity-form__button{
+  background-color: var(--col-l-blue);
+  padding: 10px;
+  min-width: 170px;
+  border-radius: 40px;
+  border: none;
+  margin: 20px;
+  transition: "background-color";
+  transition-timing-function: linear;
+  transition-duration: 0.3s;
+}
+.activity-form__button:hover{
+  background-color: var(--col-d-blue);
+}
+
+.activity-form__img-skeleton {
+  animation: skeleton 2s linear infinite alternate;
+}
+
+@keyframes skeleton {
+  0%{
+    background-color: rgb(194, 194, 194);
+  }
+  100%{
+    background-color: rgb(150, 150, 150);
+  }
+}

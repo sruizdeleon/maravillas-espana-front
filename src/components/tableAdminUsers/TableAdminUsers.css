@@ -1,0 +1,48 @@
+
+.buscador{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px 0px;
+}
+.tableFoundUsers{
+  display: flex;
+  margin: 0 auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  max-height: 500px; 
+}
+.tableFoundUsers_table {
+  display: block;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: clamp(11px, 2vw, 18px);
+  margin: 0px 0px;
+}
+.tableFoundUsers_table tr{
+  height: 50px;
+}
+table tr:hover {
+  color: white;
+  background-color: var(--col-l-blue);
+}
+.tableFoundUsers_table thead, tbody{
+  border: 4px solid black;
+  font-weight: 600;
+}
+.tableFoundUsers_table thead tr th{
+  font-weight: 800;
+  background-color: white;
+  font-weight: bold;
+}
+.tableFoundUsers_table thead th, table td {
+  color:black;
+  border: 2px solid black;
+  padding: clamp(3px, 1vw, 10px);
+  text-align: center;
+}
+
+
+
+
+

@@ -1,0 +1,390 @@
+/* actvidad */
+.actividad-body {
+    margin-top: 1.875rem;
+    margin-bottom: 1.875rem;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
+}
+
+/* TARJETA ACTIVIDAD */
+.actividad {
+    height: auto;
+}
+
+.titulo-fav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: clamp(0.938rem, 3vw, 1.563rem);
+}
+
+.titulo-actividad {
+    text-align: left;
+    font-size: clamp(1.25rem, 3vw, 3rem);
+    width: 12.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.btn-edit-delete {
+    display: flex;
+    align-self: center;
+    gap: 1rem;
+}
+
+.edit-btn {
+    background-image: url("../../../assets/edit_btn.svg");
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    width: clamp(1.25rem, 3vw, 1.75rem);
+    height: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.delete-btn {
+    background-image: url("../../../assets/trash_btn.svg");
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    width: clamp(1.25rem, 3vw, 1.75rem);
+    height: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+/* LOCALIZACIÓN DE LA ACTIVIDAD Y BANDERA */
+.info-actividad {
+    display: flex;
+    gap: clamp(0.625rem, 3vw, 1.25rem);
+    height: clamp(1.875rem, 3vw, 2.625rem);
+    margin-bottom: clamp(1.563rem, 3vw, 2.188rem);
+}
+
+.destaque-ciudad {
+    background-color: #E76267;
+    color: #FFFFFF;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    align-content: center;
+    text-align: center;
+    height: auto;
+    width: 9rem;
+    padding: 0.313rem 0.625rem;
+}
+
+.destaque-rural {
+    background-color: #2B775D;
+    color: #FFFFFF;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    align-content: center;
+    text-align: center;
+    height: auto;
+    width: 9rem;
+    padding: 0.313rem 0.625rem;
+}
+
+.localizacion {
+    display: flex;
+    justify-content: left;
+    gap: 0.188rem;
+    width: auto;
+}
+
+.mapa-punto {
+    align-content: center;
+    position: relative;
+    overflow: hidden;
+    width: clamp(0.813rem, 3vw, 1.25rem);
+    height: auto;
+}
+
+.prov-com {
+    font-size: clamp(0.75rem, 3vw, 1.25rem);
+    font-weight: bold;
+    align-content: center;
+    text-align: left;
+    height: 100%;
+    width: 100%;
+}
+
+.bandera-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bandera {
+    border-radius: 0.25rem;
+    width: auto;
+    height: 25px;
+}
+
+/* IMAGEN DE LA ACTIVIDAD */
+.foto-actividad {
+    position: relative;
+    border-radius: 1.25rem;
+    width: 100%;
+    height: clamp(18.75rem, 50vw, 31.25rem);
+    object-fit: cover;
+    margin-bottom: 0.625rem;
+}
+
+.descripcion-titulo {
+    font-size: clamp(1.125rem, 2vw, 1.75rem);
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+}
+
+.descripcion {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 400;
+}
+
+/* SEPARADOR */
+.separador {
+    border: 0.063rem solid #cccccc91;
+    border-radius: 2rem;
+    margin-top: clamp(2.813rem, 5vw, 8.125rem);
+    margin-bottom: clamp(2.813rem, 5vw, 8.125rem);
+}
+
+/* FORMULARIO NUEVO COMENTARIO */
+.formComentario {
+    /* background-color: #666; */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 355px;
+    margin: 0 auto;
+}
+
+.form-titulo {
+    /* background-color: aqua; */
+    font-size: clamp(1.25rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 30px 0;
+}
+
+.form-usuario {
+    /* background-color: violet; */
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 500;
+    margin: 0 0 10px 0;
+}
+
+.valorar-estrellas {
+    margin: 0 0 10px 0;
+}
+
+.valorar-estrellas label {
+    font-size: clamp(18px, 3vw, 24px);
+}
+
+.form-estrellas {
+    /* background-color: brown; */
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.formComentario-textarea {
+    width: 355px;
+    height: 200px;
+    margin: 0 0 30px 0;
+}
+
+.btn-form-comentario {
+    color: #FFFFFF;
+    background-color: #4FADC0;
+    font-weight: bold;
+    height: 45px;
+    width: 355px;
+    border: none;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+/* PUNTAJE */
+.div-rating {
+    text-align: right;
+    margin: 0 0 1.875rem 0;
+}
+
+.media-fija {
+    display: flex;
+    justify-content: right;
+    gap: 0.313rem;
+}
+
+.rating {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: bold;
+    color: #FCDC73;
+}
+
+.estrellas-color {
+    color: #FCDC73;
+}
+
+.total-resenas {
+    color: #666;
+    font-size: clamp(0.75rem, 3vw, 0.875rem);
+    margin: 0.313rem 0 0 0;
+}
+
+/* COMENTARIOS */
+.comentario {
+    margin: 1.25rem 0;
+}
+
+.perfil-usuario {
+    margin-bottom: 1.125rem;
+}
+
+.nombre-usuario {
+    color: #101415;
+    font-size: clamp(1.125rem, 3vw, 1.25rem);
+    padding: 0;
+    margin: 0;
+}
+
+.localizacion-usuario {
+    color: #101415;
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    padding: 0;
+    margin: 0.313rem 0 0 0;
+}
+
+.puntaje-usuario {
+    color: #101415d4;
+    font-size: clamp(0.875rem, 3vw, 1rem);
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+.comentario-texto {
+    color: #101415d4;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+}
+
+/* __________________ RESPONSIVE __________________ */
+
+@media (min-width: 576px) {
+    .actividad-body {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    .titulo-actividad {
+        width: 37.5rem;
+    }
+
+    .destaque-ciudad {
+        font-size: 0.875rem;
+    }
+
+    .destaque-rural {
+        font-size: 0.875rem;
+    }
+
+    .comentarios {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .comentario {
+        flex-grow: 1;
+        width: calc(100% - 1.25rem);
+        max-width: calc(100% - 1.25rem);
+    }
+}
+
+@media (min-width: 776px) {
+    .actividad-body {
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+
+    .formComentario {
+        width: 500px;
+    }
+}
+
+@media (min-width: 992px) {
+    .actividad-body {
+        margin-left: 6.25rem;
+        margin-right: 6.25rem;
+    }
+
+    .titulo-actividad {
+        width: 50rem;
+    }
+
+    .descripcion-titulo {
+        margin: 40px 0 10px 0;
+    }
+
+    .formComentario {
+        width: 700px;
+    }
+
+    .form-titulo {
+        margin: 0 0 50px 0;
+    }
+
+    .form-usuario {
+        margin: 0 0 15px 0;
+    }
+
+    .valorar-estrellas {
+        width: fit-content;
+        display: flex;
+        margin: 0 auto 30px auto;
+        gap: 10px;
+    }
+
+    .comentarios {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .comentario {
+        flex-grow: 1;
+        width: calc(47% - 2rem);
+        max-width: calc(47% - 2rem);
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .actividad-body {
+        max-width: 62.5rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .destaque-ciudad {
+        font-size: 1.25rem;
+    }
+
+    .destaque-rural {
+        font-size: 1.25rem;
+    }
+
+    .comentarios {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .comentario {
+        flex-grow: 1;
+        width: calc(45% - 2rem);
+        max-width: calc(45% - 2rem);
+        margin-left: 2.5rem;
+        margin-right: 2.5rem;
+    }
+}

@@ -1,0 +1,212 @@
+{
+	"provincias": [
+		{
+			"value": "a coruña",
+			"name": "A Coruña"
+		},
+		{
+			"value": "álava",
+			"name": "Álava"
+		},
+		{
+			"value": "albacete",
+			"name": "Albacete"
+		},
+		{
+			"value": "alicante",
+			"name": "Alicante"
+		},
+		{
+			"value": "almería",
+			"name": "Almería"
+		},
+		{
+			"value": "ávila",
+			"name": "Ávila"
+		},
+		{
+			"value": "badajoz",
+			"name": "Badajoz"
+		},
+		{
+			"value": "baleares",
+			"name": "Baleares"
+		},
+		{
+			"value": "barcelona",
+			"name": "Barcelona"
+		},
+		{
+			"value": "bizkaia",
+			"name": "Bizkaia"
+		},
+		{
+			"value": "burgos",
+			"name": "Burgos"
+		},
+		{
+			"value": "cáceres",
+			"name": "Cáceres"
+		},
+		{
+			"value": "cádiz",
+			"name": "Cádiz"
+		},
+		{
+			"value": "cantabria",
+			"name": "Cantabria"
+		},
+		{
+			"value": "castellón",
+			"name": "Castellón"
+		},
+		{
+			"value": "ceuta",
+			"name": "Ceuta"
+		},
+		{
+			"value": "ciudad real",
+			"name": "Ciudad Real"
+		},
+		{
+			"value": "córdoba",
+			"name": "Córdoba"
+		},
+		{
+			"value": "cuenca",
+			"name": "Cuenca"
+		},
+		{
+			"value": "gipuzcoa",
+			"name": "Gipuzcoa"
+		},
+		{
+			"value": "girona",
+			"name": "Girona"
+		},
+		{
+			"value": "granada",
+			"name": "Granada"
+		},
+		{
+			"value": "guadalajara",
+			"name": "Guadalajara"
+		},
+		{
+			"value": "huelva",
+			"name": "Huelva"
+		},
+		{
+			"value": "huesca",
+			"name": "Huesca"
+		},
+		{
+			"value": "jaén",
+			"name": "Jaén"
+		},
+		{
+			"value": "la rioja",
+			"name": "La Rioja"
+		},
+		{
+			"value": "las palmas",
+			"name": "Las Palmas"
+		},
+		{
+			"value": "león",
+			"name": "León"
+		},
+		{
+			"value": "lleida",
+			"name": "Lleida"
+		},
+		{
+			"value": "lugo",
+			"name": "Lugo"
+		},
+		{
+			"value": "madrid",
+			"name": "Madrid"
+		},
+		{
+			"value": "málaga",
+			"name": "Málaga"
+		},
+		{
+			"value": "melilla",
+			"name": "Melilla"
+		},
+		{
+			"value": "murcia",
+			"name": "Murcia"
+		},
+		{
+			"value": "navarra",
+			"name": "Navarra"
+		},
+		{
+			"value": "ourense",
+			"name": "Ourense"
+		},
+		{
+			"value": "palencia",
+			"name": "Palencia"
+		},
+		{
+			"value": "pontevedra",
+			"name": "Pontevedra"
+		},
+		{
+			"value": "principado de asturias",
+			"name": "Principado de Asturias"
+		},
+		{
+			"value": "salamanca",
+			"name": "Salamanca"
+		},
+		{
+			"value": "santa cruz de tenerife",
+			"name": "Santa Cruz de Tenerife"
+		},
+		{
+			"value": "segovia",
+			"name": "Segovia"
+		},
+		{
+			"value": "sevilla",
+			"name": "Sevilla"
+		},
+		{
+			"value": "soria",
+			"name": "Soria"
+		},
+		{
+			"value": "tarragona",
+			"name": "Tarragona"
+		},
+		{
+			"value": "teruel",
+			"name": "Teruel"
+		},
+		{
+			"value": "toledo",
+			"name": "Toledo"
+		},
+		{
+			"value": "valencia",
+			"name": "Valencia"
+		},
+		{
+			"value": "valladolid",
+			"name": "Valladolid"
+		},
+		{
+			"value": "zamora",
+			"name": "Zamora"
+		},
+		{
+			"value": "zaragoza",
+			"name": "Zaragoza"
+		}
+	]
+}

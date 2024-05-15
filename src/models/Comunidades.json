@@ -1,0 +1,308 @@
+{
+	"comunidades": [
+		{
+			"value": "andalucía",
+			"name": "Andalucía",
+			"provincias": [
+				{
+					"value": "almería",
+					"name": "Almería"
+				},
+				{
+					"value": "cádiz",
+					"name": "Cádiz"
+				},
+				{
+					"value": "córdoba",
+					"name": "Córdoba"
+				},
+				{
+					"value": "granada",
+					"name": "Granada"
+				},
+				{
+					"value": "huelva",
+					"name": "Huelva"
+				},
+				{
+					"value": "jaén",
+					"name": "Jaén"
+				},
+				{
+					"value": "sevilla",
+					"name": "Sevilla"
+				}
+			]
+		},
+		{
+			"value": "aragón",
+			"name": "Aragón",
+			"provincias": [
+				{
+					"value": "huesca",
+					"name": "Huesca"
+				},
+				{
+					"value": "teruel",
+					"name": "Teruel"
+				},
+				{
+					"value": "zaragoza",
+					"name": "Zaragoza"
+				}
+			]
+		},
+		{
+			"value": "canarias",
+			"name": "Canarias",
+			"provincias": [
+				{
+					"value": "santa cruz de tenerife",
+					"name": "Santa Cruz de Tenerife"
+				},
+				{
+					"value": "las palmas",
+					"name": "Las Palmas"
+				}
+			]
+		},
+		{
+			"value": "cantabria",
+			"name": "Cantabria",
+			"provincias": [
+				{
+					"value": "cantabria",
+					"name": "Cantabria"
+				}
+			]
+		},
+		{
+			"value": "castilla y león",
+			"name": "Castilla y León",
+			"provincias": [
+				{
+					"value": "burgos",
+					"name": "Burgos"
+				},
+				{
+					"value": "león",
+					"name": "León"
+				},
+				{
+					"value": "palencia",
+					"name": "Palencia"
+				},
+				{
+					"value": "salamanca",
+					"name": "Salamanca"
+				},
+				{
+					"value": "segovia",
+					"name": "Segovia"
+				},
+				{
+					"value": "soria",
+					"name": "Soria"
+				},
+				{
+					"value": "valladolid",
+					"name": "Valladolid"
+				},
+				{
+					"value": "zamora",
+					"name": "Zamora"
+				}
+			]
+		},
+		{
+			"value": "castilla la mancha",
+			"name": "Castilla-La Mancha",
+			"provincias": [
+				{
+					"value": "albacete",
+					"name": "Albacete"
+				},
+				{
+					"value": "ciudad real",
+					"name": "Ciudad Real"
+				},
+				{
+					"value": "cuenca",
+					"name": "Cuenca"
+				},
+				{
+					"value": "guadalajara",
+					"name": "Guadalajara"
+				},
+				{
+					"value": "toledo",
+					"name": "Toledo"
+				}
+			]
+		},
+		{
+			"value": "cataluna",
+			"name": "Cataluña",
+			"provincias": [
+				{
+					"value": "barcelona",
+					"name": "Barcelona"
+				},
+				{
+					"value": "girona",
+					"name": "Girona"
+				},
+				{
+					"value": "lleida",
+					"name": "Lleida"
+				},
+				{
+					"value": "tarragona",
+					"name": "Tarragona"
+				}
+			]
+		},
+		{
+			"value": "ceuta",
+			"name": "Ceuta",
+			"provincias": [
+				{
+					"value": "ceuta",
+					"name": "Ceuta"
+				}
+			]
+		},
+		{
+			"value": "comunidad de madrid",
+			"name": "Comunidad de Madrid",
+			"provincias": [
+				{
+					"value": "madrid",
+					"name": "Madrid"
+				}
+			]
+		},
+		{
+			"value": "comunidad valenciana",
+			"name": "Comunidad Valenciana",
+			"provincias": [
+				{
+					"value": "alicante",
+					"name": "Alicante"
+				},
+				{
+					"value": "castellón",
+					"name": "Castellón"
+				},
+				{
+					"value": "valencia",
+					"name": "Valencia"
+				}
+			]
+		},
+		{
+			"value": "extremadura",
+			"name": "Extremadura",
+			"provincias": [
+				{
+					"value": "badajoz",
+					"name": "Badajoz"
+				},
+				{
+					"value": "cáceres",
+					"name": "Cáceres"
+				}
+			]
+		},
+		{
+			"value": "galicia",
+			"name": "Galicia",
+			"provincias": [
+				{
+					"value": "a coruña",
+					"name": "A Coruña"
+				},
+				{
+					"value": "lugo",
+					"name": "Lugo"
+				},
+				{
+					"value": "ourense",
+					"name": "Ourense"
+				},
+				{
+					"value": "pontevedra",
+					"name": "Pontevedra"
+				}
+			]
+		},
+		{
+			"value": "islas baleares",
+			"name": "Islas Baleares",
+			"provincias": [
+				{
+					"value": "Baleares",
+					"name": "Baleares"
+				}
+			]
+		},
+		{
+			"value": "la rioja",
+			"name": "La Rioja",
+			"provincias": [
+				{
+					"value": "la rioja",
+					"name": "La Rioja"
+				}
+			]
+		},
+		{
+			"value": "murcia",
+			"name": "Murcia",
+			"provincias": [
+				{
+					"value": "murcia",
+					"name": "Murcia"
+				}
+			]
+		},
+		{
+			"value": "navarra",
+			"name": "Navarra",
+			"provincias": [
+				{
+					"value": "navarra",
+					"name": "Navarra"
+				}
+			]
+		},
+		{
+			"value": "pais_vasco",
+			"name": "País Vasco",
+			"provincias": [
+				{
+					"value": "álava",
+					"name": "Álava"
+				},
+				{
+					"value": "bizkaia",
+					"name": "Bizkaia"
+				},
+				{
+					"value": "gipuzcoa",
+					"name": "Gipuzcoa"
+				}
+			]
+		},
+		{
+			"value": "principado de asturias",
+			"name": "Principado de Asturias",
+			"provincias": [
+				{
+					"value": "principado de asturias",
+					"name": "Principado de Asturias"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,199 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    background-color: #f5f4f4;
+    color: rgb(71, 69, 69);
+    height: 90px;
+}
+
+.header_h1 {
+    display:flex;
+    flex-direction: row;
+    text-align: center;
+    width: 34%;
+    font-size: clamp(24px, 3vw, 42px);
+}
+
+.logoHeader{
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-top: 10px;
+}
+.navGlobal{
+    display: flex;
+    z-index: 100;
+    width: 65%;
+}
+.navUsuario {
+    display: flex;
+    flex-direction: row wrap;
+    justify-content: space-around;
+    position: absolute;
+    width: 63%;
+    top: 20px;
+    
+}
+.navUsuario-movil {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 90px
+}
+.navLanding{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 100%;
+}
+.menu-movil{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    position: relative;
+    margin-right: 15px;
+    font-size: 34px;
+    width: 30%;
+    height: 50px;
+    z-index: 105;
+}
+.menu{
+    display: none;
+}
+.iconoMenu{
+    display: flex;
+    align-items: center;
+    margin: auto auto;
+}
+
+
+.div-movil{
+    display:flex;
+    flex-direction: row wrap;
+    cursor: pointer;
+    padding: 26px 26px;
+    font-weight: bold;
+    height: 30px;
+    background-color: var(--col-white);
+    border-bottom: 0.5px rgba(128, 128, 128, 0.536) solid;
+}
+.iconosNav{
+    display: flex;
+    align-items: center;
+    margin-right: 5px;;
+}
+.link-landing{
+    display: flex;
+    flex-direction: row wrap;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(71, 69, 69);
+    font-size: clamp(16px, 2vw, 24px);
+}
+.link{
+    display: flex;
+    flex-direction: row wrap;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(71, 69, 69);
+    font-size: clamp(18px, 2vw, 24px);  
+}
+.link:hover{
+    scale: 1.1;
+}
+.link-logout{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: var( --col-coral);
+    font-size: clamp(18px, 2vw, 24px);
+}
+.link-logout:hover{
+    scale: 1.1;
+}
+
+.registrarse {
+    display:flex;
+    flex-direction: row wrap;
+    align-items: center;
+    margin-right: clamp(10px, 3vw, 40px);
+    cursor: pointer;
+    color: #f5f4f4;
+    background-color: #4fadc0;
+    border-radius: 5px;
+    padding-block: clamp(8px, 2vw, 16px);
+    padding-inline: clamp(10px, 3vw, 16px);
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
+.login {
+    display:flex;
+    flex-direction: row wrap;
+    align-items: center;
+    margin-right: clamp(5px, 2.5vw, 30px);
+    cursor: pointer;
+    padding-block: clamp(8px, 2vw, 16px);
+    padding-inline: clamp(6px, 2vw, 16px);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.home {
+    display:flex;
+    flex-direction: row wrap;
+    align-items: center;
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+    padding-right: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    text-decoration-line: none;
+    margin: auto 0;
+    
+}
+
+.admin-usuarios {
+    display:flex;
+    flex-direction: row wrap;
+    align-items: center;
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+    padding-right: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: auto 0;
+}
+
+.mi-perfil {
+    display:flex;
+    flex-direction: row wrap;
+    align-items: center;
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+    padding-right: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    margin: auto 0;
+}
+
+.logout {
+    display:flex;
+    flex-direction: row wrap;
+    align-items: center;
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0;
+    text-decoration: none;
+    margin: auto 0;
+}

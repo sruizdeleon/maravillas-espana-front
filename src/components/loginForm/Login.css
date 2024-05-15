@@ -1,0 +1,20 @@
+.card-header {
+  background: white;
+  text-align: center;
+  font-family: "Gill Sans Nova";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.fa-solid {
+  font-size: 100px;
+}
+.container{
+  height: calc(100vh - 90px);
+}
+
+.errors_login{
+  font-size: 14px;
+  padding-left: 10px;
+}
